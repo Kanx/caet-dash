@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "dev": "nodemon server | ng serve",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -21,8 +22,12 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "body-parser": "^1.18.2",
     "core-js": "^2.4.1",
+    "express": "^4.16.1",
+    "nodemon": "^1.12.1",
     "rxjs": "^5.4.2",
+    "xml-js": "^1.5.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
