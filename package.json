@@ -6,7 +6,7 @@
     "ng": "ng",
     "dev": "nodemon server | ng serve",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --target=production --output-hashing partial --env=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

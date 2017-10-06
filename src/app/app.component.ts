@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private sp: SharepointService) {}
 
   create() {
-    this.sp.___createListItem('AdvertData', {
+    this.sp.createListItem('AdvertData', {
       'Title': 'Test',
       'Content': 'Some body copy'
     }).then(data => this.res = data );
