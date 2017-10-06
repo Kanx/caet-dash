@@ -26,6 +26,7 @@ router.get('/web/lists/:config/:items', function(req, res, next) {
 // Update list item
 router.put('/web/lists/:config/:items', function(req, res, next) {
   const listSettings = req.params.config;
+  console.log(req.headers)
   const listName = listSettings.substring(listSettings.lastIndexOf("('")+2,listSettings.lastIndexOf("')"));
   const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6,req.params.items.lastIndexOf(")"));
   MockData[listName][singleItemId -  1] = Object.assign(MockData[listName][singleItemId -  1], req.body);

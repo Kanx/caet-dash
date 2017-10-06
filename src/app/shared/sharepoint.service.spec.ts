@@ -13,6 +13,6 @@ describe('SharepointService', () => {
     const fixture = TestBed.createComponent(SharepointService);
     const service = fixture.debugElement.componentInstance;
 
-    service.getListItems()
+    service.getListItems();
   }));
 });

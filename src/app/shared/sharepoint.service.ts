@@ -37,46 +37,45 @@ export class SharepointService {
 
   createListItem(listName: string, data: object): Promise<any> {
     return new Promise((resolve) => {
-      this.getRequestDigest().map(requestDigest => requestDigest.text()).subscribe(requestDigest => {
-          const FormDigestValue = JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text;
-          const postHeaders = this.headers.set('X-RequestDigest', FormDigestValue);
-          const payload = JSON.stringify(Object.assign(data, { __metadata: { 'type': `SP.Data.${listName}ListItem` }}));
+      this.getRequestDigest()
+          .map(requestDigest => requestDigest.text())
+          .subscribe(requestDigest => {
+            const FormDigestValue = JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text;
+            const payload = JSON.stringify(Object.assign(data, { __metadata: { 'type': `SP.Data.${listName}ListItem` }}));
 
-          return this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items`,
-            payload,
-            { 'headers': postHeaders })
-            .subscribe(resolve);
-        });
+            return this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items`,
+              payload,
+              { 'headers': this.headers.set('X-RequestDigest', FormDigestValue) })
+              .subscribe(resolve);
+          });
     });
   }
 
-  // TODO Refactor to use http.put instead of changing X-HTTP-Method header
   updateListItem(listName: string, listItemId: number, data: object): Promise<any> {
     return new Promise((resolve) => {
-      this.getRequestDigest().map(requestDigest => requestDigest.text()).subscribe(requestDigest => {
-          const FormDigestValue = JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text;
-          const updateListItemHeaders = this.headers.set('X-RequestDigest', FormDigestValue).set('X-HTTP-Method', 'MERGE');
-
-          this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
-            JSON.stringify(Object.assign(data, { __metadata: { 'type': 'SP.List' }})),
-            { 'headers': updateListItemHeaders })
-            .subscribe(resolve);
-        });
+      this.getRequestDigest()
+          .map(requestDigest => requestDigest.text())
+          .subscribe(requestDigest => {
+            const FormDigestValue = JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text;
+            this.http.put(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
+              JSON.stringify(Object.assign(data, { __metadata: { 'type': 'SP.List' }})),
+              { 'headers': this.headers.set('X-RequestDigest', FormDigestValue) })
+              .subscribe(resolve);
+          });
     });
   }
 
   deleteListItem(listName: string, listItemId: number): Promise<any> {
     return new Promise((resolve) => {
-      this.getRequestDigest().map(requestDigest => requestDigest.text()).subscribe(requestDigest => {
-          const payload = JSON.stringify({ __metadata: { 'type': 'SP.List' }});
-          const FormDigestValue = JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text;
-          const updateListItemHeaders = this.headers.set('X-RequestDigest', FormDigestValue).set('X-HTTP-Method', 'DELETE');
+      this.getRequestDigest()
+          .map(requestDigest => requestDigest.text())
+          .subscribe(requestDigest => {
+            const FormDigestValue = JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text;
 
-          this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
-            payload,
-            { 'headers': updateListItemHeaders })
-            .subscribe(resolve);
-        });
+            this.http.delete(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
+              { 'headers': this.headers.set('X-RequestDigest', FormDigestValue) })
+              .subscribe(resolve);
+          });
     });
   }
 
@@ -88,16 +87,16 @@ export class SharepointService {
 
   @RequestDigest()
   public ___createListItem(listName: string, data: object, requestDigest?): any {
-    const postHeaders = this.headers.set('X-RequestDigest', requestDigest);
     const payload = JSON.stringify(Object.assign(data, { __metadata: { 'type': `SP.Data.${listName}ListItem` }}));
-    return this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items`, payload , { 'headers': postHeaders });
+    return this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items`,
+      payload,
+      { 'headers': this.headers.set('X-RequestDigest', requestDigest)});
   }
 
   @RequestDigest()
   public ___updateListItem(listName: string, listItemId: number, data: object, requestDigest?): any {
-    const updateListItemHeaders = this.headers.set('X-RequestDigest', requestDigest).set('X-HTTP-Method', 'MERGE');
-    return this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
+    return this.http.put(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
       JSON.stringify(Object.assign(data, {__metadata: {'type': 'SP.List'}})),
-      {'headers': updateListItemHeaders});
+      {'headers': this.headers.set('X-RequestDigest', requestDigest)});
   }
 }
