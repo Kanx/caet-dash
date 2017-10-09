@@ -23,6 +23,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     this.sp.getAllFilesAndFolders('Documents').subscribe(data => {
+      console.log(data);
       this.filesAndFolders = this.getFilesAndFolders(data);
       console.log(this.filesAndFolders);
     });
