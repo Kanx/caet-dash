@@ -1,0 +1,19 @@
+<ckeditor
+  [(ngModel)]="editorContent"
+  [config]="{
+    extraPlugins: 'divarea',
+    uiColor: '#bdbdbd',
+      toolbarGroups: [
+      { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+      { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+      { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+      { name: 'forms', groups: [ 'forms' ] },
+      { name: 'editing', groups: [ 'find', 'selection', 'editing' ] },
+      { name: 'styles', groups: [ 'styles' ] },
+      { name: 'links', groups: [ 'links' ] },
+      { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] }
+    ]
+   }"
+  debounce="500">
+</ckeditor>
+

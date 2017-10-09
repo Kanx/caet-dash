@@ -1,4 +1,4 @@
-const WikiData = [
+const WikiContentData = [
   {
     "Title": "Some Article",
     "Content": "<p>Lorem Ipsum blah blah</p>",
@@ -14,4 +14,4 @@ const WikiData = [
 
 ];
 
-module.exports = WikiData;
+module.exports = WikiContentData;

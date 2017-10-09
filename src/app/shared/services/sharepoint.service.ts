@@ -17,8 +17,10 @@ export class SharepointService {
 
   constructor(private http: HttpClient, private _http: Http) {}
 
+  // LIST OPERATIONS
+
   getListItems(listName: string): Observable<ArrayBuffer> {
-    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items`, { 'headers': this.headers});
+    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items`, { 'headers': this.headers });
   }
 
   getListItem(listName: string, listItemId: number): Observable<ArrayBuffer> {
@@ -45,4 +47,16 @@ export class SharepointService {
     return this.http.delete(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
       {'headers': this.headers.set('X-RequestDigest', requestDigest)});
   }
+
+  // USER OPERATIONS
+  getCurrentUser(): Observable<ArrayBuffer> {
+    return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetMyProperties`,
+      { 'headers': this.headers});
+  }
+
+  getUser(userId: string): Observable<ArrayBuffer> {
+    return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='europa\\${userId}'`,
+      { 'headers': this.headers});
+  }
+
 }

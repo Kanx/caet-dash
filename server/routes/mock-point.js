@@ -61,4 +61,15 @@ router.post("/SP.AppContextSite(@target)/web/lists", function(req, res, next) {
   res.sendStatus(200);
 });
 
+/*
+  User endpoints
+ */
+
+router.get("/SP.UserProfiles.PeopleManager/GetMyProperties", function (req, res, next) {
+  res.json({
+    userName: 'europa\\smitmbm'
+  })
+});
+
+
 module.exports = router;

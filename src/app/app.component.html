@@ -1,13 +1,2 @@
-<div>
-  <button (click)="create()">Create</button>
-  <button (click)="read()">Get All</button>
-  <button (click)="readOne(1)">Get by ID</button>
-  <button (click)="update()">Update</button>
-  <button (click)="delete(1)">Delete</button>
-  <code>{{res | json}}</code>
-</div>
-
-
-<br>
-
-<app-wiki></app-wiki>
+<app-nav class="grid"></app-nav>
+<router-outlet></router-outlet>

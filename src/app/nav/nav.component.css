@@ -1,0 +1,45 @@
+:host {
+  border-bottom: 1px solid #fdfdfd;
+  box-shadow: 0 0 20px rgba(51, 51, 51, 0.5);
+  display: block;
+  padding: 20px 25px;
+  background: white;
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  overflow: auto; }
+  :host nav {
+    display: flex;
+    align-items: center; }
+    :host nav > div {
+      font-size: 0.9rem;
+      float: left;
+      min-height: 1px;
+      position: relative; }
+
+#logo {
+  width: 15%; }
+
+#primary-nav {
+  width: 55%; }
+  #primary-nav ul {
+    margin: 0;
+    list-style-type: none; }
+    #primary-nav ul li {
+      display: inline-block; }
+      #primary-nav ul li a {
+        font-weight: 200;
+        padding: 15px;
+        color: #838386; }
+        #primary-nav ul li a.active {
+          color: #E54A61; }
+
+#notifications {
+  width: 10%; }
+
+#document-search {
+  width: 20%; }
+  #document-search input {
+    width: 100%; }
+
+/*# sourceMappingURL=nav.component.css.map */

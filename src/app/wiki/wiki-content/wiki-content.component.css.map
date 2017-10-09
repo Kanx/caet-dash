@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,KAAM;EACJ,OAAO,EAAC,KAAK;EACb,OAAO,EAAC,IAAI;EACZ,WAAW,ECKI,KAAK;EDJpB,YAAY,EAAE,GAAG",
+"sources": ["wiki-content.component.scss","../../../_variables.scss"],
+"names": [],
+"file": "wiki-content.component.css"
+}

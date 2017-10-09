@@ -1,0 +1,9 @@
+@import "../../../variables";
+
+:host {
+  display:block;
+  padding:20px;
+  margin-left: $side-nav-width;
+  margin-right: 0px;
+}
+

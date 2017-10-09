@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { WikiService } from './wiki.service';
-import {SharepointService} from '../shared/services/sharepoint.service';
+import { SharepointService } from '../shared/services/sharepoint.service';
 
 @Component({
   selector: 'app-wiki',
   templateUrl: './wiki.component.html',
-  styleUrls: ['./wiki.component.css'],
+  styleUrls: ['./wiki.component.scss'],
   providers: [WikiService]
 })
 export class WikiComponent implements OnInit {

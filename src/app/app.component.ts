@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { SharepointService } from './shared/services/sharepoint.service';
-
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   res: any;
   constructor(private sp: SharepointService) {}
+
+  ngOnInit() {
+    this.sp.getCurrentUser().subscribe(userData => {
+      console.log(userData);
+    });
+
+    this.sp.getUser('hornean').subscribe(userData => {
+      console.log(userData);
+    });
+  }
 
   create() {
     this.sp.createListItem('AdvertData', {
@@ -22,6 +31,7 @@ export class AppComponent {
     this.sp.getListItems('AdvertData').subscribe(data => {
       this.res = data;
     });
+
   }
 
   readOne(id: number) {

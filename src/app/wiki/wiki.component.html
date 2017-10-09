@@ -1,10 +1,4 @@
-<ckeditor
-  [(ngModel)]="editorContent"
-  [config]="{uiColor: '#99000'}"
+<app-wiki-nav></app-wiki-nav>
+<app-wiki-content></app-wiki-content>
 
-  debounce="500">
-</ckeditor>
-<button (click)="createWiki()">Create</button>
-<button (click)="getWikiContent()">Get content</button>
-<p>Content here:</p>
-<code>{{ wikiContent | json }}</code>
+

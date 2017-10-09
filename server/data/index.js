@@ -1,6 +1,6 @@
 const MockData = {
   "AdvertData": require('./adverts.data'),
-  "WikiData": require('./wiki.data')
+  "WikiContentData": require('./wiki-content.data')
 };
 
 module.exports = MockData;

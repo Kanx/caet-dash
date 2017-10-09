@@ -1,0 +1,57 @@
+@import "../../variables";
+
+:host {
+  border-bottom: 1px solid #fdfdfd;
+  box-shadow: 0 0 20px transparentize(#333, 0.5);
+  display: block;
+  padding: 20px 25px;
+  background:white;
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  overflow:auto;
+  nav {
+    display: flex;
+    align-items: center;
+    > div {
+      font-size: 0.9rem;
+      float: left;
+      min-height: 1px;
+      position: relative;
+    }
+  }
+}
+
+#logo {
+  width: 15%;
+}
+
+#primary-nav {
+  width: 55%;
+  ul {
+    margin:0;
+    list-style-type: none;
+    li {
+      display: inline-block;
+      a {
+        font-weight:200;
+        padding: 15px;
+        color: #838386;
+        &.active {
+          color: $crimson;
+        }
+      }
+    }
+  }
+}
+
+#notifications {
+  width: 10%;
+}
+
+#document-search {
+  width: 20%;
+  input {
+    width:100%;
+  }
+}
