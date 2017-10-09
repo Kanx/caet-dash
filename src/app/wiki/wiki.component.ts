@@ -1,16 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import {WikiService} from './wiki.service';
+import { WikiService } from './wiki.service';
+import {SharepointService} from '../shared/services/sharepoint.service';
 
 @Component({
   selector: 'app-wiki',
   templateUrl: './wiki.component.html',
-  styleUrls: ['./wiki.component.css']
+  styleUrls: ['./wiki.component.css'],
+  providers: [WikiService]
 })
 export class WikiComponent implements OnInit {
+  public editorContent: string = '<p>Blank</p>';
+  public wikiContent: object;
 
-  constructor(private wikiService: WikiService) { }
+  constructor(private wikiService: WikiService, private sp: SharepointService) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  createWiki() {
+    const wikiData = {
+      'Content': this.editorContent,
+      'Category': 'Some Cat',
+      'Title': 'FooBaz'
+    }
+    this.sp.createListItem('WikiData', wikiData);
+  }
+
+  getWikiContent() {
+    this.sp.getListItems('WikiData').subscribe(data => { console.log(data); this.wikiContent = data});
   }
 
 }

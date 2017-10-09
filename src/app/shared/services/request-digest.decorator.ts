@@ -5,7 +5,7 @@ import * as convert from 'xml-js';
  *  The code is a little messy and not overly intuitive, so these are being kept as experimental methods until I work out how
  *  to better-refactor these. As of writing this, there isn't any real support for Async decorators.
  */
-export default function RequestDigest() {
+export default function FetchRequestDigest() {
   return function(target, key, descriptor) {
     const httpMethod = descriptor.value;
     descriptor.value = function(...args) {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharepointService } from './shared/sharepoint.service';
+import { SharepointService } from './shared/services/sharepoint.service';
 
 
 @Component({
