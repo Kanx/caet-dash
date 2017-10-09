@@ -67,8 +67,29 @@ router.post("/SP.AppContextSite(@target)/web/lists", function(req, res, next) {
 
 router.get("/SP.UserProfiles.PeopleManager/GetMyProperties", function (req, res, next) {
   res.json({
-    userName: 'europa\\smitmbm'
+    AccountName: "europa\\smitmbm",
+    DirectReports: {},
+    DisplayName: "Matt Smith",
+    Email: "Matthew.a.Smith@rbs.co.uk",
+    ExtendedManagers: { },
+    ExtendedReports: { },
+    IsFollowed: false,
+    LatestPost: null,
+    Peers: { },
+    PersonalUrl: "https://mysite-intranet.rbsres01.net/personal/europa_smitmbm/",
+    PictureUrl: "https://mysite-intranet.rbsres01.net:443/User%20Photos/Profile%20Pictures/europa_smitmbm_MThumb.jpg?t=63594342583",
+    Title: null,
+    UserProfileProperties: { },
+    UserUrl: "https://mysite-intranet.rbsres01.net:443/Person.aspx?accountname=europa%5Csmitmbm"
   })
+});
+
+router.get("/web/GetFolderByServerRelativeUrl*", function(req, res, next) {
+  res.json([
+    {
+      'File': 'Foo'
+    }
+  ])
 });
 
 
