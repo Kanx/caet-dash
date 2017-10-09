@@ -11,9 +11,9 @@ export class AppComponent implements OnInit {
   constructor(private sp: SharepointService) {}
 
   ngOnInit() {
-    this.sp.getAllDocumentsInFolder('Shared Documents').subscribe(data => {
-      console.log(data);
-    });
+    // this.sp.getAllFilesAndFolders('Documents').subscribe(data => {
+    //   console.log(data);
+    // });
 
     // this.sp.getCurrentUser().subscribe(userData => {
     //   console.log(userData);

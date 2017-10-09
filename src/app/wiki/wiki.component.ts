@@ -27,7 +27,7 @@ export class WikiComponent implements OnInit {
   }
 
   getWikiContent() {
-    this.sp.getListItems('WikiData').subscribe(data => { console.log(data); this.wikiContent = data});
+    this.sp.getListItems('WikiData').subscribe(data => { this.wikiContent = data });
   }
 
   onChange($event) {

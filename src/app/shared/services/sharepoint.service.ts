@@ -61,15 +61,7 @@ export class SharepointService {
 
   // DOCUMENT OPERATIONS
 
-  // getAllDocumentsInFolder(folderName: string): Observable<ArrayBuffer> {
-  //   return this.http.get(`${this.api}/web/GetFolderByServerRelativeUrl('${folderName}')/Files`,
-  //     { 'headers': this.headers});
-  // }
-  // getAllDocumentsInFolder(folderName: string): Observable<ArrayBuffer> {
-  //   return this.http.get(`${this.api}/web/GetFolderByServerRelativeUrl('${folderName}')?$expand=Folders,Files`,
-  //     { 'headers': this.headers});
-  // }
-  getAllDocumentsInFolder(folderName: string): Observable<ArrayBuffer> {
+  getAllFilesAndFolders(folderName: string): Observable<ArrayBuffer> {
     return this.http.get(`${this.api}/web/Lists/GetByTitle('${folderName}')/Items?$expand=Folder,File&$select=Title,FileLeafRef,Folder/ServerRelativeUrl, File/ServerRelativeUrl`,
       { 'headers': this.headers});
   }
