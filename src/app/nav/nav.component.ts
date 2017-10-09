@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
       return {
         title: item.FileLeafRef,
         type: itemType,
-        url: item[itemType].__metadata.uri
+        url: item[itemType].ServerRelativeUrl
       };
     });
   }
