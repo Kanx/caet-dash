@@ -9,7 +9,7 @@ import {SharepointService} from '../shared/services/sharepoint.service';
   providers: [WikiService]
 })
 export class WikiComponent implements OnInit {
-  public editorContent: string = '<p>Blank</p>';
+  editorContent: any;
   public wikiContent: object;
 
   constructor(private wikiService: WikiService, private sp: SharepointService) { }
@@ -21,12 +21,20 @@ export class WikiComponent implements OnInit {
       'Content': this.editorContent,
       'Category': 'Some Cat',
       'Title': 'FooBaz'
-    }
+    };
+    console.log(wikiData);
     this.sp.createListItem('WikiData', wikiData);
   }
 
   getWikiContent() {
     this.sp.getListItems('WikiData').subscribe(data => { console.log(data); this.wikiContent = data});
   }
+
+  onChange($event) {
+    // console.log($event);
+  }
+  onFocus() {}
+  onBlur() {}
+  onReady() {}
 
 }

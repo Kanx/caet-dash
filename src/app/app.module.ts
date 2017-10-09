@@ -6,8 +6,9 @@ import { WikiComponent } from './wiki/wiki.component';
 import { HttpClientModule} from '@angular/common/http';
 import { SharepointService } from './shared/services/sharepoint.service';
 import { HttpModule } from '@angular/http';
+import { CKEditorModule } from 'ng2-ckeditor';
+import { FormsModule } from '@angular/forms';
 
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,10 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     BrowserModule,
     HttpClientModule,
     HttpModule,
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
+    CKEditorModule,
+    FormsModule
   ],
+
   providers: [SharepointService],
   bootstrap: [AppComponent]
 })

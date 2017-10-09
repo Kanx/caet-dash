@@ -1,5 +1,9 @@
-<div [froalaEditor] [(froalaModel)]="editorContent"></div>
+<ckeditor
+  [(ngModel)]="editorContent"
+  [config]="{uiColor: '#99000'}"
 
+  debounce="500">
+</ckeditor>
 <button (click)="createWiki()">Create</button>
 <button (click)="getWikiContent()">Get content</button>
 <p>Content here:</p>
