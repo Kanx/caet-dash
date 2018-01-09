@@ -1,0 +1,107 @@
+/*    Colours   */
+/*    Sizing   */
+/*    Buttons   */
+button {
+  border: 0;
+  background: #dcd8d6;
+  color: #696969; }
+
+.btn {
+  border-radius: 4px;
+  padding: 5px 12px;
+  line-height: 20px; }
+  .btn-aqua {
+    background: #1F9BAA;
+    color: white; }
+
+/*   Inputs   */
+input::placeholder {
+  color: #b8b8b8; }
+
+input[type=text], input[type=number], select {
+  padding: 10px 15px;
+  border: 0;
+  background: #fafafa;
+  border: 1px solid #cacaca;
+  width: 100%; }
+
+.input-wrapper {
+  position: relative; }
+  .input-wrapper:after {
+    font-family: 'FontAwesome';
+    position: absolute;
+    left: 13px;
+    top: 48%;
+    font-size: 0.8rem;
+    transform: translateY(-50%); }
+  .input-wrapper-search:after {
+    color: #838386;
+    content: '\f002'; }
+  .input-wrapper input {
+    padding-left: 35px; }
+
+/*    Select boxes   */
+select {
+  -webkit-appearance: none; }
+
+/*    Form layout    */
+.form-control {
+  margin-bottom: 20px; }
+  .form-control label {
+    position: relative;
+    display: block; }
+    .form-control label small {
+      font-size: 0.6rem;
+      color: #E54A61; }
+    .form-control label input, .form-control label select {
+      margin: 5px 0;
+      display: block; }
+    .form-control label.select-style:after {
+      color: black;
+      font-family: 'FontAwesome';
+      content: '\f107';
+      position: absolute;
+      right: 15px;
+      top: 45%; }
+
+.help-text {
+  margin: 5px 0;
+  color: #909093;
+  font-size: 0.7rem; }
+
+* {
+  box-sizing: border-box; }
+
+/* You can add global styles to this file, and also import other style files */
+html {
+  font-family: 'RN House Sans', arial;
+  margin: 0 auto;
+  padding: 0; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+.grid {
+  width: 100%; }
+  .grid * {
+    box-sizing: border-box; }
+
+.row:after, .row:before {
+  content: "";
+  display: table;
+  clear: both; }
+
+/*    Body styles   */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'RN House Sans';
+  font-weight: 400; }
+
+a {
+  text-decoration: none;
+  color: #1F9BAA; }
+
+p {
+  font-weight: 100; }
+
+/*# sourceMappingURL=styles.css.map */

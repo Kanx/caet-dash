@@ -1,0 +1,72 @@
+<aside class="recent-strings">
+  <div class="recent-strings_list">
+    <h4>Recent strings</h4>
+    <ul>
+      <li *ngFor="let utmString of recentUtmStrings">{{utmString}}</li>
+    </ul>
+  </div>
+
+</aside>
+<main class="utm-generator">
+  <h1>UTM Generator</h1>
+  <form [formGroup]="utmForm">
+    <div class="form-control">
+      <label for="url">
+        URL <small>(required)</small>
+        <input type="text" id="url" placeholder="e.g. https://jobs.rbs.com" formControlName="url">
+        <p class="help-text">Specify the full URL including the protocol</p>
+      </label>
+    </div>
+    <div class="form-control">
+      <label for="medium" class="select-style">
+        Medium <small>(required)</small>
+        <select id="medium" formControlName="medium">
+          <option *ngFor="let medium of mediums" [value]="medium">{{medium}}</option>
+        </select>
+        <p class="help-text">This is the top-level 'platform' which the source can be classified as. This option will change available Sources. </p>
+      </label>
+    </div>
+    <div class="form-control">
+      <label for="source" class="select-style">
+        Source <small>(required)</small>
+        <select id="source" formControlName="source">
+          <option *ngFor="let source of filteredSources" [value]="source.Title">{{source.Title}}</option>
+        </select>
+        <p class="help-text">Select the specific Source under the chosen Medium.</p>
+      </label>
+    </div>
+    <div class="form-control">
+      <label for="campaign" class="select-style">
+        Campaign <small>(required)</small>
+        <select id="campaign" formControlName="campaign">
+          <option *ngFor="let campaign of campaigns" [value]="campaign.Title">{{campaign.Title}}</option>
+        </select>
+        <p class="help-text">Required parameter to tie URL to a specific campaign</p>
+      </label>
+    </div>
+    <div class="form-control">
+      <label for="content" class="select-style">
+        Content
+        <select id="content" formControlName="content">
+          <option *ngFor="let content of contentList" [value]="content.Title">{{content.Title}}</option>
+        </select>
+        <p class="help-text">Optional parameter that is used to specify the sort of content being promoted, e.g. IWFAB, Blog</p>
+      </label>
+    </div>
+    <button class="btn btn-aqua" (click)="generateUrl()">Generate</button>
+  </form>
+  <div id="utm-output">
+    <h3>UTM Link</h3>
+    <p [hidden]="generatedUrl">This is where the completed URL will be generated.</p>
+    <textarea id="generatedUrl" readonly [hidden]="!generatedUrl">{{generatedUrl}}</textarea>
+    <button class="btn btn-crimson" type="button" ngxClipboard [cbContent]="generatedUrl">Copy to clipboard</button>
+  </div>
+</main>
+<aside class="utm-controls">
+  <h4>Actions</h4>
+  <ul>
+    <li><a href="">Create Source</a></li>
+    <li><a href="">Create Medium</a></li>
+    <li><a href="">Create Campaign</a></li>
+  </ul>
+</aside>

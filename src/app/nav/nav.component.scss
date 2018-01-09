@@ -1,11 +1,10 @@
-@import "../../variables";
+@import "../../styles/variables";
 
 :host {
-  border-bottom: 1px solid #fdfdfd;
-  box-shadow: 0 0 20px transparentize(#333, 0.5);
+  box-shadow: 0 0 20px transparentize(#333, 0.7);
   display: block;
   padding: 20px 25px;
-  background:white;
+  background: $nav-ui-color;
   z-index: 10;
   position: sticky;
   top: 0;
@@ -24,6 +23,10 @@
 
 #logo {
   width: 15%;
+  i.fa {
+    color: white !important;
+    font-size: 1.4rem;
+  }
 }
 
 #primary-nav {
@@ -36,9 +39,9 @@
       a {
         font-weight:200;
         padding: 15px;
-        color: #838386;
+        color: darken($nav-ui-color, 35%);
         &.active {
-          color: $crimson;
+          color: #ffffff;
         }
       }
     }
@@ -48,10 +51,19 @@
 #notifications {
   width: 10%;
 }
-
+.input-wrapper-search:after {
+  color: white !important;
+}
 #document-search {
   width: 20%;
   input {
+    border:none;
+    background: darken($nav-ui-color, 8%);
+    color: #FFFFFF;
     width:100%;
+    &::placeholder, &:after {
+      color: #FFFFFF;
+
+    }
   }
 }

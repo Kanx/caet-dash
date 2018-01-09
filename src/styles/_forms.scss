@@ -1,0 +1,95 @@
+/*    Buttons   */
+
+button {
+  border: 0;
+  background: #dcd8d6;
+  color: #696969;
+}
+
+.btn {
+  border-radius: 4px;
+  padding: 5px 12px;
+  line-height:20px;
+  &-aqua {
+    background: $aqua;
+    color: white;
+  }
+}
+
+/*   Inputs   */
+input {
+  &::placeholder {
+    color: darken($light-grey, 20%);
+  }
+}
+
+input[type=text], input[type=number], select {
+  padding: 10px 15px;
+  border: 0;
+  background: #fafafa;
+  border: 1px solid darken(#fafafa, 19%);
+  width:100%;
+}
+
+.input-wrapper {
+  position: relative;
+  &:after {
+    font-family: 'FontAwesome';
+    position: absolute;
+    left: 13px;
+    top: 48%;
+    font-size:0.8rem;
+    transform: translateY(-50%);
+  }
+  &-search {
+    &:after {
+      color: $dark-grey;
+      content:'\f002';
+    }
+  }
+  input {
+    padding-left:35px;
+  }
+}
+
+/*    Select boxes   */
+
+select {
+  -webkit-appearance: none;
+  &:after {
+  }
+}
+
+/*    Form layout    */
+
+.form-control {
+  margin-bottom: 20px;
+  label {
+    small {
+      font-size: 0.6rem;
+      color: $crimson;
+    }
+    position: relative;
+    display: block;
+    input, select {
+      margin: 5px 0;
+      display: block;
+    }
+    &.select-style {
+      &:after {
+        color: black;
+        font-family: 'FontAwesome';
+        content: '\f107';
+        position: absolute;
+        right: 15px;
+        top: 45%;
+      }
+    }
+  }
+}
+
+.help-text {
+  margin: 5px 0;
+  color: lighten($dark-grey, 5%);
+  font-size: 0.7rem;
+}

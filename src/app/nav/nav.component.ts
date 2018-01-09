@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SharepointService} from '../shared/services/sharepoint.service';
+import { SharepointService } from '../shared/services/sharepoint.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,9 +9,11 @@ import {SharepointService} from '../shared/services/sharepoint.service';
 })
 export class NavComponent implements OnInit {
   public filesAndFolders: Array<any>;
+  public user = {};
+
   private getFilesAndFolders(response) {
     return response.d.results.map(item => {
-      const itemType = (item.Folder.hasOwnProperty('__metadata')) ? 'Folder' : 'File'
+      const itemType = (item.Folder.hasOwnProperty('__metadata')) ? 'Folder' : 'File';
       return {
         title: item.FileLeafRef,
         type: itemType,
@@ -19,14 +22,14 @@ export class NavComponent implements OnInit {
     });
   }
 
-  constructor(private sp: SharepointService) { }
+  constructor(private sp: SharepointService, public userService: UserService) { }
 
   ngOnInit() {
+    this.userService.getUser().subscribe(data => {
+      this.user = data;
+    });
     this.sp.getAllFilesAndFolders('Documents').subscribe(data => {
-      console.log(data);
       this.filesAndFolders = this.getFilesAndFolders(data);
-      console.log(this.filesAndFolders);
     });
   }
-
 }

@@ -1,0 +1,51 @@
+@import "variables";
+@import "forms";
+
+* { box-sizing: border-box; }
+
+/* You can add global styles to this file, and also import other style files */
+
+html {
+  font-family: 'RN House Sans', arial;
+  margin: 0 auto;
+  padding:0;
+}
+
+body {
+  margin:0;
+  padding:0;
+}
+
+
+
+.grid {
+  width : 100%;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+
+.row {
+  &:after,&:before {
+    content:"";
+    display: table ;
+    clear: both;
+  }
+}
+
+/*    Body styles   */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'RN House Sans';
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: $aqua;
+}
+
+p {
+  font-weight: 100;
+}

@@ -35,7 +35,6 @@ export class AppComponent implements OnInit {
     this.sp.getListItems('AdvertData').subscribe(data => {
       this.res = data;
     });
-
   }
 
   readOne(id: number) {

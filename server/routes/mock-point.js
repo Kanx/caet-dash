@@ -4,55 +4,6 @@ const router = express.Router();
 // Mock data
 var MockData = require('../data');
 
-router.get("/web/Lists/GetByTitle*", function (req, res, next) {
-  console.log('called')
-  res.json({
-    "d": {
-      "results": [
-        {
-          "__metadata": {},
-          "File": {
-            __deferred: {}
-          },
-          FileLeafRef: "_Media",
-          Folder: {
-            __metadata: {
-              id: "Web/Lists(guid'4f051237-a36d-4feb-9e17-04dd5f81c61e')/Items(2)/Folder",
-              type: "SP.Folder",
-              uri: "https://collab.rbsres01.net/teams/candidate-attraction-and-engagement-qe9j99bj/_api/Web/Lists(guid'4f051237-a36d-4feb-9e17-04dd5f81c61e')/Items(2)/Folder"
-            },
-            ServerRelativeUrl: "/teams/candidate-attraction-and-engagement-qe9j99bj/Shared Documents/_Media"
-          },
-          Title: "_Media"
-        },
-        {
-          __metadata: {},
-          File: {},
-          FileLeafRef: "_Reporting",
-          Folder: {},
-          Title: "_Reporting"
-        },
-        {
-          __metadata: {},
-          File: {},
-          FileLeafRef: "sitemap.xml",
-          Folder: {},
-          Title: "sitemap.xml"
-        },
-        {
-          __metadata: {},
-          File: {
-            __metadata: {},
-            ServerRelativeUrl: "/teams/candidate-attraction-and-engagement-qe9j99bj/Shared Documents/_Campaign/rbs.svg"
-          },
-          FileLeafRef: "rbs.svg",
-          Folder: {},
-          Title: 0
-        }
-      ]
-    }
-  })
-});
 
 /***
  * List Settings
@@ -64,13 +15,63 @@ router.get('/web/lists/:config/:items', function (req, res, next) {
   const returnSingleItem = req.params.items.indexOf('items(') !== -1;
   const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
 
-  if (returnSingleItem) {
-    const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
-    res.json(MockData[listName][singleItemId - 1]);
+  if(listSettings.indexOf('Documents') !== -1) {
+    res.json({
+      "d": {
+        "results": [
+          {
+            "__metadata": {},
+            "File": {
+              __deferred: {}
+            },
+            FileLeafRef: "_Media",
+            Folder: {
+              __metadata: {
+                id: "Web/Lists(guid'4f051237-a36d-4feb-9e17-04dd5f81c61e')/Items(2)/Folder",
+                type: "SP.Folder",
+                uri: "https://collab.rbsres01.net/teams/candidate-attraction-and-engagement-qe9j99bj/_api/Web/Lists(guid'4f051237-a36d-4feb-9e17-04dd5f81c61e')/Items(2)/Folder"
+              },
+              ServerRelativeUrl: "/teams/candidate-attraction-and-engagement-qe9j99bj/Shared Documents/_Media"
+            },
+            Title: "_Media"
+          },
+          {
+            __metadata: {},
+            File: {},
+            FileLeafRef: "_Reporting",
+            Folder: {},
+            Title: "_Reporting"
+          },
+          {
+            __metadata: {},
+            File: {},
+            FileLeafRef: "sitemap.xml",
+            Folder: {},
+            Title: "sitemap.xml"
+          },
+          {
+            __metadata: {},
+            File: {
+              __metadata: {},
+              ServerRelativeUrl: "/teams/candidate-attraction-and-engagement-qe9j99bj/Shared Documents/_Campaign/rbs.svg"
+            },
+            FileLeafRef: "rbs.svg",
+            Folder: {},
+            Title: 0
+          }
+        ]
+      }
+    })
   } else {
-    // Return all data
-    res.json(MockData[listName]);
+    if (returnSingleItem) {
+      const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
+      res.json(MockData[listName][singleItemId - 1]);
+    } else {
+      // Return all data
+      res.json(MockData[listName]);
+    }
   }
+
 });
 
 // Update list item

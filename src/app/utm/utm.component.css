@@ -1,0 +1,66 @@
+/*    Colours   */
+/*    Sizing   */
+:host {
+  display: flex; }
+
+.recent-strings {
+  flex: 2;
+  height: calc(100vh - 73px);
+  background: #FBFBFC;
+  padding: 30px 20px;
+  z-index: 1;
+  position: sticky;
+  top: 76px; }
+  .recent-strings_list {
+    overflow: scroll;
+    height: 80vh; }
+
+.utm-generator {
+  flex: 7;
+  display: block;
+  padding: 20px; }
+  .utm-generator form {
+    max-width: 600px; }
+  .utm-generator input {
+    width: 100%; }
+
+#utm-output {
+  max-width: 600px;
+  padding: 15px 25px;
+  background: #fafafa;
+  border-radius: 3px;
+  margin: 20px 0;
+  border: 1px solid #ebebeb; }
+  #utm-output h3 {
+    color: #838386;
+    margin-bottom: 25px; }
+  #utm-output textarea, #utm-output p {
+    background: white;
+    color: #333333;
+    padding: 20px;
+    width: 100%;
+    border-radius: 2px;
+    border: 1px solid #ebebeb;
+    margin: 0; }
+  #utm-output button {
+    margin: 15px 0; }
+
+.utm-controls {
+  flex: 1.5;
+  height: calc(100vh - 73px);
+  font-size: 0.9rem;
+  padding: 30px 20px;
+  background: #FBFBFC;
+  position: sticky;
+  top: 76px; }
+  .utm-controls h4 {
+    padding: 5px 20px; }
+  .utm-controls ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 20px; }
+    .utm-controls ul li {
+      margin: 0;
+      padding: 3px 0; }
+
+/*# sourceMappingURL=utm.component.css.map */
