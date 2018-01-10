@@ -37,6 +37,7 @@ export class UtmComponent implements OnInit {
 
     this.utmService.getSources()
       .subscribe(data => {
+        console.log(data);
         this.sources = data;
       });
 
