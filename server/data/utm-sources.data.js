@@ -27,7 +27,7 @@ const UtmSourceData = [
   {
     'Title': 'linkedin',
     'Medium': 'sponsored social',
-    'ID': 6face
+    'ID': 6
   },
   {
     'Title': 'youtube',
