@@ -6,15 +6,15 @@ import { Observable } from 'rxjs/Observable';
 export class UtmService {
   constructor(private sp: SharepointService) { }
 
-  getSources(): Observable<ArrayBuffer>  {
+  getSources() {
     return this.sp.getListItems('UTMSources');
   }
 
-  getCampaigns(): Observable<ArrayBuffer>  {
+  getCampaigns() {
     return this.sp.getListItems('UTMCampaigns');
   }
 
-  getContent(): Observable<ArrayBuffer>  {
+  getContent() {
     return this.sp.getListItems('UTMContent');
   }
 }

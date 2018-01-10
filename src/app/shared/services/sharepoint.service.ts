@@ -7,6 +7,7 @@ import { Http, Headers, RequestOptions } from '@angular/http'; // Required to su
 import * as convert from 'xml-js';
 
 import 'rxjs/add/operator/map';
+import {SharepointResponse} from '../sharepoint-response';
 
 @Injectable()
 export class SharepointService {
@@ -19,11 +20,11 @@ export class SharepointService {
   constructor(private http: HttpClient, private _http: Http) {}
 
   // LIST OPERATIONS
-  getListItems(listName: string): Observable<ArrayBuffer> {
+  getListItems(listName: string): Observable<SharepointResponse> {
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items`, { 'headers': this.headers });
   }
 
-  getListItem(listName: string, listItemId: number): Observable<ArrayBuffer> {
+  getListItem(listName: string, listItemId: number): any {
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`, { 'headers': this.headers});
   }
 

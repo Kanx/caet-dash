@@ -15,8 +15,8 @@ export class UtmComponent implements OnInit {
   utmForm: FormGroup;
   sources: any;
   mediums: Array<string>;
-  campaigns: ArrayBuffer;
-  contentList: ArrayBuffer;
+  campaigns: any;
+  contentList: any;
   filteredSources: Array<Source>;
   previousMedium: string;
   generatedUrl: string;
@@ -37,18 +37,18 @@ export class UtmComponent implements OnInit {
 
     this.utmService.getSources()
       .subscribe(data => {
-        console.log(data)
-        this.sources = data;
+        this.sources = data.d.results;
       });
 
     this.utmService.getCampaigns()
       .subscribe(data => {
-        this.campaigns = data;
+        this.campaigns = data.d.results;
+
       });
 
     this.utmService.getContent()
       .subscribe(data => {
-        this.contentList = data;
+        this.contentList = data.d.results;
       });
 
     this.utmForm = this.fb.group({

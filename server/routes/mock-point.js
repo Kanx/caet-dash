@@ -65,10 +65,10 @@ router.get('/web/lists/:config/:items', function (req, res, next) {
   } else {
     if (returnSingleItem) {
       const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
-      res.json(MockData[listName][singleItemId - 1]);
+      res.json({ 'd': { 'results': MockData[listName][singleItemId - 1] } });
     } else {
       // Return all data
-      res.json(MockData[listName]);
+      res.json({ 'd': { 'results': MockData[listName] } });
     }
   }
 
