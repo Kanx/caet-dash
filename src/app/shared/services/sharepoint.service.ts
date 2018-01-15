@@ -63,12 +63,10 @@ export class SharepointService {
   // DOCUMENT OPERATIONS
   getAllFilesAndFolders(folderName: string): Observable<ArrayBuffer> {
     return this.http
-      .get(`${this.api}/web/Lists/GetByTitle('Documents')/GetItems(query=@v1)?$select=Title,File/Name&$expand=File&@v1={"ViewXml":"<View Scope='RecursiveAll'></View>"}";`,
+      .get(`${this.api}/web/Lists/GetByTitle('${folderName}')/Items?$expand=Folder,File&$select=Title,FileLeafRef,Folder/ServerRelativeUrl,File/ServerRelativeUrl,File/Author`,
       { 'headers': this.headers });
   }
 }
-
-
 
 /**
  *  @RequestDigest() wraps SharePoint service functions in to a Promise that provides the HTTP call with a FormDigestRequest code.
