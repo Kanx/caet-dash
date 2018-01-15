@@ -60,7 +60,7 @@ export class UtmService {
   }
 
   deleteCampaign(id: any) {
-    return this.sp.deleteListItem('UTMCampaign', id);
+    return this.sp.deleteListItem('UTMCampaigns', id);
   }
 
   getContent() {
