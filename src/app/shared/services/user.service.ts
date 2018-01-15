@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SharepointService} from './shared/services/sharepoint.service';
+import {SharepointService} from './sharepoint.service';
 
 @Injectable()
 export class UserService {

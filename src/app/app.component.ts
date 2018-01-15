@@ -9,6 +9,7 @@ import {UtmService} from './utm/utm.service';
 })
 export class AppComponent implements OnInit {
   res: any;
+
   constructor(private sp: SharepointService, private utm: UtmService) {}
 
   ngOnInit() {

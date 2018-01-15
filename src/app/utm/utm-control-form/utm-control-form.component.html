@@ -1,0 +1,27 @@
+
+<form id="utm-control-form" [formGroup]="utmControlForm">
+  <div class="heading-with-action">
+    <div class="header">
+      <h4>Manage {{selectedComponentName}}</h4>
+
+    </div>
+    <div class="clear">
+      <button routerLink="/utm" class="btn">Close <i class="fa fa-close"></i></button>
+
+    </div>
+  </div>
+  <div class="form-control">
+    <label for="bind-to-medium" class="select-style" *ngIf="selectedComponentName === 'Sources'">
+      Select medium to bind source against <small>(required)</small>
+      <select name="bind-to-medium" id="bind-to-medium" class="light" formControlName="medium">
+        <option value=""></option>
+        <option *ngFor="let medium of mediums" value="{{medium}}">{{medium}}</option>
+      </select>
+    </label>
+  </div>
+  <label for="create">Enter name for new {{singularComponentName | lowercase}}</label>
+  <div class="input-button-addon form-control">
+    <input type="text" id="create" class="light" formControlName="newComponentName" placeholder="Enter new {{singularComponentName | lowercase}} value">
+    <button class="btn-aqua" type="submit" (click)="submitNewComponent()" [disabled]="!utmControlForm.valid">Create</button>
+  </div>
+</form>

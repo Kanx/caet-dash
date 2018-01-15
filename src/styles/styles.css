@@ -15,15 +15,22 @@ button {
     color: white; }
 
 /*   Inputs   */
-input::placeholder {
-  color: #b8b8b8; }
-
-input[type=text], input[type=number], select {
+input[type=text], input[type=number], input[type=url], select {
   padding: 10px 15px;
   border: 0;
   background: #fafafa;
   border: 1px solid #cacaca;
   width: 100%; }
+  input[type=text]::placeholder, input[type=number]::placeholder, input[type=url]::placeholder, select::placeholder {
+    color: #b8b8b8; }
+  input[type=text].light, input[type=number].light, input[type=url].light, select.light {
+    background: #FFFFFF; }
+  input[type=text].ng-invalid.ng-touched:not(.ng-pristine), input[type=number].ng-invalid.ng-touched:not(.ng-pristine), input[type=url].ng-invalid.ng-touched:not(.ng-pristine), select.ng-invalid.ng-touched:not(.ng-pristine) {
+    border: 1px solid #E54A61;
+    background: #fbe6e9 !important; }
+  input[type=text].ng-valid.ng-touched:not(.ng-pristine), input[type=number].ng-valid.ng-touched:not(.ng-pristine), input[type=url].ng-valid.ng-touched:not(.ng-pristine), select.ng-valid.ng-touched:not(.ng-pristine) {
+    border: 1px solid #82A934;
+    background: #dcebbe !important; }
 
 .input-wrapper {
   position: relative; }
@@ -44,6 +51,9 @@ input[type=text], input[type=number], select {
 select {
   -webkit-appearance: none; }
 
+select::-ms-expand {
+  display: none; }
+
 /*    Form layout    */
 .form-control {
   margin-bottom: 20px; }
@@ -62,25 +72,44 @@ select {
       content: '\f107';
       position: absolute;
       right: 15px;
-      top: 45%; }
+      top: 34px; }
 
 .help-text {
   margin: 5px 0;
   color: #909093;
   font-size: 0.7rem; }
 
+.input-button-addon {
+  margin: 5px 0;
+  display: flex; }
+  .input-button-addon button {
+    flex: 1; }
+  .input-button-addon input {
+    flex: 4; }
+
+a:disabled, button:disabled {
+  cursor: not-allowed;
+  background: #ebebeb;
+  color: #b8b8b8; }
+
+.side-bar {
+  flex: 2;
+  min-height: 100vh;
+  padding: 30px 20px; }
+
 * {
   box-sizing: border-box; }
 
-/* You can add global styles to this file, and also import other style files */
 html {
-  font-family: 'RN House Sans', arial;
+  font-family: 'RN House Sans', sans-serif;
   margin: 0 auto;
-  padding: 0; }
+  padding: 0;
+  -ms-overflow-style: -ms-autohiding-scrollbar; }
 
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  padding-top: 72px; }
 
 .grid {
   width: 100%; }
@@ -94,7 +123,7 @@ body {
 
 /*    Body styles   */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'RN House Sans';
+  font-family: 'RN House Sans', sans-serif;
   font-weight: 400; }
 
 a {
@@ -103,5 +132,22 @@ a {
 
 p {
   font-weight: 100; }
+
+div.heading-with-action {
+  vertical-align: middle;
+  display: flex; }
+  div.heading-with-action div.header {
+    flex: 2; }
+    div.heading-with-action div.header h4 {
+      margin: 5px 0;
+      padding: 5px 0; }
+  div.heading-with-action div.clear {
+    text-align: right;
+    flex: 1;
+    vertical-align: middle;
+    display: inline-block; }
+    div.heading-with-action div.clear button {
+      margin: 5px 0;
+      padding: 5px 15px; }
 
 /*# sourceMappingURL=styles.css.map */

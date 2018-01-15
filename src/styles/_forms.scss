@@ -17,18 +17,29 @@ button {
 }
 
 /*   Inputs   */
-input {
-  &::placeholder {
-    color: darken($light-grey, 20%);
-  }
-}
 
-input[type=text], input[type=number], select {
+
+input[type=text], input[type=number], input[type=url], select {
   padding: 10px 15px;
   border: 0;
   background: #fafafa;
   border: 1px solid darken(#fafafa, 19%);
   width:100%;
+
+  &::placeholder {
+    color: darken($light-grey, 20%);
+  }
+  &.light {
+    background: #FFFFFF;
+  }
+  &.ng-invalid.ng-touched:not(.ng-pristine) {
+    border: 1px solid $crimson;
+    background: lighten($crimson, 35%) !important;
+  }
+  &.ng-valid.ng-touched:not(.ng-pristine) {
+    border: 1px solid $green;
+    background: lighten($green, 40%) !important;
+  }
 }
 
 .input-wrapper {
@@ -56,10 +67,11 @@ input[type=text], input[type=number], select {
 
 select {
   -webkit-appearance: none;
-  &:after {
-  }
 }
 
+select::-ms-expand {
+  display: none;
+}
 /*    Form layout    */
 
 .form-control {
@@ -82,7 +94,7 @@ select {
         content: '\f107';
         position: absolute;
         right: 15px;
-        top: 45%;
+        top: 34px;
       }
     }
   }
@@ -92,4 +104,23 @@ select {
   margin: 5px 0;
   color: lighten($dark-grey, 5%);
   font-size: 0.7rem;
+}
+
+
+.input-button-addon {
+  margin: 5px 0;
+  display: flex;
+  button {
+    flex: 1;
+  }
+  input {
+
+    flex: 4;
+  }
+}
+
+a:disabled, button:disabled {
+  cursor: not-allowed;
+  background: $light-grey;
+  color: darken($light-grey, 20%);
 }

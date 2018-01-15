@@ -1,0 +1,17 @@
+/*    Colours   */
+/*    Sizing   */
+#utm-control-form {
+  max-width: 90%;
+  padding: 15px 20px;
+  display: block;
+  background: white;
+  border-radius: 3px;
+  border: 1px solid gainsboro; }
+  #utm-control-form h4 {
+    color: #1F9BAA; }
+  #utm-control-form .heading-with-action {
+    margin-bottom: 10px; }
+  #utm-control-form .input-button-addon {
+    margin: 5px 0; }
+
+/*# sourceMappingURL=utm-control-form.component.css.map */

@@ -1,9 +1,27 @@
-<aside class="recent-strings">
-  <div class="recent-strings_list">
-    <h4>Recent strings</h4>
-    <ul>
-      <li *ngFor="let utmString of recentUtmStrings">{{utmString}}</li>
-    </ul>
+<aside class="side-bar side-bar_left utm-controls" [ngClass]="{'utm-controls-active': childRouteActive}">
+  <div class="utm-controls_content">
+    <div class="utm-controls_content-secondary">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="utm-controls_content-primary">
+      <ul>
+        <li><a routerLinkActive="active" routerLink="sources">Manage Sources</a></li>
+        <li><a routerLinkActive="active" routerLink="campaigns">Manage Campaigns</a></li>
+        <li><a routerLinkActive="active" routerLink="content">Manage Content</a></li>
+      </ul>
+      <div class="heading-with-action" *ngIf="utmHistory.length > 0">
+        <div class="header">
+          <h4>Recent strings</h4>
+        </div>
+        <div class="clear">
+          <button class="btn" (click)="clearRecentStrings()">Clear</button>
+        </div>
+      </div>
+      <div class="input-button-addon" *ngFor="let utmUrl of utmHistory">
+        <button class="btn-aqua" ngxClipboard [cbContent]="utmUrl" (click)="notify()"><i class="fa fa-copy"></i></button>
+        <input type="text" readonly  class="light" value="{{utmUrl}}">
+      </div>
+    </div>
   </div>
 
 </aside>
@@ -13,7 +31,7 @@
     <div class="form-control">
       <label for="url">
         URL <small>(required)</small>
-        <input type="text" id="url" placeholder="e.g. https://jobs.rbs.com" formControlName="url">
+        <input type="url" id="url" placeholder="e.g. https://jobs.rbs.com" formControlName="url">
         <p class="help-text">Specify the full URL including the protocol</p>
       </label>
     </div>
@@ -21,6 +39,7 @@
       <label for="medium" class="select-style">
         Medium <small>(required)</small>
         <select id="medium" formControlName="medium">
+          <option value=""></option>
           <option *ngFor="let medium of mediums" [value]="medium">{{medium}}</option>
         </select>
         <p class="help-text">This is the top-level 'platform' which the source can be classified as. This option will change available Sources. </p>
@@ -30,6 +49,7 @@
       <label for="source" class="select-style">
         Source <small>(required)</small>
         <select id="source" formControlName="source">
+          <option value=""></option>
           <option *ngFor="let source of filteredSources" [value]="source.Title">{{source.Title}}</option>
         </select>
         <p class="help-text">Select the specific Source under the chosen Medium.</p>
@@ -39,6 +59,7 @@
       <label for="campaign" class="select-style">
         Campaign <small>(required)</small>
         <select id="campaign" formControlName="campaign">
+          <option value=""></option>
           <option *ngFor="let campaign of campaigns" [value]="campaign.Title">{{campaign.Title}}</option>
         </select>
         <p class="help-text">Required parameter to tie URL to a specific campaign</p>
@@ -48,25 +69,18 @@
       <label for="content" class="select-style">
         Content
         <select id="content" formControlName="content">
+          <option value=""></option>
           <option *ngFor="let content of contentList" [value]="content.Title">{{content.Title}}</option>
         </select>
         <p class="help-text">Optional parameter that is used to specify the sort of content being promoted, e.g. IWFAB, Blog</p>
       </label>
     </div>
-    <button class="btn btn-aqua" (click)="generateUrl()">Generate</button>
+    <button class="btn btn-aqua" (click)="generateUrl()" [disabled]="!utmForm.valid">Generate</button>
   </form>
   <div id="utm-output">
     <h3>UTM Link</h3>
     <p [hidden]="generatedUrl">This is where the completed URL will be generated.</p>
     <textarea id="generatedUrl" readonly [hidden]="!generatedUrl">{{generatedUrl}}</textarea>
-    <button class="btn btn-crimson" type="button" ngxClipboard [cbContent]="generatedUrl">Copy to clipboard</button>
+    <button class="btn btn-crimson" type="submit" ngxClipboard [cbContent]="generatedUrl" (click)="doomSayer.success('Copied to clipboard')">Copy to clipboard</button>
   </div>
 </main>
-<aside class="utm-controls">
-  <h4>Actions</h4>
-  <ul>
-    <li><a href="">Create Source</a></li>
-    <li><a href="">Create Medium</a></li>
-    <li><a href="">Create Campaign</a></li>
-  </ul>
-</aside>

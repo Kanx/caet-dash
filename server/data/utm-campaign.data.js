@@ -1,22 +1,22 @@
 const UtmCampaignData = [
   {
-    'Title': 'ec',
+    'Title': 'some',
     'ID': 1
   },
   {
-    'Title': 'foo',
+    'Title': 'campaign',
     'ID': 2
   },
   {
-    'Title': 'baz',
+    'Title': 'things',
     'ID': 3
   },
   {
-    'Title': 'bar',
+    'Title': 'i made',
     'ID': 4
   },
    {
-    'Title': 'pma',
+    'Title': 'up',
     'ID': 5
   }
 ];

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import {UtmService} from './utm.service';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { UtmService } from './utm.service';
 import { Source} from './source.class';
-
+import { LocalStorageService } from 'ngx-webstorage';
+import { Router, ActivatedRoute } from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {DoomsayerService} from '../doomsayer/doomsayer.service';
 
 @Component({
   selector: 'app-utm',
@@ -11,51 +14,57 @@ import { Source} from './source.class';
 })
 
 export class UtmComponent implements OnInit {
-  recentUtmStrings: Array<string>;
   utmForm: FormGroup;
-  sources: any;
+  sources: Array<any>;
   mediums: Array<string>;
-  campaigns: any;
-  contentList: any;
+  campaigns: Array<any>;
+  contentList: Array<any>;
   filteredSources: Array<Source>;
-  previousMedium: string;
+  previousMedium: Array<any>;
   generatedUrl: string;
+  utmHistory: Array<string>;
+  childRouteActive: boolean;
 
+  constructor(private router: Router,
+              private utmService: UtmService,
+              private fb: FormBuilder,
+              private storage: LocalStorageService,
+              public doomSayer: DoomsayerService,
+              private activeRoute: ActivatedRoute
+  ) {}
 
-  constructor(public utmService: UtmService, private fb: FormBuilder) {}
-
-  ngOnInit() {
-    this.mediums = [
-      'organic social',
-      'sponsored social',
-      'ppc',
-      'paid job board',
-      'email',
-      'aggregator job board',
-      'display'
-    ];
-
+  getDataFromService() {
     this.utmService.getSources()
-      .subscribe(data => {
-        this.sources = data.d.results;
-      });
+      .subscribe(data => this.sources = data);
 
     this.utmService.getCampaigns()
-      .subscribe(data => {
-        this.campaigns = data.d.results;
-
-      });
+      .subscribe(data => this.campaigns = data);
 
     this.utmService.getContent()
-      .subscribe(data => {
-        this.contentList = data.d.results;
-      });
+      .subscribe(data => this.contentList = data);
+  }
+
+
+  ngOnInit() {
+    this.getDataFromService();
+
+    this.utmService.updateService$.subscribe(data => {
+      this.getDataFromService();
+    })
+
+    this.childRouteActive = !!this.activeRoute.children.length;
+
+    this.router.events.subscribe(val => {
+      this.childRouteActive = !!this.activeRoute.children.length;
+    });
+
+    this.mediums = this.utmService.mediums;
 
     this.utmForm = this.fb.group({
-      url: '',
-      medium: '',
-      source: {value: '', disabled: true },
-      campaign: '',
+      url: ['',  Validators.compose([Validators.required, Validators.pattern('(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})')])],
+      medium: ['', Validators.required],
+      source: [{ value: '', disabled: true }, Validators.required],
+      campaign: ['', Validators.required],
       content: ''
     });
 
@@ -66,11 +75,51 @@ export class UtmComponent implements OnInit {
         this.filteredSources.length ? this.utmForm.get('source').enable() : this.utmForm.get('source').disable();
       }
     });
-  }
 
+    this.utmHistory = this.parseUtmHistory(this.storage.retrieve('utmHistory'));
+
+    this.storage.observe('utmHistory')
+      .subscribe((value) => {
+        if (value) { this.utmHistory = value.split(','); }
+      });
+  }
 
   generateUrl(): void {
-    const urlDelimiter = (this.utmForm.get('url').value !== -1) ? '?' : '&';
-    this.generatedUrl = `${this.utmForm.get('url').value}${urlDelimiter}&${this.utmForm.get('medium').value}&${this.utmForm.get('source').value}&${this.utmForm.get('campaign').value}`;
+    const baseUrlDelimiter = (this.utmForm.get('url').value.indexOf('?') === -1) ? '?' : '&';
+    let utmString = this.utmForm.get('url').value +
+                        baseUrlDelimiter +
+                        `utm_medium=${this.utmForm.get('medium').value}&` +
+                        `utm_source=${this.utmForm.get('source').value}&` +
+                        `utm_campaign=${this.utmForm.get('campaign').value}`;
+
+    if (this.utmForm.get('utm_content')) {
+      utmString += `&utm_content=${this.utmForm.get('content').value}`;
+    }
+
+    this.generatedUrl = utmString.replace(/\s/, '+');
+
+    const currentHistory = this.storage.retrieve('utmHistory');
+
+    if (!currentHistory) {
+      this.storage.store('utmHistory', `${this.generatedUrl}`);
+    } else {
+      this.storage.store('utmHistory', `${currentHistory},${this.generatedUrl}`);
+    }
   }
+
+  clearRecentStrings(): void {
+    this.storage.clear('utmHistory');
+    this.utmHistory = [];
+    this.doomSayer.danger('Cleared UTM history');
+  }
+
+  parseUtmHistory(s): Array<string> {
+    if (!s) { return []; }
+    return (s.indexOf(',') !== -1) ? s.split(',') : [s];
+  }
+
+  notify() {
+    this.doomSayer.info('Copied to clipboard');
+  }
+
 }

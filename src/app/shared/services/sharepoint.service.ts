@@ -7,7 +7,7 @@ import { Http, Headers, RequestOptions } from '@angular/http'; // Required to su
 import * as convert from 'xml-js';
 
 import 'rxjs/add/operator/map';
-import {SharepointResponse} from '../sharepoint-response';
+import {SharepointResponse} from './sharepoint-response';
 
 @Injectable()
 export class SharepointService {
