@@ -38,7 +38,7 @@ export class SharepointService {
 
   @FetchRequestDigest()
   public updateListItem(listName: string, listItemId: number, data: object, requestDigest?): any {
-    return this.http.put(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
+    return this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
       JSON.stringify(Object.assign(data, {__metadata: {'type': `SP.Data.${listName}ListItem` }})),
       {'headers': this.headers.set('X-RequestDigest', requestDigest).set('X-HTTP-Method', 'MERGE')});
   }
