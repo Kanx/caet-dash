@@ -63,7 +63,7 @@ export class SharepointService {
   // DOCUMENT OPERATIONS
   getAllFilesAndFolders(folderName: string): Observable<ArrayBuffer> {
     return this.http
-      .get(`${this.api}/web/GetFolderByServerRelativeUrl('Documents')?$expand=Folders,Files`,
+      .get(`${this.api}/web/GetFolderByServerRelativeUrl('Shared Documents')?$expand=Folders,Files`,
       { 'headers': this.headers });
   }
 }
