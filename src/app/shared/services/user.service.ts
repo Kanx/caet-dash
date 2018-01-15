@@ -11,6 +11,4 @@ export class UserService {
     return this.sp.getCurrentUser();
   }
 
-
-
 }

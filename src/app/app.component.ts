@@ -13,18 +13,10 @@ export class AppComponent implements OnInit {
   constructor(private sp: SharepointService, private utm: UtmService) {}
 
   ngOnInit() {
-
-    // this.sp.getAllFilesAndFolders('Documents').subscribe(data => {
-    //   console.log(data);
-    // });
-
-    // this.sp.getCurrentUser().subscribe(userData => {
-    //   console.log(userData);
-    // });
-    //
-    // this.sp.getUser('hornean').subscribe(userData => {
-    //   console.log(userData);
-    // });
+    this.sp.getAllFilesAndFolders('Documents').subscribe(data => {
+      console.log(data);
+      this.res = data;
+    });
   }
 
   create() {

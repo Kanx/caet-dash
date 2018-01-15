@@ -3,11 +3,9 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Http, Headers, RequestOptions } from '@angular/http'; // Required to support XML response
-
+import { SharepointResponse } from './sharepoint-response';
 import * as convert from 'xml-js';
-
 import 'rxjs/add/operator/map';
-import {SharepointResponse} from './sharepoint-response';
 
 @Injectable()
 export class SharepointService {
@@ -17,7 +15,8 @@ export class SharepointService {
     .set('Content-Type', 'application/json;odata=verbose')
     .set('If-Match', '*');
 
-  constructor(private http: HttpClient, private _http: Http) {}
+  constructor(private http: HttpClient,
+              private _http: Http) {}
 
   // LIST OPERATIONS
   getListItems(listName: string): Observable<SharepointResponse> {
@@ -43,7 +42,6 @@ export class SharepointService {
       {'headers': this.headers.set('X-RequestDigest', requestDigest).set('X-HTTP-Method', 'MERGE')});
   }
 
-
   @FetchRequestDigest()
   public deleteListItem(listName: string, listItemId: number, requestDigest?): any {
     return this.http.delete(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
@@ -66,7 +64,7 @@ export class SharepointService {
   getAllFilesAndFolders(folderName: string): Observable<ArrayBuffer> {
     return this.http
       .get(`${this.api}/web/Lists/GetByTitle('${folderName}')/Items?$expand=Folder,File&$select=Title,FileLeafRef,Folder/ServerRelativeUrl,File/ServerRelativeUrl,File/Author`,
-      { 'headers': this.headers});
+      { 'headers': this.headers });
   }
 }
 
@@ -85,11 +83,11 @@ function FetchRequestDigest() {
               requestDigestHeaders.append('Accept', 'text/xml;charset=utf-8');
         const requestOptions = new RequestOptions({ headers: requestDigestHeaders});
         this._http
-          .post(`${this.api}/contextinfo`, { }, requestOptions)
+          .post(`${this.api}/contextinfo`, {}, requestOptions)
           .map(requestDigest => requestDigest.text()).subscribe(requestDigest => {
-          httpMethod.apply(this, args.concat([JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text]))
-            .subscribe(response => resolve(response));
-        });
+            httpMethod.apply(this, args.concat([JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text]))
+              .subscribe(response => resolve(response));
+          });
       });
     };
     return descriptor;
