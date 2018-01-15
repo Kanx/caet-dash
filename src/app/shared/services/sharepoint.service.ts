@@ -40,8 +40,9 @@ export class SharepointService {
   public updateListItem(listName: string, listItemId: number, data: object, requestDigest?): any {
     return this.http.put(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
       JSON.stringify(Object.assign(data, {__metadata: {'type': `SP.Data.${listName}ListItem` }})),
-      {'headers': this.headers.set('X-RequestDigest', requestDigest)});
+      {'headers': this.headers.set('X-RequestDigest', requestDigest).set('X-HTTP-Method', 'MERGE')});
   }
+
 
   @FetchRequestDigest()
   public deleteListItem(listName: string, listItemId: number, requestDigest?): any {
