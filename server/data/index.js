@@ -3,6 +3,7 @@ const MockData = {
   "UTMSources": require('./utm-sources.data'),
   "UTMCampaigns": require('./utm-campaign.data'),
   "UTMContent": require('./utm-content.data'),
+  "UTMMediums": require('./utm-medium.data'),
   "WikiContentData": require('./wiki-content.data')
 };
 

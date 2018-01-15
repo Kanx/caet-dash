@@ -20,7 +20,7 @@ export class UtmComponent implements OnInit {
   campaigns: Array<any>;
   contentList: Array<any>;
   filteredSources: Array<Source>;
-  previousMedium: Array<any>;
+  previousMedium = '';
   generatedUrl: string;
   utmHistory: Array<string>;
   childRouteActive: boolean;
@@ -34,6 +34,9 @@ export class UtmComponent implements OnInit {
   ) {}
 
   getDataFromService() {
+    this.utmService.getMediums()
+      .subscribe(data => this.mediums = data);
+
     this.utmService.getSources()
       .subscribe(data => this.sources = data);
 
@@ -50,6 +53,7 @@ export class UtmComponent implements OnInit {
 
     this.utmService.updateService$.subscribe(data => {
       this.getDataFromService();
+      this.utmForm.patchValue({'medium': ''});
     })
 
     this.childRouteActive = !!this.activeRoute.children.length;
@@ -57,8 +61,6 @@ export class UtmComponent implements OnInit {
     this.router.events.subscribe(val => {
       this.childRouteActive = !!this.activeRoute.children.length;
     });
-
-    this.mediums = this.utmService.mediums;
 
     this.utmForm = this.fb.group({
       url: ['',  Validators.compose([Validators.required, Validators.pattern('(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})')])],
@@ -82,6 +84,10 @@ export class UtmComponent implements OnInit {
       .subscribe((value) => {
         if (value) { this.utmHistory = value.split(','); }
       });
+  }
+
+  clearForm() {
+    this.utmForm.reset();
   }
 
   generateUrl(): void {

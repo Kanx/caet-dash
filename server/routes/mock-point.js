@@ -77,7 +77,6 @@ router.get('/web/lists/:config/:items', function (req, res, next) {
 // Update list item
 router.put('/web/lists/:config/:items', function (req, res, next) {
   const listSettings = req.params.config;
-  console.log(req.headers)
   const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
   const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
   MockData[listName][singleItemId - 1] = Object.assign(MockData[listName][singleItemId - 1], req.body);
@@ -90,6 +89,7 @@ router.delete('/web/lists/:config/:items', function (req, res, next) {
   const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
   const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
   MockData[listName].splice(singleItemId - 1, 1);
+  MockData[listName].splice(singleItemId - 1, 1);
   res.json(MockData[listName]);
 });
 
@@ -97,7 +97,8 @@ router.delete('/web/lists/:config/:items', function (req, res, next) {
 router.post('/web/lists/:config/:items', function (req, res, next) {
   const listSettings = req.params.config;
   const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
-  MockData[listName].push(req.body);
+  const nextID = MockData[listName].length;
+  MockData[listName].push(Object.assign(req.body, {ID: nextID + 1}));
   res.json(MockData[listName]);
 });
 

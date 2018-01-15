@@ -7,21 +7,28 @@ import {Subject} from 'rxjs/Subject';
 export class UtmService {
   constructor(private sp: SharepointService) { }
 
-  public mediums = [
-    'organic social',
-    'sponsored social',
-    'ppc',
-    'paid job board',
-    'email',
-    'aggregator job board',
-    'display'
-  ];
-
   private shouldBeUpdated = new Subject<boolean>();
+
   updateService$ = this.shouldBeUpdated.asObservable();
 
   notifySubscribers() {
     this.shouldBeUpdated.next(true);
+  }
+
+  getMediums() {
+    return this.sp.getListItems('UTMMediums').map(data => data.d.results);
+  }
+
+  createMedium(medium: string) {
+    return this.sp.createListItem('UTMMediums', { Title: medium });
+  }
+
+  updateMedium(medium: string, id: any) {
+    return this.sp.updateListItem('UTMMediums', id, { Title: medium });
+  }
+
+  deleteMedium(id: any) {
+    return this.sp.deleteListItem('UTMMediums', id);
   }
 
   getSources() {
@@ -32,6 +39,14 @@ export class UtmService {
     return this.sp.createListItem('UTMSources', { Title: source, Medium: medium });
   }
 
+  updateSource(source: string, id: any) {
+    return this.sp.updateListItem('UTMSources', id, { Title: source });
+  }
+
+  deleteSource(id: any) {
+    return this.sp.deleteListItem('UTMSources', id);
+  }
+
   getCampaigns() {
     return this.sp.getListItems('UTMCampaigns').map(data => data.d.results);
   }
@@ -40,11 +55,27 @@ export class UtmService {
     return this.sp.createListItem('UTMCampaigns', { Title: campaign });
   }
 
+  updateCampaign(campaign: string, id: any) {
+    return this.sp.updateListItem('UTMCampaigns', id, { Title: campaign });
+  }
+
+  deleteCampaign(id: any) {
+    return this.sp.deleteListItem('UTMCampaign', id);
+  }
+
   getContent() {
     return this.sp.getListItems('UTMContent').map(data => data.d.results);
   }
 
   createContent(content: string) {
     return this.sp.createListItem('UTMContent', { Title: content });
+  }
+
+  updateContent(content: string, id: any) {
+    return this.sp.updateListItem('UTMContent', id, { Title: content });
+  }
+
+  deleteContent(id: any) {
+    return this.sp.deleteListItem('UTMContent', id);
   }
 }

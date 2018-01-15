@@ -15,30 +15,52 @@ export class UtmControlFormComponent implements OnInit {
   newComponentName: string;
   mediums: Array<any>;
   mediumFormSetup: Array<any>;
-  boundMedium: string;
   utmControlForm: FormGroup;
+  existingComponents: Array<any>;
+  updateMethod: any;
+  deleteMethod: any;
 
   @Output() componentAdded = new EventEmitter<any>();
 
-  constructor(private router: Router, private utmService: UtmService, private doomService: DoomsayerService, private fb: FormBuilder) {
+  initialise() {
     this.mediumFormSetup = [];
     switch (this.router.url.split('/')[2]) {
+      case 'mediums':
+        this.selectedComponentName = 'Mediums';
+        this.singularComponentName = 'Medium';
+        this.utmService.getMediums().subscribe(data => this.existingComponents = data);
+        this.updateMethod = this.utmService.updateMedium;
+        this.deleteMethod = this.utmService.deleteMedium;
+        break;
       case 'campaigns':
         this.selectedComponentName = 'Campaigns';
         this.singularComponentName = 'Campaign';
+        this.utmService.getCampaigns().subscribe(data => this.existingComponents = data);
+        this.updateMethod = this.utmService.updateCampaign;
+        this.deleteMethod = this.utmService.deleteCampaign;
         break;
       case 'sources':
         this.selectedComponentName = 'Sources';
         this.singularComponentName = 'Source';
+        this.utmService.getMediums().subscribe(data => this.mediums = data);
+        this.utmService.getSources().subscribe(data => this.existingComponents = data);
+        this.updateMethod = this.utmService.updateSource;
+        this.deleteMethod = this.utmService.deleteSource;
         this.mediumFormSetup = ['', Validators.required];
         break;
       case 'content':
         this.selectedComponentName = 'Content';
         this.singularComponentName = 'Content';
+        this.utmService.getContent().subscribe(data => this.existingComponents = data);
+        this.updateMethod = this.utmService.updateContent;
+        this.deleteMethod = this.utmService.deleteContent;
         break;
       default:
     }
-    this.mediums = this.utmService.mediums;
+  }
+
+  constructor(private router: Router, private utmService: UtmService, private doomService: DoomsayerService, private fb: FormBuilder) {
+    this.initialise();
   }
 
   ngOnInit() {
@@ -46,6 +68,26 @@ export class UtmControlFormComponent implements OnInit {
       newComponentName: ['', Validators.required],
       medium: this.mediumFormSetup
     });
+
+    this.utmService.updateService$.subscribe(data => {
+      this.initialise();
+    });
+  }
+
+  updateComponent(component) {
+    this.updateMethod.call(this.utmService, component.Title, component.ID).then(() => {
+      this.doomService.success(`${this.singularComponentName} updated` );
+      this.utmService.notifySubscribers();
+
+    });
+  }
+
+  deleteComponent(component) {
+    this.deleteMethod.call(this.utmService, component.ID).then(() => {
+      this.doomService.danger(`${this.singularComponentName} deleted` );
+      this.utmService.notifySubscribers();
+    });
+
   }
 
   submitNewComponent() {
@@ -53,6 +95,9 @@ export class UtmControlFormComponent implements OnInit {
     const selectedMedium = this.utmControlForm.get('medium').value;
 
     switch (this.router.url.split('/')[2]) {
+      case 'mediums':
+        this.utmService.createMedium(componentName).then(() => this.utmService.notifySubscribers());
+        break;
       case 'content':
         this.utmService.createContent(componentName).then(() => this.utmService.notifySubscribers());
         break;

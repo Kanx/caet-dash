@@ -1,12 +1,19 @@
 @import '../../../styles/variables';
 
-#utm-control-form {
+.close {
+  max-width:90%;
+  text-align: right;
+  margin-bottom:15px;
+}
+
+.utm-control-form {
   max-width: 90%;
   padding: 15px 20px;
   display: block;
   background: white;
   border-radius: 3px;
   border: 1px solid lighten(#bdbdbd, 12%);
+  margin-bottom: 15px;
   h4 {
     color: $aqua;
   }
@@ -18,5 +25,54 @@
   }
   input, select {
 
+  }
+}
+
+
+.quick-edit {
+  display:block;
+  &_item {
+    display: flex;
+    vertical-align: middle;
+    background: lighten($light-grey, 5%);
+    margin: 5px 0;
+
+    button, input, small {
+      margin:0;
+      padding: 10px;
+      border:0;
+      background: none;
+    }
+    &-input {
+      display:flex;
+      small {
+        flex: 1;
+        color: $dark-grey;
+      }
+      flex: 4;
+      margin: 0;
+      padding: 0;
+      input {
+        flex:2;
+        color: #333;
+      }
+    }
+    &-controls {
+      flex: 1;
+      display:flex;
+      margin: 0;
+      padding: 0;
+      button {
+        font-weight:500;
+        font-size:0.9rem;
+        &.trash {
+          color: crimson;
+        }
+        &.update {
+          color: lighten($brand-blue, 20%);
+        }
+
+      }
+    }
   }
 }

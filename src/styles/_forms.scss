@@ -14,10 +14,33 @@ button {
     background: $aqua;
     color: white;
   }
+  &-secondary {
+    background: $brand-blue;
+    color: white;
+  }
+  &-crimson {
+    background: $crimson;
+    color: white;
+  }
+  &-green {
+    background: $green;
+    color: white;
+  }
 }
 
 /*   Inputs   */
 
+form:not(.no-ui-validation) input, form:not(.no-ui-validation) select {
+
+  &.ng-invalid.ng-touched:not(.ng-pristine) {
+    border: 1px solid $crimson;
+    background: lighten($crimson, 55%) !important;
+  }
+  &.ng-valid.ng-touched:not(.ng-pristine) {
+    border: 1px solid $green;
+    background: lighten($green, 55%) !important;
+  }
+}
 
 input[type=text], input[type=number], input[type=url], select {
   padding: 10px 15px;
@@ -32,14 +55,7 @@ input[type=text], input[type=number], input[type=url], select {
   &.light {
     background: #FFFFFF;
   }
-  &.ng-invalid.ng-touched:not(.ng-pristine) {
-    border: 1px solid $crimson;
-    background: lighten($crimson, 35%) !important;
-  }
-  &.ng-valid.ng-touched:not(.ng-pristine) {
-    border: 1px solid $green;
-    background: lighten($green, 40%) !important;
-  }
+
 }
 
 .input-wrapper {

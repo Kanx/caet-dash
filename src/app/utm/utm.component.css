@@ -22,6 +22,14 @@
       flex-grow: 3; }
   .utm-controls_content {
     display: flex; }
+    .utm-controls_content-nav li > a.active {
+      position: relative;
+      color: #E54A61; }
+      .utm-controls_content-nav li > a.active:before {
+        font-family: 'FontAwesome';
+        content: '\f0a8';
+        position: absolute;
+        left: -20px; }
   .utm-controls ul {
     list-style-type: none;
     margin: 0;

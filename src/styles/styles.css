@@ -13,8 +13,24 @@ button {
   .btn-aqua {
     background: #1F9BAA;
     color: white; }
+  .btn-secondary {
+    background: #0A2F64;
+    color: white; }
+  .btn-crimson {
+    background: #E54A61;
+    color: white; }
+  .btn-green {
+    background: #82A934;
+    color: white; }
 
 /*   Inputs   */
+form:not(.no-ui-validation) input.ng-invalid.ng-touched:not(.ng-pristine), form:not(.no-ui-validation) select.ng-invalid.ng-touched:not(.ng-pristine) {
+  border: 1px solid #E54A61;
+  background: white !important; }
+form:not(.no-ui-validation) input.ng-valid.ng-touched:not(.ng-pristine), form:not(.no-ui-validation) select.ng-valid.ng-touched:not(.ng-pristine) {
+  border: 1px solid #82A934;
+  background: #fcfdf9 !important; }
+
 input[type=text], input[type=number], input[type=url], select {
   padding: 10px 15px;
   border: 0;
@@ -25,12 +41,6 @@ input[type=text], input[type=number], input[type=url], select {
     color: #b8b8b8; }
   input[type=text].light, input[type=number].light, input[type=url].light, select.light {
     background: #FFFFFF; }
-  input[type=text].ng-invalid.ng-touched:not(.ng-pristine), input[type=number].ng-invalid.ng-touched:not(.ng-pristine), input[type=url].ng-invalid.ng-touched:not(.ng-pristine), select.ng-invalid.ng-touched:not(.ng-pristine) {
-    border: 1px solid #E54A61;
-    background: #fbe6e9 !important; }
-  input[type=text].ng-valid.ng-touched:not(.ng-pristine), input[type=number].ng-valid.ng-touched:not(.ng-pristine), input[type=url].ng-valid.ng-touched:not(.ng-pristine), select.ng-valid.ng-touched:not(.ng-pristine) {
-    border: 1px solid #82A934;
-    background: #dcebbe !important; }
 
 .input-wrapper {
   position: relative; }

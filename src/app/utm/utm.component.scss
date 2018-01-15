@@ -31,7 +31,18 @@
   }
   &_content {
     display: flex;
-
+    &-nav {
+      li > a.active {
+        position: relative;
+        color: $crimson;
+        &:before {
+          font-family: 'FontAwesome';
+          content: '\f0a8';
+          position: absolute;
+          left: -20px;
+        }
+      }
+    }
   }
 
   ul {

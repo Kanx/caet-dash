@@ -1,21 +1,19 @@
-
-<form id="utm-control-form" [formGroup]="utmControlForm">
+<div class="close">
+  <button routerLink="/utm" class="btn">Close <i class="fa fa-close"></i></button>
+</div>
+<form class="utm-control-form" id="utm-control-form" [formGroup]="utmControlForm">
   <div class="heading-with-action">
     <div class="header">
-      <h4>Manage {{selectedComponentName}}</h4>
-
+      <h4>Create {{singularComponentName}}</h4>
     </div>
-    <div class="clear">
-      <button routerLink="/utm" class="btn">Close <i class="fa fa-close"></i></button>
 
-    </div>
   </div>
   <div class="form-control">
     <label for="bind-to-medium" class="select-style" *ngIf="selectedComponentName === 'Sources'">
       Select medium to bind source against <small>(required)</small>
       <select name="bind-to-medium" id="bind-to-medium" class="light" formControlName="medium">
         <option value=""></option>
-        <option *ngFor="let medium of mediums" value="{{medium}}">{{medium}}</option>
+        <option *ngFor="let medium of mediums" value="{{medium.Title}}">{{medium.Title}}</option>
       </select>
     </label>
   </div>
@@ -23,5 +21,24 @@
   <div class="input-button-addon form-control">
     <input type="text" id="create" class="light" formControlName="newComponentName" placeholder="Enter new {{singularComponentName | lowercase}} value">
     <button class="btn-aqua" type="submit" (click)="submitNewComponent()" [disabled]="!utmControlForm.valid">Create</button>
+  </div>
+</form>
+<form class="utm-control-form no-ui-validation">
+  <div class="heading-with-action">
+    <div class="header">
+      <h4>Update/Delete {{selectedComponentName}}</h4>
+    </div>
+  </div>
+  <div class="quick-edit">
+    <div class="quick-edit_item" *ngFor="let component of existingComponents; let i = index">
+      <div class="quick-edit_item-input">
+        <input type="text" class="light" [value]="component.Title" [(ngModel)]="existingComponents[i].Title" [ngModelOptions]="{standalone: true}">
+        <small *ngIf="component.hasOwnProperty('Medium')" type="text">({{component.Medium}})</small>
+      </div>
+        <div class="quick-edit_item-controls">
+          <button type="button" class="update" (click)="updateComponent(component)"><i class="fa fa-save"></i></button>
+          <button type="button" class="trash" (click)="deleteComponent(component)"><i class="fa fa-trash"></i></button>
+        </div>
+    </div>
   </div>
 </form>

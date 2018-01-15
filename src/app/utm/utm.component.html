@@ -4,7 +4,8 @@
       <router-outlet></router-outlet>
     </div>
     <div class="utm-controls_content-primary">
-      <ul>
+      <ul class="utm-controls_content-nav">
+        <li><a routerLinkActive="active" routerLink="mediums">Manage Mediums</a></li>
         <li><a routerLinkActive="active" routerLink="sources">Manage Sources</a></li>
         <li><a routerLinkActive="active" routerLink="campaigns">Manage Campaigns</a></li>
         <li><a routerLinkActive="active" routerLink="content">Manage Content</a></li>
@@ -40,7 +41,7 @@
         Medium <small>(required)</small>
         <select id="medium" formControlName="medium">
           <option value=""></option>
-          <option *ngFor="let medium of mediums" [value]="medium">{{medium}}</option>
+          <option *ngFor="let medium of mediums" [value]="medium.Title">{{medium.Title}}</option>
         </select>
         <p class="help-text">This is the top-level 'platform' which the source can be classified as. This option will change available Sources. </p>
       </label>
@@ -76,11 +77,12 @@
       </label>
     </div>
     <button class="btn btn-aqua" (click)="generateUrl()" [disabled]="!utmForm.valid">Generate</button>
+    <button class="btn btn-secondary" (click)="clearForm()">Clear form</button>
   </form>
   <div id="utm-output">
     <h3>UTM Link</h3>
     <p [hidden]="generatedUrl">This is where the completed URL will be generated.</p>
     <textarea id="generatedUrl" readonly [hidden]="!generatedUrl">{{generatedUrl}}</textarea>
-    <button class="btn btn-crimson" type="submit" ngxClipboard [cbContent]="generatedUrl" (click)="doomSayer.success('Copied to clipboard')">Copy to clipboard</button>
+    <button class="btn btn-crimson" type="submit" ngxClipboard [cbContent]="generatedUrl" (click)="doomSayer.success('Copied to clipboard')" [disabled]="!generatedUrl">Copy to clipboard</button>
   </div>
 </main>

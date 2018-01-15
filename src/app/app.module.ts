@@ -27,6 +27,7 @@ const appRoutes: Routes = [
     children: [
       { path: 'campaigns', component: UtmControlFormComponent },
       { path: 'content', component: UtmControlFormComponent },
+      { path: 'mediums', component: UtmControlFormComponent },
       { path: 'sources', component: UtmControlFormComponent }
     ]
   },
