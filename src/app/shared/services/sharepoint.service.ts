@@ -46,7 +46,7 @@ export class SharepointService {
   @FetchRequestDigest()
   public deleteListItem(listName: string, listItemId: number, requestDigest?): any {
     return this.http.delete(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
-      {'headers': this.headers.set('X-RequestDigest', requestDigest), responseType: 'text '});
+      {'headers': this.headers.set('X-RequestDigest', requestDigest), responseType: 'text' });
   }
 
   // USER OPERATIONS
