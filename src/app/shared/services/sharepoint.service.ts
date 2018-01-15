@@ -62,16 +62,8 @@ export class SharepointService {
 
   // DOCUMENT OPERATIONS
   getAllFilesAndFolders(folderName: string): Observable<ArrayBuffer> {
-    const CAML = JSON.stringify('{"ViewXml":"<View Scope=\'RecursiveAll\'><Query><Where><Eq><FieldRef Name=\'FileDirRef\' /></View>"}');
     return this.http
-      .get(`${this.api}/web/GetFolderByServerRelativeUrl('Documents')?$expand=Folders,Files`,
-        { 'headers': this.headers });
-  }
-  _getAllFilesAndFolders(folderName: string): Observable<ArrayBuffer> {
-    const CAML = JSON.stringify('{"ViewXml":"<View Scope=\'RecursiveAll\'><Query><Where><Eq><FieldRef Name=\'FileDirRef\' /></View>"}');
-    return this.http
-      .get(`${this.api}/web/GetFolderByServerRelativeUrl('Documents')?$expand=Folders,Files`,
-        // {'query': {'__metadata': { 'type': 'SP.CamlQuery'}, 'ViewXml': '<View Scope="RecursiveAll"></View>'}},
+      .get(`${this.api}/web/GetFolderByServerRelativeUrl('${folderName}')?$expand=Folders,Files`,
         { 'headers': this.headers });
   }
 }
