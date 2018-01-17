@@ -88,10 +88,10 @@ function FetchRequestDigest() {
           .map(requestDigest => requestDigest.text()).subscribe(requestDigest => {
             httpMethod.apply(this, args.concat([JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text]))
               .subscribe(response => {
-                if (response.hasOwnProperty('d')) {
+                if (response) {
                   resolve(response.d);
                 } else {
-                  resolve(response);
+                  resolve();
                 }
               });
           });
