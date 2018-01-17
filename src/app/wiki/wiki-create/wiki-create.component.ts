@@ -10,7 +10,6 @@ import {WikiService} from '../wiki.service';
   styleUrls: ['./wiki-create.component.scss']
 })
 export class WikiCreateComponent implements OnInit {
-  disableSave = false;
   title: string;
   content: string;
   category: string;
@@ -26,9 +25,7 @@ export class WikiCreateComponent implements OnInit {
     this.wikiService.createArticle({Title: this.title, Content: this.content, Category: this.category}).then(data => {
       this.wikiService.notifySubscribers();
       this.doomSayer.success('Article created');
-      console.log('About to log new data:');
-      console.log(data);
-      //this.router.navigate(['wiki/post/' + data.ID]);
+      this.router.navigate(['wiki/post/' + data.d.ID]);
     });
   }
 
