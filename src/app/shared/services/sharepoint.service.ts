@@ -89,6 +89,7 @@ function FetchRequestDigest() {
             httpMethod.apply(this, args.concat([JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text]))
               .subscribe(response => {
                 if (response) {
+                  console.log(1);
                   resolve(response.d);
                 } else {
                   resolve();
