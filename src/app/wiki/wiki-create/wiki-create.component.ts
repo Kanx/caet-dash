@@ -26,7 +26,9 @@ export class WikiCreateComponent implements OnInit {
     this.wikiService.createArticle({Title: this.title, Content: this.content, Category: this.category}).then(data => {
       this.wikiService.notifySubscribers();
       this.doomSayer.success('Article created');
-      this.router.navigate(['wiki/post/' + data.ID]);
+      console.log('About to log new data:');
+      console.log(data);
+      //this.router.navigate(['wiki/post/' + data.ID]);
     });
   }
 

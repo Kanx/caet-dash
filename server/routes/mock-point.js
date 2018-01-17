@@ -69,7 +69,7 @@ router.get('/web/lists/:config/:items', function (req, res, next) {
       });
 
       if(returnData.length) {
-        res.json({ 'd': { 'results': returnData[0] } });
+        res.json({ 'd':  returnData[0]  });
       } else {
         res.sendStatus(502);
       }

@@ -33,7 +33,7 @@ export class WikiService {
   }
 
   createArticle(article: object) {
-    return this.sp.createListItem(this.listName, article).map(data =>  data.d);
+    return this.sp.createListItem(this.listName, article);
   }
 
   updateArticle(article) {
