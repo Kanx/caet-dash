@@ -45,7 +45,7 @@ export class WikiEditorComponent implements OnInit {
   }
 
   deleteArticle() {
-    this.wikiService.deleteArticle(this.article.ID).then((data) => {
+    this.wikiService.deleteArticle(this.article.ID).then(() => {
       this.wikiService.notifySubscribers();
       this.doomSayer.danger('Article deleted');
       this.router.navigate(['wiki']);
