@@ -29,13 +29,11 @@ export class WikiService {
   }
 
   getArticle(id) {
-    return this.sp.getListItem(this.listName, id).map(data => {
-      return data.d;
-    });
+    return this.sp.getListItem(this.listName, id).map(data =>  data.d);
   }
 
   createArticle(article: object) {
-    return this.sp.createListItem(this.listName, article);
+    return this.sp.createListItem(this.listName, article).map(data =>  data.d);
   }
 
   updateArticle(article) {
