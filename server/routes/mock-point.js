@@ -4,7 +4,6 @@ const router = express.Router();
 // Mock data
 var MockData = require('../data');
 
-
 /***
  * List Settings
  */
@@ -65,41 +64,58 @@ router.get('/web/lists/:config/:items', function (req, res, next) {
   } else {
     if (returnSingleItem) {
       const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
-      res.json({ 'd': { 'results': MockData[listName][singleItemId - 1] } });
+      const returnData = MockData[listName].filter(function(item) {
+        return item.ID == singleItemId;
+      });
+
+      if(returnData.length) {
+        res.json({ 'd': { 'results': returnData[0] } });
+      } else {
+        res.sendStatus(502);
+      }
+
     } else {
       // Return all data
       res.json({ 'd': { 'results': MockData[listName] } });
     }
   }
-
-});
-
-// Update list item
-router.put('/web/lists/:config/:items', function (req, res, next) {
-  const listSettings = req.params.config;
-  const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
-  const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
-  MockData[listName][singleItemId - 1] = Object.assign(MockData[listName][singleItemId - 1], req.body);
-  res.json(MockData[listName][singleItemId - 1]);
 });
 
 // Delete list item
 router.delete('/web/lists/:config/:items', function (req, res, next) {
+  var match = false;
   const listSettings = req.params.config;
   const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
-  const singleItemId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
-  MockData[listName].splice(singleItemId - 1, 1);
-  MockData[listName].splice(singleItemId - 1, 1);
-  res.json(MockData[listName]);
+  const requestId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
+  for(var i = 0; i < MockData[listName].length; i++) {
+    if (MockData[listName][i].ID == requestId) {
+      MockData[listName].splice(i, 1);
+      match = true;
+      res.json({ID: requestId});
+    }
+  }
+  if (!match) res.sendStatus(500);
+
 });
 
-// Create list item
+// Create/Update list item
 router.post('/web/lists/:config/:items', function (req, res, next) {
-  const listSettings = req.params.config;
-  const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
-  const nextID = MockData[listName].length;
-  MockData[listName].push(Object.assign(req.body, {ID: nextID + 1}));
-  res.json(MockData[listName]);
+  if (req.header('X-HTTP-Method') === 'MERGE') {
+    // UPDATE
+    const listSettings = req.params.config;
+    const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
+    const requestId = req.params.items.substring(req.params.items.lastIndexOf("items(") + 6, req.params.items.lastIndexOf(")"));
+    MockData[listName][requestId - 1] = Object.assign(MockData[listName][requestId - 1], req.body);
+    res.json(MockData[listName][requestId - 1]);
+  } else {
+    // CREATE
+    const listSettings = req.params.config;
+    const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
+    const idList = MockData[listName].map(function(item) { return item.ID}).sort(function(a, b) { return a < b});
+    const nextID = (idList[0]) ? idList[0] + 1 : 1;
+    MockData[listName].push(Object.assign(req.body, {ID: nextID}));
+    res.json([...MockData[listName]].pop());
+  }
 });
 
 // Get FormDigestRequest

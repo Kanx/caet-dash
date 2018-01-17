@@ -1,4 +1,6 @@
-<app-wiki-nav></app-wiki-nav>
-<app-wiki-content></app-wiki-content>
+<app-wiki-nav class="side-bar side-bar_left" [articles]="wikiArticles"></app-wiki-nav>
+<div class="main">
+  <router-outlet></router-outlet>
+</div>
 
 

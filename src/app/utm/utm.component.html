@@ -1,9 +1,9 @@
 <aside class="side-bar side-bar_left utm-controls" [ngClass]="{'utm-controls-active': childRouteActive}">
   <div class="utm-controls_content">
-    <div class="utm-controls_content-secondary">
-      <router-outlet></router-outlet>
-    </div>
+
     <div class="utm-controls_content-primary">
+      <h1>UTM Generator</h1>
+
       <ul class="utm-controls_content-nav">
         <li><a routerLinkActive="active" routerLink="mediums">Manage Mediums</a></li>
         <li><a routerLinkActive="active" routerLink="sources">Manage Sources</a></li>
@@ -23,11 +23,14 @@
         <input type="text" readonly  class="light" value="{{utmUrl}}">
       </div>
     </div>
+
+    <div class="utm-controls_content-secondary">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 
 </aside>
-<main class="utm-generator">
-  <h1>UTM Generator</h1>
+<main class="main utm-generator">
   <form [formGroup]="utmForm">
     <div class="form-control">
       <label for="url">

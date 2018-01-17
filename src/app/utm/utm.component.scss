@@ -1,14 +1,18 @@
 @import '../../styles/variables';
 
 :host{
-  display:flex;
+  display: flex;
 }
 
 .utm-controls_content-primary {
+  min-width:257px;
   flex-grow: 5;
+  h1 {
+    margin-bottom: 15px;
+  }
 }
 .utm-controls_content-secondary {
-  flex-grow: 1;
+  flex-grow: 0;
   display:block;
 }
 
@@ -21,11 +25,11 @@
     flex: 6;
 
     .utm-controls_content-primary {
-      flex-grow: 1;
 
     }
     .utm-controls_content-secondary {
-      flex-grow: 3;
+      flex-grow: 10;
+
 
     }
   }
@@ -37,9 +41,9 @@
         color: $crimson;
         &:before {
           font-family: 'FontAwesome';
-          content: '\f0a8';
+          content: '\f0a9';
           position: absolute;
-          left: -20px;
+          right: -20px;
         }
       }
     }
@@ -66,9 +70,6 @@
 }
 
 .utm-generator {
-  flex:7;
-  display:block;
-  padding: 20px;
   form {
     max-width:600px;
   }
@@ -79,7 +80,7 @@
 
 
 #utm-output {
-  max-width:600px;
+  max-width: 600px;
   padding: 15px 25px;
   background: #fafafa;
   border-radius: 3px;

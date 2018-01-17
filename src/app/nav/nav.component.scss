@@ -37,9 +37,10 @@
     li {
       display: inline-block;
       a {
+        transition: color 0.1s ease-in-out;
         font-weight:200;
         padding: 15px;
-        color: darken($nav-ui-color, 35%);
+        color: lighten($nav-ui-color, 27%);
         &.active {
           color: #ffffff;
         }

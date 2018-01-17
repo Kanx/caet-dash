@@ -29,6 +29,8 @@ body {
 }
 
 
+
+
 .row {
   &:after,&:before {
     content:"";
@@ -63,7 +65,7 @@ div.heading-with-action {
       padding: 5px 0;
     }
   }
-  div.clear {
+  div.action {
     text-align: right;
     button {
       margin: 5px 0;

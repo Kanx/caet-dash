@@ -102,10 +102,26 @@ a:disabled, button:disabled {
   background: #ebebeb;
   color: #b8b8b8; }
 
+.editor {
+  margin: 10px 0;
+  display: block; }
+
 .side-bar {
   flex: 2;
   min-height: 100vh;
   padding: 30px 20px; }
+  .side-bar h1 {
+    margin: 0;
+    color: #838386;
+    font-size: 1.9rem; }
+
+.container {
+  display: flex; }
+
+.main {
+  flex: 7;
+  display: block;
+  padding: 20px; }
 
 * {
   box-sizing: border-box; }
@@ -151,12 +167,12 @@ div.heading-with-action {
     div.heading-with-action div.header h4 {
       margin: 5px 0;
       padding: 5px 0; }
-  div.heading-with-action div.clear {
+  div.heading-with-action div.action {
     text-align: right;
     flex: 1;
     vertical-align: middle;
     display: inline-block; }
-    div.heading-with-action div.clear button {
+    div.heading-with-action div.action button {
       margin: 5px 0;
       padding: 5px 15px; }
 

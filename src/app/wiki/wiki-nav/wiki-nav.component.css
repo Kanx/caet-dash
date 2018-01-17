@@ -1,57 +1,59 @@
 /*    Colours   */
 /*    Sizing   */
 :host {
-  position: fixed;
-  top: 64px;
-  bottom: 0;
-  left: 0;
-  padding: 0;
-  min-width: 280px;
-  background: #ebebeb;
-  padding: 30px 20px;
-  z-index: 1; }
+  background: #FBFBFC; }
 
-.wiki-nav-head div.row {
-  display: flex;
-  align-items: center; }
-.wiki-nav-head-title {
-  width: 60%;
-  float: left; }
-  .wiki-nav-head-title h1 {
-    margin: 0;
-    color: #838386;
-    font-size: 1.9rem; }
-.wiki-nav-head-btn-wrap {
-  width: 40%;
-  text-align: right;
-  float: left; }
-.wiki-nav-filter {
-  display: block;
-  width: 100%;
-  margin: 15px 0; }
-  .wiki-nav-filter input {
+.wiki-nav {
+  position: fixed;
+  position: sticky;
+  top: 72px;
+  overflow: auto;
+  max-height: calc(100vh - 72px);
+  padding: 20px 10px; }
+  .wiki-nav-head div.row {
+    display: flex;
+    align-items: center; }
+  .wiki-nav-head-title {
+    width: 60%;
+    float: left; }
+  .wiki-nav-head-btn-wrap {
+    width: 40%;
+    text-align: right;
+    float: left; }
+  .wiki-nav-filter {
     display: block;
     width: 100%;
-    background: white; }
-.wiki-nav-list ul {
-  margin: 0;
-  padding-left: 0;
-  list-style-type: none; }
-.wiki-nav-list-parent {
-  font-size: 1.1rem; }
-  .wiki-nav-list-parent li {
-    padding: 5px 0; }
-    .wiki-nav-list-parent li a {
-      color: #777;
+    margin: 15px 0; }
+    .wiki-nav-filter input {
+      display: block;
+      width: 100%;
+      background: white; }
+  .wiki-nav-list ul {
+    margin: 0;
+    padding-left: 0;
+    list-style-type: none; }
+  .wiki-nav-list-parent {
+    display: none;
+    font-size: 1.1rem; }
+    .wiki-nav-list-parent.active {
       display: block; }
-.wiki-nav-list-sub {
-  display: block;
-  margin: 7px  0 7px 12px !important;
-  border-left: 2px solid #1F9BAA; }
-  .wiki-nav-list-sub li {
-    padding: 5px 0 5px 20px; }
-    .wiki-nav-list-sub li a {
-      color: #0A2F64;
-      font-size: 1rem; }
+    .wiki-nav-list-parent li {
+      padding: 5px 0; }
+      .wiki-nav-list-parent li h4 {
+        margin: 10px;
+        color: #333;
+        display: block; }
+  .wiki-nav-list-sub {
+    display: block;
+    margin: 7px  0 7px 12px !important;
+    border-left: 2px solid #1F9BAA; }
+    .wiki-nav-list-sub li {
+      padding: 5px 0 5px 20px; }
+      .wiki-nav-list-sub li a {
+        font-weight: 100;
+        color: #838386;
+        font-size: 0.9rem; }
+        .wiki-nav-list-sub li a.active {
+          color: #E54A61; }
 
 /*# sourceMappingURL=wiki-nav.component.css.map */

@@ -19,8 +19,9 @@ export class SharepointService {
               private _http: Http) {}
 
   // LIST OPERATIONS
-  getListItems(listName: string): Observable<SharepointResponse> {
-    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items`, { 'headers': this.headers });
+  getListItems(listName: string, selectBy?: string): Observable<SharepointResponse> {
+    const viewFields = (selectBy) ? '?$select=' + selectBy : '';
+    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
 
   getListItem(listName: string, listItemId: number): any {

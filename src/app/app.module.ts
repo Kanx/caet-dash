@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WikiComponent } from './wiki/wiki.component';
@@ -20,9 +20,18 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { UtmControlFormComponent } from './utm/utm-control-form/utm-control-form.component';
 import { DoomsayerComponent } from './doomsayer/doomsayer.component';
 import { DoomsayerService } from './doomsayer/doomsayer.service';
+import { WikiEditorComponent } from './wiki/wiki-editor/wiki-editor.component';
+import { WikiCreateComponent } from './wiki/wiki-create/wiki-create.component';
+import { WikiNavFilterPipe} from './wiki-nav-filter.pipe';
 
 const appRoutes: Routes = [
-  { path: 'wiki', component: WikiComponent },
+  { path: 'wiki', component: WikiComponent,
+    children: [
+      { path: 'edit/:id', component: WikiEditorComponent },
+      { path: 'post/:id', component: WikiContentComponent },
+      { path: 'create', component: WikiCreateComponent }
+    ]
+  },
   { path: 'utm', component: UtmComponent,
     children: [
       { path: 'campaigns', component: UtmControlFormComponent },
@@ -43,7 +52,10 @@ const appRoutes: Routes = [
     WikiContentComponent,
     UtmComponent,
     UtmControlFormComponent,
-    DoomsayerComponent
+    DoomsayerComponent,
+    WikiEditorComponent,
+    WikiCreateComponent,
+    WikiNavFilterPipe
   ],
   imports: [
     RouterModule.forRoot(
@@ -59,6 +71,7 @@ const appRoutes: Routes = [
     ClipboardModule,
     Ng2Webstorage
   ],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [SharepointService, UserService, UtmService, DoomsayerService],
   bootstrap: [AppComponent]
 })

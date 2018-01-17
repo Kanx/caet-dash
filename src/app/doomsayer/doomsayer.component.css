@@ -32,5 +32,7 @@
       background: #aac9f6; }
     #doomsayer .message.success {
       background: #82A934; }
+    #doomsayer .message.danger {
+      background: #E54A61; }
 
 /*# sourceMappingURL=doomsayer.component.css.map */

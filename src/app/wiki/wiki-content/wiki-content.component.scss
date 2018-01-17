@@ -1,9 +1,32 @@
 @import "../../../styles/variables";
+@import "../../../styles/layout";
 
 :host {
-  display:block;
-  padding: 20px;
-  margin-left: $side-nav-width;
-  margin-right: 0px;
+}
+
+.wiki-content {
+  &_header {
+    display: flex;
+    vertical-align: middle;
+
+    &-title {
+      flex: 4;
+    }
+    &-controls {
+      flex: 1;
+      text-align: right;
+    }
+    h1, button {
+      margin: 15px 0;
+      line-height:1;
+      padding-top: 15px;
+      padding-bottom:15px;
+      font-size: 1.5rem;
+    }
+    button {
+      font-size: 0.9rem;
+      padding-left: 15px; padding-right: 15px;
+    }
+  }
 }
 

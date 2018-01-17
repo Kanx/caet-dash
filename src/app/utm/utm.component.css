@@ -4,10 +4,13 @@
   display: flex; }
 
 .utm-controls_content-primary {
+  min-width: 257px;
   flex-grow: 5; }
+  .utm-controls_content-primary h1 {
+    margin-bottom: 15px; }
 
 .utm-controls_content-secondary {
-  flex-grow: 1;
+  flex-grow: 0;
   display: block; }
 
 .utm-controls {
@@ -16,10 +19,8 @@
   background: #FBFBFC; }
   .utm-controls-active {
     flex: 6; }
-    .utm-controls-active .utm-controls_content-primary {
-      flex-grow: 1; }
     .utm-controls-active .utm-controls_content-secondary {
-      flex-grow: 3; }
+      flex-grow: 10; }
   .utm-controls_content {
     display: flex; }
     .utm-controls_content-nav li > a.active {
@@ -27,9 +28,9 @@
       color: #E54A61; }
       .utm-controls_content-nav li > a.active:before {
         font-family: 'FontAwesome';
-        content: '\f0a8';
+        content: '\f0a9';
         position: absolute;
-        left: -20px; }
+        right: -20px; }
   .utm-controls ul {
     list-style-type: none;
     margin: 0;
@@ -46,14 +47,10 @@
     max-height: calc(100vh - 72px);
     padding: 20px 10px; }
 
-.utm-generator {
-  flex: 7;
-  display: block;
-  padding: 20px; }
-  .utm-generator form {
-    max-width: 600px; }
-  .utm-generator input {
-    width: 100%; }
+.utm-generator form {
+  max-width: 600px; }
+.utm-generator input {
+  width: 100%; }
 
 #utm-output {
   max-width: 600px;

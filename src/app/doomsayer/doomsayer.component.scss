@@ -38,6 +38,9 @@
     &.success {
       background: $green;
     }
+    &.danger {
+      background: $crimson;
+    }
   }
 
 }

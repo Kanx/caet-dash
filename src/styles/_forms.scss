@@ -140,3 +140,9 @@ a:disabled, button:disabled {
   background: $light-grey;
   color: darken($light-grey, 20%);
 }
+
+
+.editor {
+  margin: 10px 0;
+  display:block;
+}

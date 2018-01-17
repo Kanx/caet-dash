@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WikiService } from './wiki.service';
 import { SharepointService } from '../shared/services/sharepoint.service';
+import {WikiNavItem} from './wiki.interface';
 
 @Component({
   selector: 'app-wiki',
@@ -10,24 +11,21 @@ import { SharepointService } from '../shared/services/sharepoint.service';
 })
 export class WikiComponent implements OnInit {
   editorContent: any;
-  public wikiContent: object;
+  wikiArticles: any;
 
-  constructor(private wikiService: WikiService, private sp: SharepointService) { }
+  constructor(private wikiService: WikiService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.wikiService.updateService$.subscribe(data => {
+      this.wikiService.getArticles().subscribe(articles => this.wikiArticles = articles);
 
-  createWiki() {
-    const wikiData = {
-      'Content': this.editorContent,
-      'Category': 'Some Cat',
-      'Title': 'FooBaz'
-    };
-    console.log(wikiData);
-    this.sp.createListItem('WikiData', wikiData);
-  }
 
-  getWikiContent() {
-    this.sp.getListItems('WikiData').subscribe(data => { this.wikiContent = data });
+    });
+
+    this.wikiArticles = [];
+    this.wikiService.getArticles().subscribe(articles => {
+      this.wikiArticles = articles;
+    });
   }
 
   onChange($event) {

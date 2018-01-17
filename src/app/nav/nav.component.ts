@@ -25,11 +25,11 @@ export class NavComponent implements OnInit {
   constructor(private sp: SharepointService, public userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUser().subscribe(data => {
-      this.user = data;
-    });
-    this.sp.getAllFilesAndFolders('Documents').subscribe(data => {
-      this.filesAndFolders = this.getFilesAndFolders(data);
-    });
+    // this.userService.getUser().subscribe(data => {
+    //   this.user = data;
+    // });
+    // this.sp.getAllFilesAndFolders('Documents').subscribe(data => {
+    //   this.filesAndFolders = this.getFilesAndFolders(data);
+    // });
   }
 }

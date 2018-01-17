@@ -1,0 +1,30 @@
+<div class="form-control">
+  <label for="title">
+    Article title
+    <input id="title" name="title" type="text" [(ngModel)]="article.Title">
+    </label>
+</div>
+<label>
+  Article Content
+<ckeditor
+  [(ngModel)]="article.Content"
+  class="editor"
+  [config]="{
+    extraPlugins: 'divarea',
+    uiColor: '#bdbdbd',
+      toolbarGroups: [
+      { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+      { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+      { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+      { name: 'forms', groups: [ 'forms' ] },
+      { name: 'editing', groups: [ 'find', 'selection', 'editing' ] },
+      { name: 'styles', groups: [ 'styles' ] },
+      { name: 'links', groups: [ 'links' ] },
+      { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] }
+    ]
+   }"
+  debounce="20">
+</ckeditor>
+</label>
+<button class="btn" (click)="saveChangesToArticle()">Save</button>
+<button class="btn btn-crimson" (click)="deleteArticle()">Delete</button>

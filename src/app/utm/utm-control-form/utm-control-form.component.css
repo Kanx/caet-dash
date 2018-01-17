@@ -1,17 +1,16 @@
 /*    Colours   */
 /*    Sizing   */
 .close {
-  max-width: 90%;
-  text-align: right;
+  margin: 0 20px;
   margin-bottom: 15px; }
 
 .utm-control-form {
-  max-width: 90%;
   padding: 15px 20px;
   display: block;
   background: white;
   border-radius: 3px;
   border: 1px solid gainsboro;
+  margin: 0 20px;
   margin-bottom: 15px; }
   .utm-control-form h4 {
     color: #1F9BAA; }

@@ -13,39 +13,9 @@ export class AppComponent implements OnInit {
   constructor(private sp: SharepointService, private utm: UtmService) {}
 
   ngOnInit() {
-    this.sp.getAllFilesAndFolders('Shared Documents').subscribe(data => {
-      console.log(data);
-      this.res = data;
-    });
+    // this.sp.getAllFilesAndFolders('Shared Documents').subscribe(data => {
+    //   console.log(data);
+    //   this.res = data;
+    // });
   }
-
-  create() {
-    this.sp.createListItem('AdvertData', {
-      'Title': 'Test',
-      'Content': 'Some body copy'
-    }).then(data => this.res = data );
-  }
-
-  read() {
-    this.sp.getListItems('AdvertData').subscribe(data => {
-      this.res = data;
-    });
-  }
-
-  readOne(id: number) {
-    this.sp.getListItem('AdvertData', id).subscribe(data => {
-      this.res = data;
-    });
-  }
-
-  update() {
-    this.sp.updateListItem('AdvertData', 1, { 'Title': 'Just updated'})
-      .then(data => this.res = data);
-  }
-
-  delete(id: number) {
-    this.sp.deleteListItem('AdvertData', id)
-      .then(data => this.res = data);
-  }
-
 }

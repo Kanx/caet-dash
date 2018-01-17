@@ -1,26 +1,26 @@
-<div class="wiki-nav-head grid">
-  <div class="row">
-    <div class="wiki-nav-head-title">
-      <h1>Wiki</h1>
-    </div>
-    <div class="wiki-nav-head-btn-wrap">
-      <button class="btn btn-aqua">Create</button>
-    </div>
+<div class="wiki-nav-head">
+    <div class="heading-with-action">
+      <div class="header">
+        <h1>Wiki</h1>
+
+      </div>
+      <div class="action">
+        <button class="btn btn-aqua" routerLink="create">Create</button>
+      </div>
+
   </div>
   <div class="row">
     <div class="wiki-nav-filter input-wrapper input-wrapper-search">
-      <input type="text" placeholder="Filter topics">
+      <input type="text" placeholder="Filter by Wiki Article titles" [(ngModel)]="keywordFilter">
     </div>
   </div>
 </div>
 <div class="wiki-nav-list">
-  <ul class="wiki-nav-list-parent">
-    <li><a href="">Google Analytics</a>
+  <ul class="wiki-nav-list-parent" *ngFor="let parent of navItems" [ngClass]="{active: (parent.articles | wikiNavFilter: keywordFilter).length}">
+    <li><h4>{{parent.Title}}</h4>
         <ul class="wiki-nav-list-sub">
-          <li><a href="">Child</a></li>
+          <li *ngFor="let article of parent.articles | wikiNavFilter: keywordFilter"><a routerLinkActive="active" routerLink="post/{{article.ID}}">{{article.Title}}</a></li>
         </ul>
     </li>
-    <li><a href="">Baz</a></li>
-    <li><a href="">Bar</a></li>
   </ul>
 </div>

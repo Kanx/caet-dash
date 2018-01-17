@@ -1,9 +1,39 @@
 /*    Colours   */
 /*    Sizing   */
-:host {
+.side-bar {
+  flex: 2;
+  min-height: 100vh;
+  padding: 30px 20px; }
+  .side-bar h1 {
+    margin: 0;
+    color: #838386;
+    font-size: 1.9rem; }
+
+.container {
+  display: flex; }
+
+.main {
+  flex: 7;
   display: block;
-  padding: 20px;
-  margin-left: 280px;
-  margin-right: 0px; }
+  padding: 20px; }
+
+.wiki-content_header {
+  display: flex;
+  vertical-align: middle; }
+  .wiki-content_header-title {
+    flex: 4; }
+  .wiki-content_header-controls {
+    flex: 1;
+    text-align: right; }
+  .wiki-content_header h1, .wiki-content_header button {
+    margin: 15px 0;
+    line-height: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 1.5rem; }
+  .wiki-content_header button {
+    font-size: 0.9rem;
+    padding-left: 15px;
+    padding-right: 15px; }
 
 /*# sourceMappingURL=wiki-content.component.css.map */
