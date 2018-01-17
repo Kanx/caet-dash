@@ -69,6 +69,7 @@ router.get('/web/lists/:config/:items', function (req, res, next) {
       });
 
       if(returnData.length) {
+        console.log('got 1 item');
         res.json({ 'd':  returnData[0]  });
       } else {
         res.sendStatus(502);
@@ -114,7 +115,7 @@ router.post('/web/lists/:config/:items', function (req, res, next) {
     const idList = MockData[listName].map(function(item) { return item.ID}).sort(function(a, b) { return a < b});
     const nextID = (idList[0]) ? idList[0] + 1 : 1;
     MockData[listName].push(Object.assign(req.body, {ID: nextID}));
-    res.json([...MockData[listName]].pop());
+    res.json({d: [...MockData[listName]].pop()});
   }
 });
 
