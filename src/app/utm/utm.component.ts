@@ -5,7 +5,7 @@ import { Source} from './source.class';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Router, ActivatedRoute } from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {DoomsayerService} from '../doomsayer/doomsayer.service';
+import {DoomsayerService} from '../shared/doomsayer/doomsayer.service';
 
 @Component({
   selector: 'app-utm',

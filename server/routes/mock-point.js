@@ -69,7 +69,6 @@ router.get('/web/lists/:config/:items', function (req, res, next) {
       });
 
       if(returnData.length) {
-        console.log('got 1 item');
         res.json({ 'd':  returnData[0]  });
       } else {
         res.sendStatus(502);

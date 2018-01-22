@@ -19,40 +19,4 @@
   .utm-control-form .input-button-addon {
     margin: 5px 0; }
 
-.quick-edit {
-  display: block; }
-  .quick-edit_item {
-    display: flex;
-    vertical-align: middle;
-    background: #f8f8f8;
-    margin: 5px 0; }
-    .quick-edit_item button, .quick-edit_item input, .quick-edit_item small {
-      margin: 0;
-      padding: 10px;
-      border: 0;
-      background: none; }
-    .quick-edit_item-input {
-      display: flex;
-      flex: 4;
-      margin: 0;
-      padding: 0; }
-      .quick-edit_item-input small {
-        flex: 1;
-        color: #838386; }
-      .quick-edit_item-input input {
-        flex: 2;
-        color: #333; }
-    .quick-edit_item-controls {
-      flex: 1;
-      display: flex;
-      margin: 0;
-      padding: 0; }
-      .quick-edit_item-controls button {
-        font-weight: 500;
-        font-size: 0.9rem; }
-        .quick-edit_item-controls button.trash {
-          color: crimson; }
-        .quick-edit_item-controls button.update {
-          color: #135bc1; }
-
 /*# sourceMappingURL=utm-control-form.component.css.map */

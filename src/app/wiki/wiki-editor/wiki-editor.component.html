@@ -26,5 +26,6 @@
   debounce="20">
 </ckeditor>
 </label>
-<button class="btn" (click)="saveChangesToArticle()">Save</button>
+<button class="btn btn-secondary" (click)="saveChangesToArticle()">Save</button>
 <button class="btn btn-crimson" (click)="deleteArticle()">Delete</button>
+<button class="btn" routerLink="/wiki/post/{{article.ID}}">Back</button>

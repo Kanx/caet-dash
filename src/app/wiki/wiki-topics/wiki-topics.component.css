@@ -1,0 +1,9 @@
+.wiki-topics__col {
+  flex: 1;
+  margin: 0 15px; }
+.wiki-topics .toggle-create {
+  display: none; }
+  .wiki-topics .toggle-create.active {
+    display: flex; }
+
+/*# sourceMappingURL=wiki-topics.component.css.map */

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WikiService } from './wiki.service';
-import { SharepointService } from '../shared/services/sharepoint.service';
-import {WikiNavItem} from './wiki.interface';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-wiki',
@@ -10,29 +9,21 @@ import {WikiNavItem} from './wiki.interface';
   providers: [WikiService]
 })
 export class WikiComponent implements OnInit {
-  editorContent: any;
   wikiArticles: any;
 
-  constructor(private wikiService: WikiService) { }
+  constructor(private wikiService: WikiService, private router: Router) { }
 
   ngOnInit() {
-    this.wikiService.updateService$.subscribe(data => {
+    this.wikiService.updateService$.subscribe(() => {
       this.wikiService.getArticles().subscribe(articles => this.wikiArticles = articles);
-
-
     });
 
     this.wikiArticles = [];
     this.wikiService.getArticles().subscribe(articles => {
       this.wikiArticles = articles;
     });
-  }
 
-  onChange($event) {
-    // console.log($event);
+    this.router.events.subscribe(() =>  window.scrollTo(0, 0));
   }
-  onFocus() {}
-  onBlur() {}
-  onReady() {}
 
 }

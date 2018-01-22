@@ -1,28 +1,54 @@
 import { Injectable } from '@angular/core';
 import { SharepointService } from '../shared/services/sharepoint.service';
-import {WikiNavItem} from './wiki.interface';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class WikiService {
-  public topicList: Array<string>;
+
+  public topicList: any;
   private listName = 'WikiContent';
-  constructor(private sp: SharepointService) {
-    this.topicList = [
-      'Photoshop',
-      'Talemetry'
-    ];
-  }
+
+  constructor(private sp: SharepointService) {}
 
   private shouldBeUpdated = new Subject<boolean>();
-
   updateService$ = this.shouldBeUpdated.asObservable();
+
+
+  getPrimaryTopics() {
+    return this.sp.getListItems('WikiPrimaryTopics').map(data => data.d.results);
+  }
+
+  createPrimaryTopic(title, id) {
+    return this.sp.createListItem('WikiPrimaryTopics', {Title: title, PrimaryTopicID: id});
+  }
+
+  updatePrimaryTopic(id, newTitle) {
+    return this.sp.updateListItem('WikiPrimaryTopics', id, {
+      Title: newTitle
+    });
+  }
+
+  getSecondaryTopics() {
+    return this.sp.getListItems('WikiSecondaryTopics').map(data => data.d.results);
+  }
+
+  createSecondaryTopic(title, sid, pid) {
+    return this.sp.createListItem('WikiSecondaryTopics', {Title: title, SecondaryTopicID: sid, PrimaryTopicID: pid});
+  }
+
+  updateSecondaryTopic(id, newTitle, newPrimaryTopicId?) {
+    let data =  {
+      Title: newTitle
+    };
+    if (newPrimaryTopicId) {
+      data = Object.assign(data, {PrimaryTopicID: newPrimaryTopicId});
+    }
+    return this.sp.updateListItem('WikiSecondaryTopics', id, data);
+  }
 
   notifySubscribers() {
     this.shouldBeUpdated.next(true);
   }
-
 
   getArticles() {
     return this.sp.getListItems(this.listName, 'Title,ID,Category').map(data => data.d.results);

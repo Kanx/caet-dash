@@ -6,20 +6,20 @@ button {
   background: #dcd8d6;
   color: #696969; }
 
-.btn {
+button.btn, a.btn {
   border-radius: 4px;
   padding: 5px 12px;
   line-height: 20px; }
-  .btn-aqua {
+  button.btn-aqua, a.btn-aqua {
     background: #1F9BAA;
     color: white; }
-  .btn-secondary {
-    background: #0A2F64;
+  button.btn-secondary, a.btn-secondary {
+    background: #5668b0;
     color: white; }
-  .btn-crimson {
+  button.btn-crimson, a.btn-crimson {
     background: #E54A61;
     color: white; }
-  .btn-green {
+  button.btn-green, a.btn-green {
     background: #82A934;
     color: white; }
 
@@ -106,10 +106,46 @@ a:disabled, button:disabled {
   margin: 10px 0;
   display: block; }
 
+.quick-edit {
+  display: block; }
+  .quick-edit button, .quick-edit input, .quick-edit small {
+    margin: 0;
+    padding: 10px;
+    border: 0;
+    background: none; }
+  .quick-edit_item {
+    display: flex;
+    vertical-align: middle;
+    background: #f8f8f8;
+    margin: 5px 0; }
+    .quick-edit_item-input {
+      display: flex;
+      flex: 4;
+      margin: 0;
+      padding: 0; }
+      .quick-edit_item-input small {
+        flex: 1;
+        color: #838386; }
+      .quick-edit_item-input input {
+        flex: 2;
+        color: #333; }
+    .quick-edit_item-controls {
+      flex: 1;
+      display: flex;
+      margin: 0;
+      padding: 0; }
+      .quick-edit_item-controls button {
+        font-weight: 500;
+        font-size: 0.9rem; }
+        .quick-edit_item-controls button.trash {
+          color: crimson; }
+        .quick-edit_item-controls button.update {
+          color: #135bc1; }
+
 .side-bar {
   flex: 2;
   min-height: 100vh;
-  padding: 30px 20px; }
+  padding: 10px 20px; }
   .side-bar h1 {
     margin: 0;
     color: #838386;
@@ -123,7 +159,18 @@ a:disabled, button:disabled {
   display: block;
   padding: 20px; }
 
+/*    Colours   */
+/*    Sizing   */
+.panel {
+  background: white;
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+  padding: 15px;
+  margin: 15px 0; }
+
 * {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
   box-sizing: border-box; }
 
 html {
@@ -162,18 +209,113 @@ p {
 div.heading-with-action {
   vertical-align: middle;
   display: flex; }
-  div.heading-with-action div.header {
-    flex: 2; }
-    div.heading-with-action div.header h4 {
-      margin: 5px 0;
-      padding: 5px 0; }
-  div.heading-with-action div.action {
-    text-align: right;
+  div.heading-with-action span.header {
+    color: #838386;
+    font-size: 2rem;
+    margin: 5px 0 !important;
+    padding: 10px 0;
+    line-height: 1.2;
+    display: inline-block;
     flex: 1;
     vertical-align: middle;
     display: inline-block; }
-    div.heading-with-action div.action button {
-      margin: 5px 0;
-      padding: 5px 15px; }
+    div.heading-with-action span.header-sm {
+      font-size: 1rem; }
+  div.heading-with-action span.action {
+    text-align: right;
+    vertical-align: middle;
+    margin: 5px 0 !important;
+    padding: 10px 15px;
+    line-height: 1.2;
+    display: inline-block;
+    flex: 1;
+    position: relative; }
+    div.heading-with-action span.action button {
+      height: 100%;
+      display: inline-block; }
+
+.modal {
+  display: flex;
+  /* establish flex container */
+  flex-direction: column;
+  /* make main-axis vertical */
+  justify-content: center;
+  /* align items vertically, in this case */
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  background: rgba(0, 0, 0, 0.6); }
+  .modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    margin: 10px;
+    padding: 0; }
+  .modal button.close {
+    background: none;
+    color: white;
+    font-size: 1.1rem;
+    display: inline-block; }
+  .modal-header {
+    padding: 10px  20px; }
+    .modal-header span {
+      padding: 0;
+      margin: 0;
+      vertical-align: middle; }
+    .modal-header .action {
+      float: right; }
+  .modal-body {
+    padding: 0 20px; }
+    .modal-body p {
+      padding: 25px 0; }
+  .modal-footer {
+    padding: 15px 20px; }
+
+.danger .modal-header, .danger .modal button.action-btn {
+  background: #E54A61;
+  color: white; }
+
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity .15s linear;
+  -o-transition: opacity .15s linear;
+  transition: opacity .15s linear; }
+
+.fade.in {
+  opacity: 1; }
+
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0); }
+
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+  -o-transition: -o-transform .3s ease-out;
+  transition: transform .3s ease-out;
+  -webkit-transform: translate(-50%, -75%);
+  -ms-transform: translate(-50%, -75%);
+  -o-transform: translate(-50%, -75%);
+  transform: translate(-50%, -75%); }
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto; } }
+.main {
+  color: #555; }
+  .main p {
+    margin-bottom: 1rem;
+    line-height: 1.35rem; }
 
 /*# sourceMappingURL=styles.css.map */

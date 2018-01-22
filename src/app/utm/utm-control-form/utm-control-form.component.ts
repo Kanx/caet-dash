@@ -1,8 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import { UtmService } from '../utm.service';
-import {DoomsayerService} from '../../doomsayer/doomsayer.service';
+import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DialogService} from 'ng2-bootstrap-modal';
+import {DialogModalComponent} from '../../shared/dialog-modal/dialog-modal.component';
 
 @Component({
   selector: 'app-utm-control-form',
@@ -59,7 +61,11 @@ export class UtmControlFormComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router, private utmService: UtmService, private doomService: DoomsayerService, private fb: FormBuilder) {
+  constructor(private router: Router,
+              private dialogService: DialogService,
+              private utmService: UtmService,
+              private doomService: DoomsayerService,
+              private fb: FormBuilder) {
     this.initialise();
   }
 
@@ -83,10 +89,19 @@ export class UtmControlFormComponent implements OnInit {
   }
 
   deleteComponent(component) {
-    this.deleteMethod.call(this.utmService, component.ID).then(() => {
-      this.doomService.danger(`${this.singularComponentName} deleted` );
-      this.utmService.notifySubscribers();
-    });
+    this.dialogService.addDialog(DialogModalComponent, {
+      title: 'Delete ' + this.singularComponentName,
+      theme: 'danger',
+      message: `Are you sure you want to delete this ${this.singularComponentName}?`})
+      .subscribe((isConfirmed) => {
+        if (isConfirmed) {
+          this.deleteMethod.call(this.utmService, component.ID).then(() => {
+            this.doomService.danger(`${this.singularComponentName} deleted` );
+            this.utmService.notifySubscribers();
+          });
+        }
+      });
+
 
   }
 

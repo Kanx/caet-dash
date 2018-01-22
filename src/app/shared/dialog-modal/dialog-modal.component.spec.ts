@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WikiComponent } from './wiki.component';
+import { DialogModalComponent } from './dialog-modal.component';
 
-describe('WikiComponent', () => {
-  let component: WikiComponent;
-  let fixture: ComponentFixture<WikiComponent>;
+describe('DialogModalComponent', () => {
+  let component: DialogModalComponent;
+  let fixture: ComponentFixture<DialogModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WikiComponent ]
+      declarations: [ DialogModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WikiComponent);
+    fixture = TestBed.createComponent(DialogModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,7 +7,11 @@
 .utm-controls_content-primary {
   min-width:257px;
   flex-grow: 5;
+
   h1 {
+    margin: 5px 0 !important;
+    padding: 10px 0;
+    font-size:2rem;
     margin-bottom: 15px;
   }
 }

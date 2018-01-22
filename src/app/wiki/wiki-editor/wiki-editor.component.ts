@@ -4,7 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WikiService} from '../wiki.service';
 import {WikiArticle} from '../wiki.interface';
-import {DoomsayerService} from '../../doomsayer/doomsayer.service';
+import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
+import {DialogService} from 'ng2-bootstrap-modal';
+import {DialogModalComponent} from '../../shared/dialog-modal/dialog-modal.component';
 
 @Component({
   selector: 'app-wiki-editor',
@@ -14,13 +16,17 @@ import {DoomsayerService} from '../../doomsayer/doomsayer.service';
 export class WikiEditorComponent implements OnInit {
   public article: WikiArticle;
 
-  constructor(private route: ActivatedRoute, private wikiService: WikiService, private router: Router, private doomSayer: DoomsayerService) {}
+  constructor(private dialogService: DialogService,
+              private route: ActivatedRoute,
+              private wikiService: WikiService,
+              private router: Router,
+              private doomSayer: DoomsayerService) {}
 
   ngOnInit() {
     this.article = {
       Content: '',
       Title: '',
-      Category: '',
+      TopicID: '',
       ID: null
     };
 
@@ -45,10 +51,19 @@ export class WikiEditorComponent implements OnInit {
   }
 
   deleteArticle() {
-    this.wikiService.deleteArticle(this.article.ID).then(() => {
-      this.wikiService.notifySubscribers();
-      this.doomSayer.danger('Article deleted');
-      this.router.navigate(['wiki']);
-    });
+    this.dialogService.addDialog(DialogModalComponent, {
+      title: 'Delete article',
+      theme: 'danger',
+      message: 'Are you sure you want to delete this article?'})
+      .subscribe((isConfirmed) => {
+        if (isConfirmed) {
+          this.wikiService.deleteArticle(this.article.ID).then(() => {
+            this.wikiService.notifySubscribers();
+            this.doomSayer.danger('Article deleted');
+            this.router.navigate(['wiki']);
+          });
+        }
+      });
+
   }
 }

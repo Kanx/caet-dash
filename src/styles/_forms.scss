@@ -6,7 +6,7 @@ button {
   color: #696969;
 }
 
-.btn {
+button.btn, a.btn {
   border-radius: 4px;
   padding: 5px 12px;
   line-height:20px;
@@ -15,7 +15,7 @@ button {
     color: white;
   }
   &-secondary {
-    background: $brand-blue;
+    background: $blue;
     color: white;
   }
   &-crimson {
@@ -145,4 +145,56 @@ a:disabled, button:disabled {
 .editor {
   margin: 10px 0;
   display:block;
+}
+
+
+
+
+.quick-edit {
+  button, input, small {
+    margin:0;
+    padding: 10px;
+    border:0;
+    background: none;
+  }
+  display:block;
+  &_item {
+    display: flex;
+    vertical-align: middle;
+    background: lighten($light-grey, 5%);
+    margin: 5px 0;
+
+
+    &-input {
+      display:flex;
+      small {
+        flex: 1;
+        color: $dark-grey;
+      }
+      flex: 4;
+      margin: 0;
+      padding: 0;
+      input {
+        flex:2;
+        color: #333;
+      }
+    }
+    &-controls {
+      flex: 1;
+      display:flex;
+      margin: 0;
+      padding: 0;
+      button {
+        font-weight:500;
+        font-size:0.9rem;
+        &.trash {
+          color: crimson;
+        }
+        &.update {
+          color: lighten($brand-blue, 20%);
+        }
+
+      }
+    }
+  }
 }

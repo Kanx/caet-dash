@@ -10,7 +10,7 @@
   </div>
   <div class="form-control">
     <label for="bind-to-medium" class="select-style" *ngIf="selectedComponentName === 'Sources'">
-      Select medium to bind source against <small>(required)</small>
+      Select medium <small>(required)</small>
       <select name="bind-to-medium" id="bind-to-medium" class="light" formControlName="medium">
         <option value=""></option>
         <option *ngFor="let medium of mediums" value="{{medium.Title}}">{{medium.Title}}</option>

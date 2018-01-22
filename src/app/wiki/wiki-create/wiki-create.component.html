@@ -32,6 +32,18 @@
     ]
    }"
     debounce="20">
+    <ckbutton [name]="'imageExplorer'"
+              [command]="'openImageExplorer'"
+              (click)="openImageExplorer($event)"
+              [icon]="'./images/Icon.png'"
+              [label]="'Open image explorer'"
+              [toolbar]="'insert,1'">
+    </ckbutton>
   </ckeditor>
+  <app-dialog-modal *ngIf="showFiles"
+                    [visible]="showFiles"
+                    (onDecline)="onCloseImage()"
+                    (onConfirm)="onAddImage()">
+  </app-dialog-modal>
 </label>
 <button class="btn btn-success" (click)="createArticle()">Create</button>

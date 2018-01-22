@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SharepointService } from '../shared/services/sharepoint.service';
-import { UserService } from '../shared/services/user.service';
+import { SharepointService } from '../services/sharepoint.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-nav',

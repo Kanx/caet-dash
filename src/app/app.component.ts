@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { SharepointService } from './shared/services/sharepoint.service';
-import {UtmService} from './utm/utm.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +9,7 @@ import {UtmService} from './utm/utm.service';
 export class AppComponent implements OnInit {
   res: any;
 
-  constructor(private sp: SharepointService, private utm: UtmService) {}
+  constructor(private sp: SharepointService) {}
 
   ngOnInit() {
     // this.sp.getAllFilesAndFolders('Shared Documents').subscribe(data => {

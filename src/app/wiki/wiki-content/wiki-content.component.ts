@@ -17,7 +17,7 @@ export class WikiContentComponent implements OnInit {
     this.article = {
       Content: '',
       Title: '',
-      Category: '',
+      TopicID: '',
       ID: null
     };
 
@@ -26,7 +26,6 @@ export class WikiContentComponent implements OnInit {
       this.wikiService.getArticle(this.articleId).subscribe(article => {
         this.article = article;
       });
-      window.scrollTo(0, 0)
     });
   }
 

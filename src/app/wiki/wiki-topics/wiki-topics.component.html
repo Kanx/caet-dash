@@ -1,0 +1,74 @@
+<div class="wiki-topics">
+    <div class="panel">
+      <form class="no-ui-validation">
+        <div class="heading-with-action">
+          <span class="header header-sm">
+            <h4>Primary Topics</h4>
+          </span>
+          <span class="action">
+              <button class="btn btn-green" (click)="toggleCreateState('primary')">Add <i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+        <div class="quick-edit">
+          <div class="quick-edit_item toggle-create" [ngClass]="{'active': displayAddNewPrimaryTopic}">
+            <div class="quick-edit_item-input">
+              <input type="text" [value]="newPrimaryTopicTitle" [(ngModel)]="newPrimaryTopicTitle" [ngModelOptions]="{standalone: true}" placeholder="Primary topic name">
+              <input type="text" [value]="newPrimaryTopicTitle | topicId" [(ngModel)]="newPrimaryTopicID" [ngModelOptions]="{standalone: true}" placeholder="Topic ID is auto-generated" readonly>
+            </div>
+            <div class="quick-edit_item-controls">
+              <button class="btn btn-green" type="button" (click)="createPrimaryTopic(newPrimaryTopicTitle, newPrimaryTopicID)">Add <i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+          <div class="quick-edit_item" *ngFor="let primaryTopic of primaryTopics; let i = index">
+            <div class="quick-edit_item-input">
+              <input type="text" [value]="primaryTopic.Title" [(ngModel)]="primaryTopics[i].Title" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="quick-edit_item-controls">
+              <button type="button" class="update" (click)="updatePrimaryTopic(primaryTopic)"><i class="fa fa-save"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="panel">
+      <form class="no-ui-validation">
+        <div class="heading-with-action">
+          <span class="header header-sm">
+            <h4>Secondary Topics</h4>
+          </span>
+          <span class="action">
+              <button class="btn btn-green" (click)="toggleCreateState('secondary')">Add <i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+        <div class="quick-edit">
+          <div class="quick-edit_item toggle-create" [ngClass]="{active: displayAddNewSecondaryTopic}">
+            <div class="quick-edit_item-input">
+              <input type="text" [value]="newSecondaryTopicTitle" [(ngModel)]="newSecondaryTopicTitle" [ngModelOptions]="{standalone: true}" placeholder="Secondary topic name">
+              <input type="text" [value]="newSecondaryTopicTitle | topicId" [(ngModel)]="newPrimaryTopicID" [ngModelOptions]="{standalone: true}" placeholder="Topic ID is auto-generated" readonly>
+            </div>
+            <div class="quick-edit_item-input">
+              <select name="" id="" [(ngModel)]="newSecondaryTopicPrimaryID" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let primaryTopic of primaryTopics" value="{{primaryTopic.PrimaryTopicID}}">{{primaryTopic.Title}}</option>
+              </select>
+            </div>
+            <div class="quick-edit_item-controls">
+              <button type="button" (click)="createSecondaryTopic(newSecondaryTopicTitle, newSecondaryTopicID, newSecondaryTopicPrimaryID)">Add <i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+          <div class="quick-edit_item" *ngFor="let secondaryTopic of secondaryTopics; let i = index">
+            <div class="quick-edit_item-input">
+              <input type="text" class="light" [value]="secondaryTopic.Title" [(ngModel)]="secondaryTopics[i].Title" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="quick-edit_item-input">
+              <select name="" id="" [(ngModel)]="secondaryTopic.PrimaryTopicID" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let primaryTopic of primaryTopics" value="{{primaryTopic.PrimaryTopicID}}">{{primaryTopic.Title}}</option>
+              </select>
+            </div>
+            <div class="quick-edit_item-controls">
+              <button type="button" class="update" (click)="updateSecondaryTopic(secondaryTopic)"><i class="fa fa-save"></i></button>
+            </div>
+          </div>
+        </div>
+      </form>
+  </div>
+</div>

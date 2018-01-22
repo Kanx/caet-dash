@@ -1,13 +1,13 @@
 <div class="wiki-nav-head">
     <div class="heading-with-action">
-      <div class="header">
-        <h1>Wiki</h1>
+      <span class="header">
+        Wiki
+      </span>
 
-      </div>
-      <div class="action">
-        <button class="btn btn-aqua" routerLink="create">Create</button>
-      </div>
-
+  </div>
+  <div class="row">
+    <button class="btn" routerLink="create">New Article&nbsp;<i class="fa fa-plus"></i></button>&nbsp;
+    <button class="btn" routerLink="topics">Manage Topics&nbsp;<i class="fa fa-cog"></i></button>
   </div>
   <div class="row">
     <div class="wiki-nav-filter input-wrapper input-wrapper-search">
@@ -16,11 +16,15 @@
   </div>
 </div>
 <div class="wiki-nav-list">
-  <ul class="wiki-nav-list-parent" *ngFor="let parent of navItems" [ngClass]="{active: (parent.articles | wikiNavFilter: keywordFilter).length}">
-    <li><h4>{{parent.Title}}</h4>
-        <ul class="wiki-nav-list-sub">
-          <li *ngFor="let article of parent.articles | wikiNavFilter: keywordFilter"><a routerLinkActive="active" routerLink="post/{{article.ID}}">{{article.Title}}</a></li>
-        </ul>
+  <ul>
+    <li class="wiki-nav-list__primary" *ngFor="let primaryNavItem of navItems" [ngClass]="{active: (primaryNavItem.SecondaryTopics | wikiNavDeepFilter: keywordFilter).length}">{{primaryNavItem.Title}}
+      <ul >
+        <li class="wiki-nav-list__secondary" *ngFor="let secondaryTopic of primaryNavItem.SecondaryTopics" [ngClass]="{active: (secondaryTopic.Articles | wikiNavFilter: keywordFilter).length}">{{secondaryTopic.Title}}
+          <ul class="wiki-nav-list__articles">
+            <li *ngFor="let article of secondaryTopic.Articles | wikiNavFilter: keywordFilter"><a routerLinkActive="active" routerLink="post/{{article.ID}}">{{article.Title}}</a></li>
+          </ul>
+        </li>
+      </ul>
     </li>
   </ul>
 </div>

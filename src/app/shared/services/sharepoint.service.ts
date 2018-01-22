@@ -47,7 +47,6 @@ export class SharepointService {
   public deleteListItem(listName: string, listItemId: number, requestDigest?): any {
     return this.http.delete(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
       {'headers': this.headers.set('X-RequestDigest', requestDigest), responseType: 'text'});
-
   }
 
   // USER OPERATIONS
@@ -89,10 +88,9 @@ function FetchRequestDigest() {
             httpMethod.apply(this, args.concat([JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text]))
               .subscribe(response => {
                 if (response) {
-                  console.log(1);
-                  resolve(response.d);
+                  resolve(response.d); // Update and Create requests return a copy of the modified/generated item
                 } else {
-                  resolve();
+                  resolve(); // Delete requests return null/undefined
                 }
               });
           });

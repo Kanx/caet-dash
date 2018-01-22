@@ -1,0 +1,13 @@
+.wiki-topics {
+  &__col {
+    flex: 1;
+    margin: 0 15px;
+  }
+  .toggle-create {
+    display: none;
+    &.active {
+      display: flex;
+
+    }
+  }
+}

@@ -8,7 +8,7 @@ import { SharepointService } from './shared/services/sharepoint.service';
 import { HttpModule } from '@angular/http';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './shared/nav/nav.component';
 import { Routes, RouterModule } from '@angular/router';
 import { WikiNavComponent } from './wiki/wiki-nav/wiki-nav.component';
 import { WikiContentComponent } from './wiki/wiki-content/wiki-content.component';
@@ -18,18 +18,23 @@ import { UtmService } from './utm/utm.service';
 import { UtmComponent } from './utm/utm.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { UtmControlFormComponent } from './utm/utm-control-form/utm-control-form.component';
-import { DoomsayerComponent } from './doomsayer/doomsayer.component';
-import { DoomsayerService } from './doomsayer/doomsayer.service';
+import { DoomsayerComponent } from './shared/doomsayer/doomsayer.component';
+import { DoomsayerService } from './shared/doomsayer/doomsayer.service';
 import { WikiEditorComponent } from './wiki/wiki-editor/wiki-editor.component';
 import { WikiCreateComponent } from './wiki/wiki-create/wiki-create.component';
-import { WikiNavFilterPipe} from './wiki-nav-filter.pipe';
+import {WikiNavDeepFilterPipe, WikiNavFilterPipe} from './wiki/wiki-nav/wiki-nav-filter.pipe';
+import {BootstrapModalModule} from 'ng2-bootstrap-modal';
+import {DialogModalComponent} from './shared/dialog-modal/dialog-modal.component';
+import { WikiTopicsComponent } from './wiki/wiki-topics/wiki-topics.component';
+import { TopicIdPipe } from './topic-id.pipe';
 
 const appRoutes: Routes = [
   { path: 'wiki', component: WikiComponent,
     children: [
       { path: 'edit/:id', component: WikiEditorComponent },
       { path: 'post/:id', component: WikiContentComponent },
-      { path: 'create', component: WikiCreateComponent }
+      { path: 'create', component: WikiCreateComponent },
+      { path: 'topics', component: WikiTopicsComponent },
     ]
   },
   { path: 'utm', component: UtmComponent,
@@ -55,7 +60,11 @@ const appRoutes: Routes = [
     DoomsayerComponent,
     WikiEditorComponent,
     WikiCreateComponent,
-    WikiNavFilterPipe
+    WikiNavFilterPipe,
+    WikiNavDeepFilterPipe,
+    DialogModalComponent,
+    WikiTopicsComponent,
+    TopicIdPipe
   ],
   imports: [
     RouterModule.forRoot(
@@ -69,10 +78,12 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     ClipboardModule,
-    Ng2Webstorage
+    Ng2Webstorage,
+    BootstrapModalModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [SharepointService, UserService, UtmService, DoomsayerService],
-  bootstrap: [AppComponent]
+  providers: [SharepointService, UserService, UtmService, DoomsayerService ],
+  bootstrap: [AppComponent],
+  entryComponents: [DialogModalComponent]
 })
 export class AppModule { }

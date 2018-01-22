@@ -32,6 +32,34 @@
     margin: 0;
     padding-left: 0;
     list-style-type: none; }
+  .wiki-nav-list__primary {
+    display: none;
+    font-size: 1.2rem;
+    color: #555; }
+    .wiki-nav-list__primary.active {
+      display: block; }
+  .wiki-nav-list__secondary {
+    font-size: 1rem;
+    display: none;
+    margin: 5px 0 5px 15px;
+    color: #666; }
+    .wiki-nav-list__secondary.active {
+      display: block; }
+    .wiki-nav-list__secondary > ul {
+      margin: 10px 0; }
+    .wiki-nav-list__secondary li {
+      display: block;
+      margin: 0 0 0 3px;
+      border-left: 2px solid #1F9BAA; }
+      .wiki-nav-list__secondary li a {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 100;
+        padding: 2px 0 2px 20px;
+        color: #838386;
+        font-size: 0.9rem; }
+        .wiki-nav-list__secondary li a.active {
+          color: #E54A61; }
   .wiki-nav-list-parent {
     display: none;
     font-size: 1.1rem; }
@@ -43,17 +71,5 @@
         margin: 10px;
         color: #333;
         display: block; }
-  .wiki-nav-list-sub {
-    display: block;
-    margin: 7px  0 7px 12px !important;
-    border-left: 2px solid #1F9BAA; }
-    .wiki-nav-list-sub li {
-      padding: 5px 0 5px 20px; }
-      .wiki-nav-list-sub li a {
-        font-weight: 100;
-        color: #838386;
-        font-size: 0.9rem; }
-        .wiki-nav-list-sub li a.active {
-          color: #E54A61; }
 
 /*# sourceMappingURL=wiki-nav.component.css.map */

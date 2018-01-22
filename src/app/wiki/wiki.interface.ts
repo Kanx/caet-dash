@@ -1,6 +1,6 @@
 export interface WikiNavItem {
   Title: string;
-  Category: string;
+  TopicID: string;
   ID: number;
 }
 
@@ -9,3 +9,12 @@ export interface WikiArticle extends WikiNavItem {
 }
 
 
+export interface PrimaryTopic {
+  ID: number;
+  Title: string;
+  PrimaryTopicID: string;
+}
+
+export interface SecondaryTopic extends PrimaryTopic {
+  SecondaryTopicID: string;
+}

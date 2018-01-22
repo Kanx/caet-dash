@@ -47,6 +47,47 @@
       padding-left: 0;
       list-style-type: none;
     }
+
+    &__primary {
+      display: none;
+      font-size: 1.2rem;
+      color: #555;
+    //  display:none;
+      &.active {
+        display: block;
+      }
+    }
+    &__secondary {
+      font-size:1rem;
+      display: none;
+      margin: 5px 0 5px 15px;
+      color: #666;
+      &.active {
+        display: block;
+      }
+      > ul {
+        margin: 10px 0;
+      }
+      li {
+        display: block;
+        margin: 0 0 0 3px;
+        border-left: 2px solid $aqua;
+
+        a {
+          display: block;
+          font-size:0.7rem;
+          font-weight:100;
+          padding: 2px 0 2px 20px;
+          &.active {
+            color: $crimson;
+          }
+          color: $dark-grey;
+          font-size: 0.9rem;
+        }
+      }
+
+    }
+
     &-parent {
       display: none;
       &.active { display: block }
@@ -60,21 +101,6 @@
         }
       }
     }
-    &-sub {
-      display: block;
-      margin: 7px  0 7px 12px !important;
-      border-left: 2px solid $aqua;
-      li {
-        padding: 5px 0 5px 20px;
-        a {
-          font-weight:100;
-          &.active {
-            color: $crimson;
-          }
-          color: $dark-grey;
-          font-size: 0.9rem;
-        }
-      }
-    }
+
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DoomsayerService} from '../../doomsayer/doomsayer.service';
-import {WikiArticle} from '../wiki.interface';
+import { Router} from '@angular/router';
+import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
 import {WikiService} from '../wiki.service';
 
 @Component({

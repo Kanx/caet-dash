@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {WikiNavItem} from '../wiki.interface';
+import {WikiService} from '../wiki.service';
 
 @Component({
   selector: 'app-wiki-nav',
@@ -10,40 +11,45 @@ export class WikiNavComponent implements OnInit, OnChanges {
   @Input()
   articles: WikiNavItem[];
   navItems: Array<any>;
-  topics: Array<string>;
   keywordFilter: string;
-  filterObject: Object;
 
-  constructor() { }
+  constructor(private wikiService: WikiService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    this.buildNavigation(changes.articles.currentValue);
-  }
-
-  buildNavigation(articles: WikiNavItem[]) {
-    const navConstructor = {};
-    this.navItems = [];
-    if (articles.length) {
-      // Get Unique topics in available articles
-      this.topics = articles.map(article => article.Category).filter((val, index, self) => {
-        return self.indexOf(val) === index;
-      });
-      for (const topics of this.topics) {
-        navConstructor[topics] = {articles: [], Title: topics};
-      }
-      for (const article of articles) {
-        navConstructor[article.Category].articles.push(article);
-      }
-
-      for (const category in navConstructor) {
-        if (navConstructor.hasOwnProperty(category)) {
-          this.navItems.push(navConstructor[category]);
-        }
-      }
+    if (changes.articles.currentValue.length) {
+      this.buildNavigation(changes.articles.currentValue);
     }
   }
 
+  buildNavigation(articles: WikiNavItem[]) {
+      const mergedTopics = this.wikiService
+        .getPrimaryTopics()
+        .mergeMap(primaryTopicList => {
+          return this.wikiService.getSecondaryTopics()
+            .map(secondaryTopicList => {
+              for (const primaryTopic of primaryTopicList) {
+                primaryTopic.SecondaryTopics = secondaryTopicList.filter(secondaryTopic => {
+                  return secondaryTopic.PrimaryTopicID === primaryTopic.PrimaryTopicID;
+                });
+              }
+              return primaryTopicList;
+            });
+        });
 
+      mergedTopics
+        .subscribe(navConstruct => {
+          for (const primaryTopic of navConstruct) {
+            for (const secondaryTopic of primaryTopic.SecondaryTopics) {
+              secondaryTopic.Articles = articles.map(article => {
+                return {Title: article.Title, TopicID: article.TopicID, ID: article.ID};
+              }).filter((val) => {
+                return val.TopicID == secondaryTopic.SecondaryTopicID;
+              });
+            }
+          }
+          this.navItems = navConstruct;
+        });
+  }
 }
