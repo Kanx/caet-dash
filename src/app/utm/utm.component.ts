@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { UtmService } from './utm.service';
-import { Source} from './source.class';
+import {ISource} from '../shared/interfaces';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Router, ActivatedRoute } from '@angular/router';
-import {Observable} from 'rxjs/Observable';
 import {DoomsayerService} from '../shared/doomsayer/doomsayer.service';
 
 @Component({
@@ -15,14 +14,14 @@ import {DoomsayerService} from '../shared/doomsayer/doomsayer.service';
 
 export class UtmComponent implements OnInit {
   utmForm: FormGroup;
-  sources: Array<any>;
-  mediums: Array<string>;
-  campaigns: Array<any>;
-  contentList: Array<any>;
-  filteredSources: Array<Source>;
+  sources: any[];
+  mediums: string[];
+  campaigns: any[];
+  contentList: any[];
+  filteredSources: Array<ISource>;
   previousMedium = '';
   generatedUrl: string;
-  utmHistory: Array<string>;
+  utmHistory: string[];
   childRouteActive: boolean;
 
   constructor(private router: Router,

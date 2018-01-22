@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
-import { Http, Headers, RequestOptions } from '@angular/http'; // Required to support XML response
+import { Headers, RequestOptions } from '@angular/http'; // Required to support XML response
 import { SharepointResponse } from './sharepoint-response';
 import * as convert from 'xml-js';
 import 'rxjs/add/operator/map';
@@ -15,8 +15,7 @@ export class SharepointService {
     .set('Content-Type', 'application/json;odata=verbose')
     .set('If-Match', '*');
 
-  constructor(private http: HttpClient,
-              private _http: Http) {}
+  constructor(private http: HttpClient) {}
 
   // LIST OPERATIONS
   getListItems(listName: string, selectBy?: string): Observable<SharepointResponse> {

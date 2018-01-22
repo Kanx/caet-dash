@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {WikiNavItem} from '../wiki.interface';
 import {WikiService} from '../wiki.service';
+import {IWikiNavItem} from '../../shared/interfaces';
 
 @Component({
   selector: 'app-wiki-nav',
@@ -9,7 +9,7 @@ import {WikiService} from '../wiki.service';
 })
 export class WikiNavComponent implements OnInit, OnChanges {
   @Input()
-  articles: WikiNavItem[];
+  articles: IWikiNavItem[];
   navItems: Array<any>;
   keywordFilter: string;
 
@@ -23,7 +23,7 @@ export class WikiNavComponent implements OnInit, OnChanges {
     }
   }
 
-  buildNavigation(articles: WikiNavItem[]) {
+  buildNavigation(articles: IWikiNavItem[]) {
       const mergedTopics = this.wikiService
         .getPrimaryTopics()
         .mergeMap(primaryTopicList => {

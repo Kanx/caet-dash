@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {WikiService} from '../wiki.service';
 import {ActivatedRoute} from '@angular/router';
-import {WikiArticle} from '../wiki.interface';
+import {IWikiArticle} from '../../shared/interfaces';
 
 @Component({
   selector: 'app-wiki-content',
@@ -9,9 +9,11 @@ import {WikiArticle} from '../wiki.interface';
   styleUrls: ['./wiki-content.component.scss']
 })
 export class WikiContentComponent implements OnInit {
-  public article: WikiArticle;
-  public articleId: number;
-  constructor(private wikiService: WikiService, private route: ActivatedRoute) {}
+  article: IWikiArticle;
+  articleId: number;
+
+  constructor(private wikiService: WikiService,
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.article = {

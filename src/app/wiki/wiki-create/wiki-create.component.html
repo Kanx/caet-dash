@@ -8,7 +8,7 @@
   <label class="style-select">Attach to a topic
     <select id="topics" name="topics" [(ngModel)]="category">
       <option value=""></option>
-      <option *ngFor="let topic of topics" [value]="topic">{{topic}}</option>
+      <option *ngFor="let topic of secondaryTopics" [value]="topic">{{topic.Title}} ({{topic.PrimaryTopicID}})</option>
     </select>
   </label>
 </div>

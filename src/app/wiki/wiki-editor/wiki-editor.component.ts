@@ -1,9 +1,7 @@
-// Classification: Internal
-
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WikiService} from '../wiki.service';
-import {WikiArticle} from '../wiki.interface';
+import {IWikiArticle} from '../../shared/interfaces';
 import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
 import {DialogService} from 'ng2-bootstrap-modal';
 import {DialogModalComponent} from '../../shared/dialog-modal/dialog-modal.component';
@@ -14,7 +12,7 @@ import {DialogModalComponent} from '../../shared/dialog-modal/dialog-modal.compo
   styleUrls: ['./wiki-editor.component.scss']
 })
 export class WikiEditorComponent implements OnInit {
-  public article: WikiArticle;
+  public article: IWikiArticle;
 
   constructor(private dialogService: DialogService,
               private route: ActivatedRoute,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WikiService } from '../wiki.service';
-import { PrimaryTopic, SecondaryTopic } from '../wiki.interface';
 import { DoomsayerService } from '../../shared/doomsayer/doomsayer.service';
+import {IPrimaryTopic, ISecondaryTopic} from '../../shared/interfaces';
 
 @Component({
   selector: 'app-wiki-topics',
@@ -9,11 +9,11 @@ import { DoomsayerService } from '../../shared/doomsayer/doomsayer.service';
   styleUrls: ['./wiki-topics.component.scss']
 })
 export class WikiTopicsComponent implements OnInit {
-  displayAddNewPrimaryTopic: boolean = false;
-  displayAddNewSecondaryTopic: boolean = false;
+  displayAddNewPrimaryTopic = false;
+  displayAddNewSecondaryTopic = false;
 
-  primaryTopics:  Array<PrimaryTopic> = [];
-  secondaryTopics: Array<SecondaryTopic> = [];
+  primaryTopics:  IPrimaryTopic[] = [];
+  secondaryTopics: ISecondaryTopic[] = [];
 
   newPrimaryTopicTitle: string;
   newPrimaryTopicID: string;

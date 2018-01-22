@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { SharepointService } from '../shared/services/sharepoint.service';
 import { Subject } from 'rxjs/Subject';
+import {ISecondaryTopic} from '../shared/interfaces';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class WikiService {
+  topicList: BehaviorSubject<ISecondaryTopic[]>;
 
-  public topicList: any;
   private listName = 'WikiContent';
-
-  constructor(private sp: SharepointService) {}
-
   private shouldBeUpdated = new Subject<boolean>();
+
   updateService$ = this.shouldBeUpdated.asObservable();
 
+  constructor(private sp: SharepointService) {}
 
   getPrimaryTopics() {
     return this.sp.getListItems('WikiPrimaryTopics').map(data => data.d.results);
