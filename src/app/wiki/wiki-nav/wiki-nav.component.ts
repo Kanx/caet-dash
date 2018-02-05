@@ -43,7 +43,7 @@ export class WikiNavComponent implements OnInit, OnChanges {
           for (const primaryTopic of navConstruct) {
             for (const secondaryTopic of primaryTopic.SecondaryTopics) {
               secondaryTopic.Articles = articles.map(article => {
-                return {Title: article.Title, TopicID: article.TopicID, ID: article.ID};
+                return {Title: article.Title, TopicID: article.TopicID, ID: article.ID, Content: article.Content};
               }).filter((val) => {
                 return val.TopicID == secondaryTopic.SecondaryTopicID;
               });

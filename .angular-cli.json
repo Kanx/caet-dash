@@ -3,8 +3,11 @@
   "project": {
     "name": "caet-dash"
   },
+
   "apps": [
+
     {
+
       "root": "src",
       "outDir": "dist",
       "assets": [

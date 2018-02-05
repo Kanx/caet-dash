@@ -43,7 +43,7 @@ export class WikiTopicsComponent implements OnInit {
     }
 
     this.wikiService.createPrimaryTopic(topicTitle, tid)
-      .then(() => {
+      .subscribe(() => {
         this.wikiService.notifySubscribers();
         this.doom.success('Primary topic created');
       });
@@ -51,7 +51,7 @@ export class WikiTopicsComponent implements OnInit {
 
   updatePrimaryTopic(topic) {
     this.wikiService.updatePrimaryTopic(topic.ID, topic.Title)
-      .then(() => {
+      .subscribe(() => {
         this.wikiService.notifySubscribers();
         this.doom.success('Primary topic updated');
       });
@@ -67,7 +67,7 @@ export class WikiTopicsComponent implements OnInit {
     }
 
     this.wikiService.createSecondaryTopic(topicTitle, tid, pid)
-      .then(() => {
+      .subscribe(() => {
         this.wikiService.notifySubscribers();
         this.doom.success('Secondary topic created');
       });
@@ -75,7 +75,7 @@ export class WikiTopicsComponent implements OnInit {
 
   updateSecondaryTopic(topic) {
     this.wikiService.updateSecondaryTopic(topic.ID, topic.Title, topic.PrimaryTopicID)
-      .then(() => {
+      .subscribe(() => {
         this.wikiService.notifySubscribers();
         this.doom.success('Secondary topic updated');
       });

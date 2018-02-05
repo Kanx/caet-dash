@@ -81,7 +81,7 @@ export class UtmControlFormComponent implements OnInit {
   }
 
   updateComponent(component) {
-    this.updateMethod.call(this.utmService, component.Title, component.ID).then(() => {
+    this.updateMethod.call(this.utmService, component.Title, component.ID).subscribe(() => {
       this.doomService.success(`${this.singularComponentName} updated` );
       this.utmService.notifySubscribers();
 
@@ -95,7 +95,7 @@ export class UtmControlFormComponent implements OnInit {
       message: `Are you sure you want to delete this ${this.singularComponentName}?`})
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.deleteMethod.call(this.utmService, component.ID).then(() => {
+          this.deleteMethod.call(this.utmService, component.ID).subscribe(() => {
             this.doomService.danger(`${this.singularComponentName} deleted` );
             this.utmService.notifySubscribers();
           });
@@ -111,16 +111,16 @@ export class UtmControlFormComponent implements OnInit {
 
     switch (this.router.url.split('/')[2]) {
       case 'mediums':
-        this.utmService.createMedium(componentName).then(() => this.utmService.notifySubscribers());
+        this.utmService.createMedium(componentName).subscribe(() => this.utmService.notifySubscribers());
         break;
       case 'content':
-        this.utmService.createContent(componentName).then(() => this.utmService.notifySubscribers());
+        this.utmService.createContent(componentName).subscribe(() => this.utmService.notifySubscribers());
         break;
       case 'campaigns':
-        this.utmService.createCampaign(componentName).then(() => this.utmService.notifySubscribers());
+        this.utmService.createCampaign(componentName).subscribe(() => this.utmService.notifySubscribers());
         break;
       case 'sources':
-        this.utmService.createSource(componentName, selectedMedium).then(() => this.utmService.notifySubscribers());
+        this.utmService.createSource(componentName, selectedMedium).subscribe(() => this.utmService.notifySubscribers());
         break;
       default:
     }

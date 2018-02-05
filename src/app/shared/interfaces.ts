@@ -2,6 +2,7 @@ export interface IWikiNavItem {
   Title: string;
   TopicID: string;
   ID: number;
+  Content?: string;
 }
 
 export interface IWikiArticle extends IWikiNavItem {

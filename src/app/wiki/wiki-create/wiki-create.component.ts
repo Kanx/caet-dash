@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
 import {WikiService} from '../wiki.service';
 import {ISecondaryTopic} from '../../shared/interfaces';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-wiki-create',
@@ -13,18 +14,18 @@ export class WikiCreateComponent implements OnInit {
   title: string;
   content: string;
   category: string;
-  secondaryTopics: ISecondaryTopic[];
+  secondaryTopics: Observable<ISecondaryTopic[]>;
 
-  constructor(private wikiService: WikiService, private router: Router, private doomSayer: DoomsayerService) {}
+  constructor(private wikiService: WikiService,
+              private router: Router,
+              private doomSayer: DoomsayerService) {}
 
   ngOnInit() {
-    this.wikiService.getSecondaryTopics().subscribe(data => {
-      this.secondaryTopics = data;
-    });
+
   }
 
   createArticle() {
-    this.wikiService.createArticle({Title: this.title, Content: this.content, Category: this.category}).then(data => {
+    this.wikiService.createArticle({Title: this.title, Content: this.content, Category: this.category}).subscribe(data => {
       this.wikiService.notifySubscribers();
       this.doomSayer.success('Article created');
       this.router.navigate(['wiki/post/' + data.ID]);

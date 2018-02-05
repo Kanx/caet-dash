@@ -2,10 +2,44 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
-import { Headers, RequestOptions } from '@angular/http'; // Required to support XML response
-import { SharepointResponse } from './sharepoint-response';
+
+import 'rxjs/Rx';
+
+import { Http, Headers, RequestOptions } from '@angular/http'; // Required to support XML response
 import * as convert from 'xml-js';
-import 'rxjs/add/operator/map';
+
+/**
+ *  @RequestDigest() wraps SharePoint service functions in to an Observable that provides the HTTP call with a FormDigestRequest code.
+ *  The code is a little messy and not overly intuitive, so these are being kept as experimental methods until I work out how
+ *  to better-refactor these. As of writing this, there isn't any real support for Async decorators.
+ */
+
+function FetchRequestDigest(): any {
+  return function(target, key, descriptor): Observable<any>  {
+    const targetHttpMethod = descriptor.value;
+    descriptor.value = function(...targetArgs) {
+      return Observable.create(observer => {
+        const requestDigestHeaders = new Headers();
+        requestDigestHeaders.append('Accept', 'text/xml;charset=utf-8');
+
+        const requestOptions = new RequestOptions({ headers: requestDigestHeaders});
+        this._http.post(`${this.api}/contextinfo`, {}, requestOptions)
+          .map(requestDigest => requestDigest.text()).subscribe(requestDigest => {
+          targetHttpMethod.apply(this, targetArgs.concat([JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text]))
+            .subscribe(response => {
+              if (response) {
+                observer.next(response.d); // Update and Create requests return a copy of the modified/generated item
+              } else {
+                observer.next(); // Delete requests return null/undefined
+              }
+              observer.complete();
+            }, observer.error);
+        });
+      });
+    };
+    return descriptor;
+  };
+}
 
 @Injectable()
 export class SharepointService {
@@ -15,10 +49,11 @@ export class SharepointService {
     .set('Content-Type', 'application/json;odata=verbose')
     .set('If-Match', '*');
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private _http: Http) {}
 
   // LIST OPERATIONS
-  getListItems(listName: string, selectBy?: string): Observable<SharepointResponse> {
+  getListItems(listName: string, selectBy?: string): Observable<any> {
     const viewFields = (selectBy) ? '?$select=' + selectBy : '';
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
@@ -38,7 +73,7 @@ export class SharepointService {
   @FetchRequestDigest()
   public updateListItem(listName: string, listItemId: number, data: object, requestDigest?): any {
     return this.http.post(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`,
-      JSON.stringify(Object.assign(data, {__metadata: {'type': `SP.Data.${listName}ListItem` }})),
+      JSON.stringify(Object.assign(data, { __metadata: { 'type': `SP.Data.${listName}ListItem` }})),
       {'headers': this.headers.set('X-RequestDigest', requestDigest).set('X-HTTP-Method', 'MERGE')});
   }
 
@@ -49,52 +84,22 @@ export class SharepointService {
   }
 
   // USER OPERATIONS
-  getCurrentUser(): Observable<ArrayBuffer> {
+  getCurrentUser(): any {
     return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetMyProperties`,
       { 'headers': this.headers});
   }
 
-  getUser(userId: string): Observable<ArrayBuffer> {
+  getUser(userId: string): any {
     return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='europa\\${userId}'`,
       { 'headers': this.headers});
   }
 
   // DOCUMENT OPERATIONS
-  getAllFilesAndFolders(folderName: string): Observable<ArrayBuffer> {
+  getAllFilesAndFolders(folderName: string): any {
     return this.http
       .get(`${this.api}/web/GetFolderByServerRelativeUrl('${folderName}')?$expand=Folders,Files,Folders/Folders/Files,Folders/Folders/Folders/Files,Folders/Folders/Folders/Folders/Files`,
         { 'headers': this.headers });
-  };
+  }
 }
 
-/**
- *  @RequestDigest() wraps SharePoint service functions in to a Promise that provides the HTTP call with a FormDigestRequest code.
- *  The code is a little messy and not overly intuitive, so these are being kept as experimental methods until I work out how
- *  to better-refactor these. As of writing this, there isn't any real support for Async decorators.
- */
 
-function FetchRequestDigest() {
-  return function(target, key, descriptor) {
-    const httpMethod = descriptor.value;
-    descriptor.value = function(...args) {
-      return new Promise(resolve => {
-        const requestDigestHeaders = new Headers();
-              requestDigestHeaders.append('Accept', 'text/xml;charset=utf-8');
-        const requestOptions = new RequestOptions({ headers: requestDigestHeaders});
-        this._http
-          .post(`${this.api}/contextinfo`, {}, requestOptions)
-          .map(requestDigest => requestDigest.text()).subscribe(requestDigest => {
-            httpMethod.apply(this, args.concat([JSON.parse(convert.xml2json(requestDigest)).elements[0].elements[1].elements[0].text]))
-              .subscribe(response => {
-                if (response) {
-                  resolve(response.d); // Update and Create requests return a copy of the modified/generated item
-                } else {
-                  resolve(); // Delete requests return null/undefined
-                }
-              });
-          });
-      });
-    };
-    return descriptor;
-  };
-}

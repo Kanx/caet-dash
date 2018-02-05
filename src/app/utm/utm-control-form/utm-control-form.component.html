@@ -19,6 +19,7 @@
   </div>
   <label for="create">Enter name for new {{singularComponentName | lowercase}}</label>
   <div class="input-button-addon form-control">
+
     <input type="text" id="create" class="light" formControlName="newComponentName" placeholder="Enter new {{singularComponentName | lowercase}} value">
     <button class="btn-aqua" type="submit" (click)="submitNewComponent()" [disabled]="!utmControlForm.valid">Create</button>
   </div>

@@ -1,9 +1,7 @@
-<div class="form-control">
-  <label for="title">
-    Article title
-    <input id="title" name="title" type="text" [(ngModel)]="article.Title">
-    </label>
-</div>
+<mat-form-field class="block-input">
+  <input matInput placeholder="Article Title" name="title" [(ngModel)]="article.Title">
+</mat-form-field>
+
 <label>
   Article Content
 <ckeditor

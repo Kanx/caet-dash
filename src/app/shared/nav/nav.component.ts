@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharepointService } from '../services/sharepoint.service';
 import { UserService } from '../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -8,8 +9,9 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  public filesAndFolders: Array<any>;
-  public user = {};
+  navItems: Array<any>;
+  activeLinkIndex = -1;
+  routeLinks: Array<any>;
 
   private getFilesAndFolders(response) {
     return response.d.results.map(item => {
@@ -22,14 +24,24 @@ export class NavComponent implements OnInit {
     });
   }
 
-  constructor(private sp: SharepointService, public userService: UserService) { }
+  constructor(private router: Router) {
+    this.routeLinks = [
+      {
+        label: 'wiki',
+        route: 'wiki',
+        index: 0
+      },
+      {
+        label: 'utm',
+        route: 'utm',
+        index: 1
+      },
+    ];
+  }
 
   ngOnInit() {
-    // this.userService.getUser().subscribe(data => {
-    //   this.user = data;
-    // });
-    // this.sp.getAllFilesAndFolders('Documents').subscribe(data => {
-    //   this.filesAndFolders = this.getFilesAndFolders(data);
-    // });
+    this.router.events.subscribe((res) => {
+      this.activeLinkIndex = this.routeLinks.indexOf(this.routeLinks.find(tab => tab.route === '.' + this.router.url));
+    });
   }
 }

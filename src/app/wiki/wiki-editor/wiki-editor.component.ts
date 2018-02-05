@@ -42,7 +42,7 @@ export class WikiEditorComponent implements OnInit {
   }
 
   saveChangesToArticle() {
-    this.wikiService.updateArticle(this.article).then(() => {
+    this.wikiService.updateArticle(this.article).subscribe(() => {
       this.wikiService.notifySubscribers();
       this.doomSayer.success('Updates saved to SharePoint');
     });
@@ -55,7 +55,7 @@ export class WikiEditorComponent implements OnInit {
       message: 'Are you sure you want to delete this article?'})
       .subscribe((isConfirmed) => {
         if (isConfirmed) {
-          this.wikiService.deleteArticle(this.article.ID).then(() => {
+          this.wikiService.deleteArticle(this.article.ID).subscribe(() => {
             this.wikiService.notifySubscribers();
             this.doomSayer.danger('Article deleted');
             this.router.navigate(['wiki']);

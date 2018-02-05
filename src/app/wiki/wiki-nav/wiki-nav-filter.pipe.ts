@@ -4,19 +4,15 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'wikiNavFilter'
 })
 export class WikiNavFilterPipe implements PipeTransform {
-
   transform(items: any[], filter: string): any {
-    let returnArray = [];
     if (!items || !filter) {
       return items;
     }
-    returnArray = items.filter(item => {
+    return items.filter(item => {
       if (item !== '') {
-        return item.Title.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+        return item.Title.toLowerCase().indexOf(filter.toLowerCase()) !== -1 || item.Content.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
       }
     });
-
-    return returnArray;
   }
 
 }
@@ -39,7 +35,7 @@ export class WikiNavDeepFilterPipe implements PipeTransform {
     }
     const returnArray = articleList.filter(item => {
       if (item !== '') {
-        return item.Title.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+        return item.Title.toLowerCase().indexOf(filter.toLowerCase()) !== -1 || item.Content.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
       }
     });
     return returnArray;

@@ -26,7 +26,9 @@ import {WikiNavDeepFilterPipe, WikiNavFilterPipe} from './wiki/wiki-nav/wiki-nav
 import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 import {DialogModalComponent} from './shared/dialog-modal/dialog-modal.component';
 import { WikiTopicsComponent } from './wiki/wiki-topics/wiki-topics.component';
-import { TopicIdPipe } from './topic-id.pipe';
+import { TopicIdPipe } from './wiki/topic-id.pipe';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatInputModule, MatTabsModule, MatToolbarModule} from '@angular/material';
 
 const appRoutes: Routes = [
   { path: 'wiki', component: WikiComponent,
@@ -47,6 +49,13 @@ const appRoutes: Routes = [
   },
   { path: '**', redirectTo: '/' }
 ];
+
+const MatModules = [
+  MatButtonModule,
+  MatToolbarModule,
+  MatInputModule,
+  MatTabsModule
+]
 
 @NgModule({
   declarations: [
@@ -72,6 +81,8 @@ const appRoutes: Routes = [
       { useHash: true }
     ),
     BrowserModule,
+    BrowserAnimationsModule,
+    ...MatModules,
     HttpClientModule,
     HttpModule,
     CKEditorModule,

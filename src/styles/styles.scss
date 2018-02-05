@@ -3,12 +3,17 @@
 @import "layout";
 @import "panel";
 
+@import 'variables';
+@import 'mat-theme';
+// Plus imports for other components in your app.
+
 
 * {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   box-sizing: border-box;
 }
+
 
 
 html {
@@ -29,6 +34,10 @@ body {
   * {
     box-sizing: border-box;
   }
+}
+
+.full-width {
+  width: 100%;
 }
 
 
