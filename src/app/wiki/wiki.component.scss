@@ -1,3 +1,21 @@
-:host {
+@import "../../styles/variables";
+:host {}
+
+.wiki {
+  position: relative;
   display: flex;
+  flex-direction: row;
+  flex: 1;
+  //min-height: 555px;
 }
+
+.wiki-nav-wrapper {
+  position: sticky;
+  top:0;
+  width: 400px;
+  display: block;
+  // overflow: hidden;
+  background: $brand-blue;
+  //min-height: 100vh;
+}
+

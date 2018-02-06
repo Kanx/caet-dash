@@ -22,6 +22,7 @@ export class WikiTopicsComponent implements OnInit {
   newSecondaryTopicPrimaryID: string;
   newSecondaryTopicID: string;
 
+
   constructor(private wikiService: WikiService, private doom: DoomsayerService) { }
 
   ngOnInit() {
@@ -31,21 +32,28 @@ export class WikiTopicsComponent implements OnInit {
     this.wikiService.getSecondaryTopics().subscribe(secondaryTopics => {
       this.secondaryTopics = secondaryTopics;
     });
+
+    this.wikiService.updateService$.subscribe(() => {
+      this.wikiService.getPrimaryTopics().subscribe(primaryTopics => {
+        this.primaryTopics = primaryTopics;
+      });
+      this.wikiService.getSecondaryTopics().subscribe(secondaryTopics => {
+        this.secondaryTopics = secondaryTopics;
+      });
+    });
   }
 
-  createPrimaryTopic(topicTitle, topicID) {
-    // Ensure topicID is unique
-    let tid = topicID;
-    const topicIdList = this.primaryTopics.map((pt) => pt.PrimaryTopicID);
-
-    if (topicIdList.indexOf(topicID) !== -1) {
-      tid = topicID + topicIdList.indexOf(topicID) + 1;
-    }
+  createPrimaryTopic(topicTitle) {
+    const tid = topicTitle.replace(' ', '-').toUpperCase();
 
     this.wikiService.createPrimaryTopic(topicTitle, tid)
       .subscribe(() => {
         this.wikiService.notifySubscribers();
         this.doom.success('Primary topic created');
+      }, (err) => {
+        console.log('Non-unique value found (assumed), check error:', err);
+        this.doom.danger('This topic already exists');
+
       });
   }
 
@@ -57,19 +65,17 @@ export class WikiTopicsComponent implements OnInit {
       });
   }
 
-  createSecondaryTopic(topicTitle, secondaryTopicID, pid) {
-    // Ensure topicID is unique
-    let tid = secondaryTopicID;
-    const topicIdList = this.primaryTopics.map((pt) => pt.PrimaryTopicID);
-
-    if (topicIdList.indexOf(secondaryTopicID) !== -1) {
-      tid = secondaryTopicID + topicIdList.indexOf(secondaryTopicID) + 1;
-    }
+  createSecondaryTopic(topicTitle, pid) {
+    // TODO Ensure topicID is unique
+    const tid = topicTitle.replace(' ', '-').toUpperCase();
 
     this.wikiService.createSecondaryTopic(topicTitle, tid, pid)
       .subscribe(() => {
         this.wikiService.notifySubscribers();
         this.doom.success('Secondary topic created');
+      }, (err) => {
+        console.log('Non-unique value found (assumed), check error:', err);
+        this.doom.danger('This topic already exists');
       });
   }
 

@@ -61,17 +61,17 @@ input[type=text], input[type=number], input[type=url], select {
 .input-wrapper {
   position: relative;
   &:after {
-    font-family: 'FontAwesome';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
     position: absolute;
     left: 13px;
     top: 48%;
     font-size:0.8rem;
     transform: translateY(-50%);
   }
-  &-search {
+  &__search {
     &:after {
-      color: $dark-grey;
-      content:'\f002';
+      content: '\f002';
     }
   }
   input {
@@ -106,8 +106,9 @@ select::-ms-expand {
     &.select-style {
       &:after {
         color: black;
-        font-family: 'FontAwesome';
-        content: '\f107';
+        font-family: 'Font Awesome 5 Free';
+        content: '\f0d7';
+        font-weight: 900;
         position: absolute;
         right: 15px;
         top: 34px;
@@ -150,56 +151,93 @@ a:disabled, button:disabled {
 
 
 
-.quick-edit {
-  button, input, small {
-    margin:0;
-    padding: 10px;
-    border:0;
-    background: none;
+
+.toggle-create {
+  display: flex;
+  mat-form-field {
+    flex: 1;
+    justify-content: space-between;
   }
-  display:block;
+}
+
+.quick-edit {
   &_item {
     display: flex;
-    vertical-align: middle;
-    background: lighten($light-grey, 5%);
-    margin: 5px 0;
-
-
-    &-input {
-      display:flex;
-      small {
-        flex: 1;
-        color: $dark-grey;
-      }
-      flex: 4;
-      margin: 0;
-      padding: 0;
-      input {
-        flex:2;
-        color: #333;
-      }
+    mat-form-field {
+      flex:8;
     }
-    &-controls {
+    .btn-wrapper {
       flex: 1;
-      display:flex;
-      margin: 0;
-      padding: 0;
-      button {
-        font-weight:500;
-        font-size:0.9rem;
-        &.trash {
-          color: crimson;
-        }
-        &.update {
-          color: lighten($brand-blue, 20%);
-        }
 
-      }
     }
   }
 }
+.btn-icon {
+  i {
+    margin-left:5px !important;
+    margin-bottom:3px !important;
+  }
+}
+
+
+
+
+
+
+//.quick-edit {
+//
+//  display:block;
+//  &_item {
+//    display: flex;
+//    vertical-align: middle;
+//    background: lighten($light-grey, 5%);
+//    margin: 5px 0;
+//
+//
+//    &-input {
+//      display:flex;
+//      small {
+//        flex: 1;
+//        color: $dark-grey;
+//      }
+//      flex: 4;
+//      margin: 0;
+//      padding: 0;
+//      input {
+//        flex:2;
+//        color: #333;
+//      }
+//    }
+//    &-controls {
+//      flex: 1;
+//      display:flex;
+//      margin: 0;
+//      padding: 0;
+//      button {
+//        font-weight:500;
+//        font-size:0.9rem;
+//        &.trash {
+//          color: crimson;
+//        }
+//        &.update {
+//          color: lighten($brand-blue, 20%);
+//        }
+//
+//      }
+//    }
+//  }
+//}
 
 .block-input {
   width: 100%;
   display: block;
 }
+
+//.mat-mini-fab .mat-button-wrapper{
+//  font-size: 0.8rem;
+//}
+//
+//.mat-fab .mat-button-wrapper {
+//  font-size: 1.3rem;
+//  padding: 0;
+//}

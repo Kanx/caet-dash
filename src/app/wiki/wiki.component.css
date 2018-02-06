@@ -1,4 +1,16 @@
-:host {
-  display: flex; }
+/*    Colours   */
+/*    Sizing   */
+.wiki {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1; }
+
+.wiki-nav-wrapper {
+  position: sticky;
+  top: 0;
+  width: 400px;
+  display: block;
+  background: #0A2F64; }
 
 /*# sourceMappingURL=wiki.component.css.map */

@@ -10,8 +10,6 @@ import {Router} from '@angular/router';
 })
 export class NavComponent implements OnInit {
   navItems: Array<any>;
-  activeLinkIndex = -1;
-  routeLinks: Array<any>;
 
   private getFilesAndFolders(response) {
     return response.d.results.map(item => {
@@ -25,23 +23,19 @@ export class NavComponent implements OnInit {
   }
 
   constructor(private router: Router) {
-    this.routeLinks = [
+    this.navItems = [
       {
         label: 'wiki',
         route: 'wiki',
-        index: 0
+        icon: 'fa-wikipedia-w'
       },
       {
         label: 'utm',
         route: 'utm',
-        index: 1
+        icon: 'fa-wpforms'
       },
     ];
   }
 
-  ngOnInit() {
-    this.router.events.subscribe((res) => {
-      this.activeLinkIndex = this.routeLinks.indexOf(this.routeLinks.find(tab => tab.route === '.' + this.router.url));
-    });
-  }
+  ngOnInit() {}
 }

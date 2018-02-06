@@ -31,6 +31,8 @@ export class WikiNavDeepFilterPipe implements PipeTransform {
     for (const topics of secondaryTopicList) {
       if (topics.Articles.length) {
         articleList = articleList.concat(topics.Articles);
+      } else {
+        articleList = [];
       }
     }
     const returnArray = articleList.filter(item => {

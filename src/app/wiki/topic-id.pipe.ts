@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'topicId'
+  name: 'topicid'
 })
 export class TopicIdPipe implements PipeTransform {
 
@@ -9,7 +9,7 @@ export class TopicIdPipe implements PipeTransform {
     if (!value) {
       return '';
     }
-    return value.replace(/[^A-Za-z]/g, '').toUpperCase().substring(0, 3);
+    return value.replace(/\s/g, '-').toUpperCase();
   }
 
 }

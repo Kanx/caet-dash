@@ -28,12 +28,13 @@ import {DialogModalComponent} from './shared/dialog-modal/dialog-modal.component
 import { WikiTopicsComponent } from './wiki/wiki-topics/wiki-topics.component';
 import { TopicIdPipe } from './wiki/topic-id.pipe';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatInputModule, MatTabsModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatInputModule, MatSelectModule} from '@angular/material';
+import { SortPipe } from './sort.pipe';
 
 const appRoutes: Routes = [
   { path: 'wiki', component: WikiComponent,
     children: [
-      { path: 'edit/:id', component: WikiEditorComponent },
+      { path: 'post/:id/edit', component: WikiEditorComponent },
       { path: 'post/:id', component: WikiContentComponent },
       { path: 'create', component: WikiCreateComponent },
       { path: 'topics', component: WikiTopicsComponent },
@@ -52,12 +53,12 @@ const appRoutes: Routes = [
 
 const MatModules = [
   MatButtonModule,
-  MatToolbarModule,
   MatInputModule,
-  MatTabsModule
-]
+  MatSelectModule
+];
 
 @NgModule({
+
   declarations: [
     AppComponent,
     WikiComponent,
@@ -73,7 +74,8 @@ const MatModules = [
     WikiNavDeepFilterPipe,
     DialogModalComponent,
     WikiTopicsComponent,
-    TopicIdPipe
+    TopicIdPipe,
+    SortPipe
   ],
   imports: [
     RouterModule.forRoot(

@@ -45,14 +45,14 @@ input[type=text], input[type=number], input[type=url], select {
 .input-wrapper {
   position: relative; }
   .input-wrapper:after {
-    font-family: 'FontAwesome';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
     position: absolute;
     left: 13px;
     top: 48%;
     font-size: 0.8rem;
     transform: translateY(-50%); }
-  .input-wrapper-search:after {
-    color: #838386;
+  .input-wrapper__search:after {
     content: '\f002'; }
   .input-wrapper input {
     padding-left: 35px; }
@@ -78,8 +78,9 @@ select::-ms-expand {
       display: block; }
     .form-control label.select-style:after {
       color: black;
-      font-family: 'FontAwesome';
-      content: '\f107';
+      font-family: 'Font Awesome 5 Free';
+      content: '\f0d7';
+      font-weight: 900;
       position: absolute;
       right: 15px;
       top: 34px; }
@@ -106,41 +107,22 @@ a:disabled, button:disabled {
   margin: 10px 0;
   display: block; }
 
-.quick-edit {
-  display: block; }
-  .quick-edit button, .quick-edit input, .quick-edit small {
-    margin: 0;
-    padding: 10px;
-    border: 0;
-    background: none; }
-  .quick-edit_item {
-    display: flex;
-    vertical-align: middle;
-    background: #f8f8f8;
-    margin: 5px 0; }
-    .quick-edit_item-input {
-      display: flex;
-      flex: 4;
-      margin: 0;
-      padding: 0; }
-      .quick-edit_item-input small {
-        flex: 1;
-        color: #838386; }
-      .quick-edit_item-input input {
-        flex: 2;
-        color: #333; }
-    .quick-edit_item-controls {
-      flex: 1;
-      display: flex;
-      margin: 0;
-      padding: 0; }
-      .quick-edit_item-controls button {
-        font-weight: 500;
-        font-size: 0.9rem; }
-        .quick-edit_item-controls button.trash {
-          color: crimson; }
-        .quick-edit_item-controls button.update {
-          color: #135bc1; }
+.toggle-create {
+  display: flex; }
+  .toggle-create mat-form-field {
+    flex: 1;
+    justify-content: space-between; }
+
+.quick-edit_item {
+  display: flex; }
+  .quick-edit_item mat-form-field {
+    flex: 8; }
+  .quick-edit_item .btn-wrapper {
+    flex: 1; }
+
+.btn-icon i {
+  margin-left: 5px !important;
+  margin-bottom: 3px !important; }
 
 .block-input {
   width: 100%;
@@ -169,8 +151,19 @@ a:disabled, button:disabled {
   background: white;
   border-radius: 3px;
   border: 1px solid #e8e8e8;
-  padding: 15px;
   margin: 15px 0; }
+  .panel__title {
+    border-radius: 3px 3px 0 0;
+    padding: 15px 25px; }
+    .panel__title h2 {
+      font-size: 1.1rem;
+      font-weight: 400; }
+    .panel__title.primary {
+      color: #333;
+      border-bottom: 1px solid #ededed; }
+  .panel__body {
+    padding: 15px 20px;
+    background: #fafafa; }
 
 /*    Colours   */
 /*    Sizing   */
@@ -1449,6 +1442,15 @@ input.mat-input-element {
 .mat-simple-snackbar-action {
   color: #43a047; }
 
+.dark input {
+  color: white; }
+  .dark input::placeholder {
+    color: white; }
+.dark .mat-form-field-label {
+  color: #e6e6e6; }
+.dark .mat-input-underline {
+  background: white; }
+
 * {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
@@ -1463,7 +1465,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  padding-top: 72px; }
+  margin-left: 90px; }
 
 .grid {
   width: 100%; }
@@ -1601,5 +1603,12 @@ div.heading-with-action {
   .main p {
     margin-bottom: 1rem;
     line-height: 1.35rem; }
+
+.wiki-content {
+  padding: 20px 30px;
+  width: 100%; }
+  .wiki-content p, .wiki-content ul {
+    margin-bottom: 15px;
+    font-weight: 100; }
 
 /*# sourceMappingURL=styles.css.map */

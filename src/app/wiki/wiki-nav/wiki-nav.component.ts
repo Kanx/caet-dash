@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {WikiService} from '../wiki.service';
 import {IWikiNavItem} from '../../shared/interfaces';
+import {NavigationEnd, Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-wiki-nav',
@@ -12,10 +13,19 @@ export class WikiNavComponent implements OnInit, OnChanges {
   articles: IWikiNavItem[];
   navItems: Array<any>;
   keywordFilter: string;
+  routeInfo: any;
+  currentArticle: any;
 
-  constructor(private wikiService: WikiService) {}
+  constructor(private wikiService: WikiService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.events.filter((event) => event instanceof NavigationEnd)
+      .map(routeInfo => this.routeInfo = routeInfo)
+      .subscribe(() => {
+        this.currentArticle = this.routeInfo.url.split('/')[3];
+      });
+    this.currentArticle = this.router.url.split('/')[3];
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.articles.currentValue.length) {

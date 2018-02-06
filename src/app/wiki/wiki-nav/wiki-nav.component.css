@@ -1,15 +1,19 @@
 /*    Colours   */
 /*    Sizing   */
-:host {
-  background: #FBFBFC; }
+.wiki-nav-contents {
+  padding: 10px 20px;
+  overflow: auto;
+  height: calc(100vh);
+  position: sticky;
+  top: 0px; }
 
 .wiki-nav {
   position: fixed;
   position: sticky;
-  top: 72px;
+  top: 55px;
   overflow: auto;
-  max-height: calc(100vh - 72px);
-  padding: 20px 10px; }
+  padding-top: 20px;
+  padding-bottom: 20px; }
   .wiki-nav-head div.row {
     display: flex;
     align-items: center; }
@@ -23,30 +27,57 @@
   .wiki-nav-filter {
     display: block;
     width: 100%;
-    margin: 15px 0; }
+    position: relative;
+    margin: 15px 0;
+    text-align: right; }
+    .wiki-nav-filter:after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      position: absolute;
+      width: 20px;
+      left: 88% !important;
+      right: 15px !important;
+      color: white;
+      top: 48%;
+      font-size: 0.8rem;
+      transform: translateY(-50%);
+      content: '\f002'; }
     .wiki-nav-filter input {
       display: block;
       width: 100%;
-      background: white; }
+      font-size: 0.8rem;
+      padding: 15px 15px 15px 15px;
+      background: #08244d;
+      color: white !important;
+      border: none;
+      font-family: 'RN House Sans', sans-serif;
+      font-weight: 100; }
+      .wiki-nav-filter input::placeholder {
+        color: #f7f7f7; }
   .wiki-nav-list ul {
     margin: 0;
     padding-left: 0;
     list-style-type: none; }
+  .wiki-nav-list > ul > li {
+    margin-top: 20px;
+    margin-bottom: 20px; }
   .wiki-nav-list__primary {
     display: none;
-    font-size: 1.2rem;
-    color: #555; }
+    font-size: 1.1rem;
+    color: white; }
     .wiki-nav-list__primary.active {
       display: block; }
   .wiki-nav-list__secondary {
-    font-size: 1rem;
+    font-size: 0.9rem;
     display: none;
-    margin: 5px 0 5px 15px;
-    color: #666; }
+    margin: 5px 0 5px 10px;
+    color: white; }
     .wiki-nav-list__secondary.active {
       display: block; }
     .wiki-nav-list__secondary > ul {
       margin: 10px 0; }
+    .wiki-nav-list__secondary > li {
+      margin-top: 5px; }
     .wiki-nav-list__secondary li {
       display: block;
       margin: 0 0 0 3px;
@@ -55,11 +86,11 @@
         display: block;
         font-size: 0.7rem;
         font-weight: 100;
-        padding: 2px 0 2px 20px;
-        color: #838386;
+        padding: 2px 0 2px 15px;
+        color: #fafafa;
         font-size: 0.9rem; }
         .wiki-nav-list__secondary li a.active {
-          color: #E54A61; }
+          color: #3acadb; }
   .wiki-nav-list-parent {
     display: none;
     font-size: 1.1rem; }
@@ -69,7 +100,42 @@
       padding: 5px 0; }
       .wiki-nav-list-parent li h4 {
         margin: 10px;
-        color: #333;
+        color: #fafafa;
         display: block; }
+  .wiki-nav-actions {
+    margin: 0;
+    display: flex; }
+    .wiki-nav-actions button {
+      outline: none !important;
+      text-align: center;
+      flex: 1;
+      padding: 15px 0;
+      color: white;
+      background: #072044; }
+      .wiki-nav-actions button:disabled {
+        color: #999999 !important; }
+      .wiki-nav-actions button i {
+        font-size: 1.5rem;
+        transition: all 0.1s ease-in; }
+      .wiki-nav-actions button div {
+        margin-top: 10px;
+        transition: all 0.1s ease-in;
+        font-size: 0.6rem;
+        color: #cccccc; }
+      .wiki-nav-actions button.active i, .wiki-nav-actions button:hover:not(:disabled) i {
+        font-size: 1.5rem; }
+        .wiki-nav-actions button.active i.fa-plus-square, .wiki-nav-actions button:hover:not(:disabled) i.fa-plus-square {
+          color: #9dc749; }
+        .wiki-nav-actions button.active i.fa-edit, .wiki-nav-actions button:hover:not(:disabled) i.fa-edit {
+          color: #eb7788; }
+        .wiki-nav-actions button.active i.fa-list, .wiki-nav-actions button:hover:not(:disabled) i.fa-list {
+          color: #27c2d5; }
+      .wiki-nav-actions button.active div, .wiki-nav-actions button:hover:not(:disabled) div {
+        margin-top: 10px;
+        font-size: 0.6rem;
+        color: white; }
+
+#wiki-search {
+  width: 100%; }
 
 /*# sourceMappingURL=wiki-nav.component.css.map */

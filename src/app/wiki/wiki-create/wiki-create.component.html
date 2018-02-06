@@ -1,17 +1,15 @@
-<div class="form-control">
-  <label for="title">
-    Article title
-    <input id="title" name="title" type="text" [(ngModel)]="title" placeholder="Enter a title">
-  </label>
-</div>
-<div class="form-control">
-  <label class="style-select">Attach to a topic
-    <select id="topics" name="topics" [(ngModel)]="category">
-      <option value=""></option>
-      <option *ngFor="let topic of secondaryTopics | async" [value]="topic">{{topic.Title}} ({{topic.PrimaryTopicID}})</option>
-    </select>
-  </label>
-</div>
+<mat-form-field class="block-input">
+  <input matInput placeholder="Create Article Title" [(ngModel)]="title" placeholder="Enter a title">
+</mat-form-field>
+
+<mat-form-field class="block-input">
+  <mat-select placeholder="Attach to topic" name="topics" [(ngModel)]="category">
+    <mat-option *ngFor="let topic of secondaryTopics | sort:'Title'" [value]="topic.SecondaryTopicID">
+      {{topic.Title}} ({{topic.PrimaryTopicID}})
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
 <label>
   Article Content
   <ckeditor
@@ -32,18 +30,8 @@
     ]
    }"
     debounce="20">
-    <ckbutton [name]="'imageExplorer'"
-              [command]="'openImageExplorer'"
-              (click)="openImageExplorer($event)"
-              [icon]="'./images/Icon.png'"
-              [label]="'Open image explorer'"
-              [toolbar]="'insert,1'">
-    </ckbutton>
+
   </ckeditor>
-  <app-dialog-modal *ngIf="showFiles"
-                    [visible]="showFiles"
-                    (onDecline)="onCloseImage()"
-                    (onConfirm)="onAddImage()">
-  </app-dialog-modal>
+
 </label>
 <button class="btn btn-success" (click)="createArticle()">Create</button>

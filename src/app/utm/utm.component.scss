@@ -44,8 +44,9 @@
         position: relative;
         color: $crimson;
         &:before {
-          font-family: 'FontAwesome';
-          content: '\f0a9';
+          font-family: 'Font Awesome 5 Free';
+          content: '\f061';
+          font-weight: 900;
           position: absolute;
           right: -20px;
         }

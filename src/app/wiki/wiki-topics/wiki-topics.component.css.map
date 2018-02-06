@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AACE,iBAAO;EACL,IAAI,EAAE,CAAC;EACP,MAAM,EAAE,MAAM;AAEhB,2BAAe;EACb,OAAO,EAAE,IAAI;EACb,kCAAS;IACP,OAAO,EAAE,IAAI",
-"sources": ["wiki-topics.component.scss"],
+"mappings": "AAAA,kBAAkB;AAclB,iBAAiB;ACXf,eAAG;EACD,MAAM,EAAE,WAAW;EACnB,KAAK,EDII,OAAO;;ACGpB,WAAY;EACV,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,KAAK;EACd,OAAO,EAAE,KAAK;EACd,kBAAS;IACP,OAAO,EAAE,IAAI;IACb,cAAc,EAAE,MAAM;IACtB,iCAAe;MACb,IAAI,EAAC,EAAE;MACP,WAAW,EAAC,CAAC;IAGf,0BAAU;MACR,WAAW,EAAC,CAAC;MAIb,OAAO,EAAE,SAAS;MAClB,IAAI,EAAC,CAAC;;AAUZ,cAAe;EACb,MAAM,EAAE,GAAG",
+"sources": ["../../../styles/_variables.scss","wiki-topics.component.scss"],
 "names": [],
 "file": "wiki-topics.component.css"
 }

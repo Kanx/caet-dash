@@ -2,11 +2,7 @@
   <div class="wiki-content_header-title">
     <h1 [innerHTML]="article.Title"></h1>
   </div>
-  <div class="wiki-content_header-controls">
-    <button class="btn btn-secondary" routerLink="/wiki/edit/{{article.ID}}">Edit <i class="fa fa-edit"></i></button>
-  </div>
 </div>
-
 <div class="wiki-content_article">
   <div [innerHTML]="article.Content"></div>
 </div>

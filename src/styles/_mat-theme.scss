@@ -26,3 +26,19 @@ $rbs-app-theme: mat-light-theme($rbs-app-primary, $rbs-app-accent, $rbs-app-warn
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($rbs-app-theme);
+
+.dark {
+  input {
+    color: white;
+    &::placeholder {
+      color: white;
+    }
+
+  }
+  .mat-form-field-label {
+    color: darken(white, 10%);
+  }
+  .mat-input-underline {
+    background:white;
+  }
+}

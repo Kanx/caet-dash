@@ -21,11 +21,13 @@ export class WikiCreateComponent implements OnInit {
               private doomSayer: DoomsayerService) {}
 
   ngOnInit() {
-
+    this.wikiService.getSecondaryTopics().subscribe(secondaryTopics => {
+      this.secondaryTopics = secondaryTopics;
+    });
   }
 
   createArticle() {
-    this.wikiService.createArticle({Title: this.title, Content: this.content, Category: this.category}).subscribe(data => {
+    this.wikiService.createArticle({Title: this.title, Content: this.content, TopicID: this.category}).subscribe(data => {
       this.wikiService.notifySubscribers();
       this.doomSayer.success('Article created');
       this.router.navigate(['wiki/post/' + data.ID]);

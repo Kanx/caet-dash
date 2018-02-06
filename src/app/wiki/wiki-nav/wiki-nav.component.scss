@@ -1,17 +1,25 @@
 @import "../../../styles/variables";
 
 :host {
-  background: #FBFBFC;
+
 }
 
+.wiki-nav-contents {
+  padding: 10px 20px;
+  overflow: auto;
+  height: calc(100vh);
+  position: sticky;
+  top: 0px;
+}
 
 .wiki-nav {
-  position:fixed;
+  position: fixed;
   position: sticky;
-  top: 72px;
+  top: 55px;
   overflow: auto;
-  max-height: calc(100vh - 72px);
-  padding: 20px 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
   &-head {
     div.row {
       display: flex;
@@ -33,40 +41,76 @@
   &-filter {
     display: block;
     width: 100%;
+    position: relative;
     margin: 15px 0;
+    text-align:right;
+    &:after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      position: absolute;
+      width:20px;
+      left: 88% !important;
+      right: 15px !important;
+      color: white;
+      top: 48%;
+      font-size:0.8rem;
+      transform: translateY(-50%);
+      content: '\f002';
+    }
     input {
       display: block;
       width: 100%;
-      background: white;
+      font-size: 0.8rem;
+      padding: 15px 15px 15px 15px;
+      background: darken($brand-blue, 5%);
+      color: white !important;
+      border: none;
+      font-family: 'RN House Sans', sans-serif;
+      font-weight:100;
+      &::placeholder {
+        color: darken(white, 3%);
+      }
+
+
+
     }
   }
 
   &-list {
+
     ul {
       margin: 0;
       padding-left: 0;
       list-style-type: none;
+
     }
 
+    > ul > li {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
     &__primary {
       display: none;
-      font-size: 1.2rem;
-      color: #555;
-    //  display:none;
+      font-size: 1.1rem;
+      color: white;
       &.active {
         display: block;
       }
+
     }
     &__secondary {
-      font-size:1rem;
+      font-size:0.9rem;
       display: none;
-      margin: 5px 0 5px 15px;
-      color: #666;
+      margin: 5px 0 5px 10px;
+      color: white;
       &.active {
         display: block;
       }
       > ul {
         margin: 10px 0;
+      }
+      > li {
+        margin-top:5px;
       }
       li {
         display: block;
@@ -77,11 +121,12 @@
           display: block;
           font-size:0.7rem;
           font-weight:100;
-          padding: 2px 0 2px 20px;
+          padding: 2px 0 2px 15px;
           &.active {
-            color: $crimson;
+            color: lighten($aqua, 15%);
           }
-          color: $dark-grey;
+          color: darken(white, 2%);
+
           font-size: 0.9rem;
         }
       }
@@ -96,11 +141,64 @@
         padding: 5px 0;
         h4 {
           margin: 10px;
-          color: #333;
+          color: darken(white, 2%);
           display: block;
         }
       }
     }
 
   }
+
+  &-actions {
+
+    margin: 0;
+    display: flex;
+    button {
+      outline: none!important;
+      text-align:center;
+      flex: 1;
+      padding: 15px 0;
+      color: white;
+      background: darken($brand-blue, 7%);
+      &:disabled {
+        color: darken(white, 40%) !important;
+      }
+      i {
+        font-size: 1.5rem;
+        transition: all 0.1s ease-in;
+      }
+      div {
+        margin-top: 10px;
+        transition: all 0.1s ease-in;
+        font-size: 0.6rem;
+        color: darken(white, 20%);
+      }
+      &.active, &:hover:not(:disabled) {
+        i {
+          &.fa-plus-square {
+            color: lighten($green, 10%);
+          }
+          &.fa-edit {
+            color: lighten($crimson, 10%);
+
+          }
+          &.fa-list {
+            color: lighten($aqua, 10%);
+
+
+          }
+          font-size: 1.5rem;
+        }
+        div {
+          margin-top: 10px;
+          font-size: 0.6rem;
+          color: white
+        }
+      }
+    }
+  }
+}
+
+#wiki-search {
+  width:100%;
 }
