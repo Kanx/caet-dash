@@ -13,7 +13,7 @@
       Select medium <small>(required)</small>
       <select name="bind-to-medium" id="bind-to-medium" class="light" formControlName="medium">
         <option value=""></option>
-        <option *ngFor="let medium of mediums" value="{{medium.Title}}">{{medium.Title}}</option>
+        <option *ngFor="let medium of mediums | sort" value="{{medium.Title}}">{{medium.Title}}</option>
       </select>
     </label>
   </div>
@@ -31,7 +31,7 @@
     </div>
   </div>
   <div class="quick-edit">
-    <div class="quick-edit_item" *ngFor="let component of existingComponents; let i = index">
+    <div class="quick-edit_item" *ngFor="let component of existingComponents | sort; let i = index">
       <div class="quick-edit_item-input">
         <input type="text" class="light" [value]="component.Title" [(ngModel)]="existingComponents[i].Title" [ngModelOptions]="{standalone: true}">
         <small *ngIf="component.hasOwnProperty('Medium')" type="text">({{component.Medium}})</small>

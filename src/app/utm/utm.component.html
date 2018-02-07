@@ -45,7 +45,7 @@
         Medium <small>(required)</small>
         <select id="medium" formControlName="medium">
           <option value=""></option>
-          <option *ngFor="let medium of mediums" [value]="medium.Title">{{medium.Title}}</option>
+          <option *ngFor="let medium of mediums | sort" [value]="medium.Title">{{medium.Title}}</option>
         </select>
         <p class="help-text">This is the top-level 'platform' which the source can be classified as. This option will change available Sources. </p>
       </label>
@@ -55,7 +55,7 @@
         Source <small>(required)</small>
         <select id="source" formControlName="source">
           <option value=""></option>
-          <option *ngFor="let source of filteredSources" [value]="source.Title">{{source.Title}}</option>
+          <option *ngFor="let source of filteredSources | sort" [value]="source.Title">{{source.Title}}</option>
         </select>
         <p class="help-text">Select the specific Source under the chosen Medium.</p>
       </label>
@@ -65,7 +65,7 @@
         Campaign <small>(required)</small>
         <select id="campaign" formControlName="campaign">
           <option value=""></option>
-          <option *ngFor="let campaign of campaigns" [value]="campaign.Title">{{campaign.Title}}</option>
+          <option *ngFor="let campaign of campaigns | sort" [value]="campaign.Title">{{campaign.Title}}</option>
         </select>
         <p class="help-text">Required parameter to tie URL to a specific campaign</p>
       </label>
@@ -75,7 +75,7 @@
         Content
         <select id="content" formControlName="content">
           <option value=""></option>
-          <option *ngFor="let content of contentList" [value]="content.Title">{{content.Title}}</option>
+          <option *ngFor="let content of contentList | sort" [value]="content.Title">{{content.Title}}</option>
         </select>
         <p class="help-text">Optional parameter that is used to specify the sort of content being promoted, e.g. IWFAB, Blog</p>
       </label>

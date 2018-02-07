@@ -53,8 +53,11 @@ export class SharepointService {
               private _http: Http) {}
 
   // LIST OPERATIONS
-  getListItems(listName: string, selectBy?: string): Observable<any> {
-    const viewFields = (selectBy) ? '?$select=' + selectBy : '';
+  getListItems(listName: string, selectBy?: string, expandBy?: string): Observable<any> {
+    let viewFields = (selectBy) ? '?$select=' + selectBy : '';
+
+    const urlOperator = (viewFields.length) ? '&' : '?';
+        viewFields += (expandBy) ? urlOperator + 'expand=' + selectBy : ''
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
 

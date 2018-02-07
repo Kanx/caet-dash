@@ -95,7 +95,7 @@ const MatModules = [
     BootstrapModalModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [SharepointService, UserService, UtmService, DoomsayerService ],
+  providers: [SharepointService, UserService, UtmService, DoomsayerService, SortPipe, TopicIdPipe, WikiNavFilterPipe, WikiNavDeepFilterPipe ],
   bootstrap: [AppComponent],
   entryComponents: [DialogModalComponent]
 })
