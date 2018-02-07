@@ -25,12 +25,13 @@
   .wiki-content_header-controls {
     flex: 1;
     text-align: right; }
-  .wiki-content_header h1, .wiki-content_header button {
-    margin: 0;
+  .wiki-content_header h1 {
+    margin: 0.1rem 0 0.2rem 0;
     line-height: 1;
     padding-top: 15px;
     padding-bottom: 15px;
-    font-size: 1.5rem; }
+    font-size: 2rem;
+    color: #333; }
   .wiki-content_header button {
     font-size: 0.9rem;
     padding-left: 15px;

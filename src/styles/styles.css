@@ -1610,5 +1610,7 @@ div.heading-with-action {
   .wiki-content p, .wiki-content ul {
     margin-bottom: 15px;
     font-weight: 100; }
+  .wiki-content h2, .wiki-content h3 {
+    margin: 0.2rem 0 0.5rem; }
 
 /*# sourceMappingURL=styles.css.map */
