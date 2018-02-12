@@ -97,7 +97,7 @@ export class UtmComponent implements OnInit {
                         `utm_source=${this.utmForm.get('source').value}&` +
                         `utm_campaign=${this.utmForm.get('campaign').value}`;
 
-    if (this.utmForm.get('utm_content')) {
+    if (this.utmForm.get('content')) {
       utmString += `&utm_content=${this.utmForm.get('content').value}`;
     }
 

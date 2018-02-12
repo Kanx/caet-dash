@@ -57,7 +57,7 @@ export class SharepointService {
     let viewFields = (selectBy) ? '?$select=' + selectBy : '';
 
     const urlOperator = (viewFields.length) ? '&' : '?';
-        viewFields += (expandBy) ? urlOperator + 'expand=' + selectBy : ''
+        viewFields += (expandBy) ? urlOperator + 'expand=' + selectBy : '';
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
 
