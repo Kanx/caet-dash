@@ -9,6 +9,8 @@ export class SortPipe implements PipeTransform {
     if (value) {
       if (args) {
         value.sort((a: any, b: any) => {
+          if (a.hasOwnProperty('toLowerCase')) { a = a.toLowerCase(); }
+          if (b.hasOwnProperty('toLowerCase')) { b = b.toLowerCase(); }
           if (a[args] < b[args]) {
             return -1;
           } else if (a[args] > b[args]) {
@@ -19,6 +21,8 @@ export class SortPipe implements PipeTransform {
         });
       } else {
         value.sort((a: any, b: any) => {
+          if (a.hasOwnProperty('toLowerCase')) { a = a.toLowerCase(); }
+          if (b.hasOwnProperty('toLowerCase')) { b = b.toLowerCase(); }
           if (a < b) {
             return -1;
           } else if (a > b) {
