@@ -9,11 +9,12 @@ export class SortPipe implements PipeTransform {
     if (value) {
       if (args) {
         value.sort((a: any, b: any) => {
-          if (a.hasOwnProperty('toLowerCase')) { a = a.toLowerCase(); }
-          if (b.hasOwnProperty('toLowerCase')) { b = b.toLowerCase(); }
-          if (a[args] < b[args]) {
+          let compareA, compareB;
+          if (typeof a[args] ===  'string') { compareA = a[args].toLowerCase(); }
+          if (typeof b[args] ===  'string') { compareB = b[args].toLowerCase(); }
+          if (compareA < compareB) {
             return -1;
-          } else if (a[args] > b[args]) {
+          } else if (compareA > compareB) {
             return 1;
           } else {
             return 0;
@@ -21,11 +22,13 @@ export class SortPipe implements PipeTransform {
         });
       } else {
         value.sort((a: any, b: any) => {
-          if (a.hasOwnProperty('toLowerCase')) { a = a.toLowerCase(); }
-          if (b.hasOwnProperty('toLowerCase')) { b = b.toLowerCase(); }
-          if (a < b) {
+          let compareA, compareB;
+
+          if (typeof a[args] ===  'string') { compareA = a[args].toLowerCase(); }
+          if (typeof b[args] ===  'string') { compareB = b[args].toLowerCase(); }
+          if (compareA < compareB) {
             return -1;
-          } else if (a > b) {
+          } else if (compareA > compareB) {
             return 1;
           } else {
             return 0;
