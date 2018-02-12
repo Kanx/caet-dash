@@ -61,8 +61,11 @@ export class SharepointService {
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
 
-  getListItem(listName: string, listItemId: number): any {
-    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`, { 'headers': this.headers});
+  getListItem(listName: string, listItemId: number, selectBy?: string, expandBy?: string): any {
+    let viewFields = (selectBy) ? '?$select=' + selectBy : '';
+    const urlOperator = (viewFields.length) ? '&' : '?';
+    viewFields += (expandBy) ? urlOperator + 'expand=' + selectBy : '';
+    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})${viewFields}`, { 'headers': this.headers});
   }
 
   @FetchRequestDigest()

@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sort'
 })
 export class SortPipe implements PipeTransform {
-
   transform(value: any, args?: string): any {
     if (value) {
       if (args) {
@@ -23,7 +22,6 @@ export class SortPipe implements PipeTransform {
       } else {
         value.sort((a: any, b: any) => {
           let compareA, compareB;
-
           if (typeof a[args] ===  'string') { compareA = a[args].toLowerCase(); }
           if (typeof b[args] ===  'string') { compareB = b[args].toLowerCase(); }
           if (compareA < compareB) {
