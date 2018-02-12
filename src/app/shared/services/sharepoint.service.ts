@@ -57,14 +57,14 @@ export class SharepointService {
     let viewFields = (selectBy) ? '?$select=' + selectBy : '';
 
     const urlOperator = (viewFields.length) ? '&' : '?';
-        viewFields += (expandBy) ? urlOperator + 'expand=' + expandBy : '';
+        viewFields += (expandBy) ? urlOperator + '$expand=' + expandBy : '';
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
 
   getListItem(listName: string, listItemId: number, selectBy?: string, expandBy?: string): any {
     let viewFields = (selectBy) ? '?$select=' + selectBy : '';
     const urlOperator = (viewFields.length) ? '&' : '?';
-    viewFields += (expandBy) ? urlOperator + 'expand=' + expandBy : '';
+    viewFields += (expandBy) ? urlOperator + '$expand=' + expandBy : '';
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})${viewFields}`, { 'headers': this.headers});
   }
 
