@@ -43,6 +43,7 @@ function FetchRequestDigest(): any {
 
 @Injectable()
 export class SharepointService {
+  private siteUsers = {};
   private api = environment.api;
   private headers = new HttpHeaders()
     .set('Accept', 'application/json;odata=verbose')
@@ -92,15 +93,19 @@ export class SharepointService {
   // USER OPERATIONS
   getCurrentUser(): any {
     return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetMyProperties`,
-      { 'headers': this.headers});
+      { 'headers': this.headers });
   }
 
-  getUser(userId: string): any {
-    return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='europa\\${userId}'`,
-      { 'headers': this.headers});
+  getUserByRacf(racf: string): any {
+    return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='europa\\${racf}'`,
+      { 'headers': this.headers });
   }
 
-  // DOCUMENT OPERATIONS
+  getUserById(userId) {
+    return this.http.get(`${this.api}/web/GetUserById(${userId})`,
+      { 'headers': this.headers });
+  }
+
   getAllFilesAndFolders(folderName: string): any {
     return this.http
       .get(`${this.api}/web/GetFolderByServerRelativeUrl('${folderName}')?$expand=Folders,Files,Folders/Folders/Files,Folders/Folders/Folders/Files,Folders/Folders/Folders/Folders/Files`,

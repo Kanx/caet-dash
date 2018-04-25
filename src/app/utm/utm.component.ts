@@ -126,5 +126,4 @@ export class UtmComponent implements OnInit {
   notify() {
     this.doomSayer.info('Copied to clipboard');
   }
-
 }

@@ -24,3 +24,8 @@ export interface ISource {
   Medium: string;
   ID: number;
 }
+
+export interface IUser {
+  Name: string;
+  ID: number;
+}

@@ -133,6 +133,15 @@ router.post("/SP.AppContextSite(@target)/web/lists", function (req, res, next) {
   User endpoints
  */
 
+router.get(/^\/web\/GetUserById\([0-9]{0,3}\)/gi, function(req, res, next) {
+  res.json({
+    Author: {
+      ID: 1,
+      Name: 'Matt Smith'
+    }
+  })
+});
+
 router.get("/SP.UserProfiles.PeopleManager/GetMyProperties", function (req, res, next) {
   res.json({
     AccountName: "europa\\smitmbm",
