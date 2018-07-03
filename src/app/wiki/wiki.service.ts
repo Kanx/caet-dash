@@ -5,6 +5,7 @@ import { ISecondaryTopic } from '../shared/interfaces';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
+
 @Injectable()
 export class WikiService {
   private _secondaryTopicList: BehaviorSubject<ISecondaryTopic[]>;
