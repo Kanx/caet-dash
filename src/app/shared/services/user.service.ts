@@ -8,7 +8,9 @@ export class UserService {
   public user: IUser;
   users: Map<number, IUser>;
 
-  constructor(private sp: SharepointService) {}
+  constructor(private sp: SharepointService) {
+    this.users = new Map();
+  }
 
   getUser() {
     return this.sp.getCurrentUser();
@@ -25,8 +27,7 @@ export class UserService {
         observer.complete();
       });
     } else {
-      return this.sp.getUserById(id).subscribe((user: IUser) => this.users.set(user.ID, user));
-
+      return this.sp.getUserById(id);
     }
   }
 
