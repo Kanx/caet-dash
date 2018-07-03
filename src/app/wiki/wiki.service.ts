@@ -56,7 +56,7 @@ export class WikiService {
   }
 
   getArticles() {
-    return this.sp.getListItems(this.listName, `Title,TopicID,ID,Content${this.sp.GETAUTHORINFO}`, this.sp.GETAUTHORINFO).map(data => data.d.results);
+    return this.sp.getListItems(this.listName, `Title,TopicID,ID,Content,${this.sp.GETAUTHORINFO}`, this.sp.GETAUTHORINFO).map(data => data.d.results);
   }
 
   getArticle(id) {
