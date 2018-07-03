@@ -50,6 +50,8 @@ export class SharepointService {
     .set('Content-Type', 'application/json;odata=verbose')
     .set('If-Match', '*');
 
+  public GETAUTHORINFO = 'Author/ID,Author/Title';
+
   constructor(private http: HttpClient,
               private _http: Http) {}
 
@@ -102,6 +104,10 @@ export class SharepointService {
   }
 
   getUserById(userId) {
+    return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='${userId}'`,
+      { 'headers': this.headers });
+  }
+  __getUserById(userId) {
     return this.http.get(`${this.api}/web/GetUserById(${userId})`,
       { 'headers': this.headers });
   }

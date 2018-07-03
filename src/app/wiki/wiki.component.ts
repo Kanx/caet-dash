@@ -21,6 +21,7 @@ export class WikiComponent implements OnInit {
     this.wikiArticles = [];
     this.wikiService.getArticles().subscribe(articles => {
       this.wikiArticles = articles;
+      console.log('articles', this.wikiArticles);
     });
 
     this.router.events.subscribe(() =>  window.scrollTo(0, 0));

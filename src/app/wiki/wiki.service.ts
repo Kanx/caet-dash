@@ -56,11 +56,11 @@ export class WikiService {
   }
 
   getArticles() {
-    return this.sp.getListItems(this.listName, 'Title,TopicID,ID,Content').map(data => data.d.results);
+    return this.sp.getListItems(this.listName, `Title,TopicID,ID,Content${this.sp.GETAUTHORINFO}`, this.sp.GETAUTHORINFO).map(data => data.d.results);
   }
 
   getArticle(id) {
-    return this.sp.getListItem(this.listName, id).map(data => data.d);
+    return this.sp.getListItem(this.listName, id, this.sp.GETAUTHORINFO, this.sp.GETAUTHORINFO).map(data => data.d);
   }
 
   createArticle(article: object) {
