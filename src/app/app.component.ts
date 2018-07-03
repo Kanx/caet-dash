@@ -13,6 +13,17 @@ export class AppComponent implements OnInit {
   constructor(private sp: SharepointService, public us: UserService) {}
 
   ngOnInit() {
-    this.us.getUser();
+    alert('loaded');
+    this.us.getUser().subscribe(user => {
+      console.log('Current User', user);
+    });
+
+    this.us.getUserByRacf('smitmbm').subscribe(user => {
+      console.log('RACF', user);
+    });
+
+    this.us.getUserById(37).subscribe(user => {
+      console.log('By ID', user);
+    });
   }
 }
