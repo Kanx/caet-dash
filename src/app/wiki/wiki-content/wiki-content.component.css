@@ -17,24 +17,31 @@
   display: block;
   padding: 20px; }
 
-.wiki-content_header {
+:host {
+  display: block; }
+
+.Wiki__ContentHeader {
   display: flex;
   vertical-align: middle; }
-  .wiki-content_header-title {
+  .Wiki__ContentHeaderTitle {
     flex: 4; }
-  .wiki-content_header-controls {
+  .Wiki__ContentHeaderControls {
     flex: 1;
     text-align: right; }
-  .wiki-content_header h1 {
+  .Wiki__ContentHeader h1 {
     margin: 0.1rem 0 0.2rem 0;
     line-height: 1;
     padding-top: 15px;
     padding-bottom: 15px;
     font-size: 2rem;
     color: #333; }
-  .wiki-content_header button {
+  .Wiki__ContentHeader button {
     font-size: 0.9rem;
     padding-left: 15px;
     padding-right: 15px; }
+.Wiki__ContentArticle {
+  line-height: 1.4; }
+  .Wiki__ContentArticleWrapper {
+    padding: 2rem; }
 
 /*# sourceMappingURL=wiki-content.component.css.map */

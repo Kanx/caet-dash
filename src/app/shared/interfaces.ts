@@ -3,10 +3,15 @@ export interface IWikiNavItem {
   TopicID: string;
   ID: number;
   Content?: string;
+  Author?: any;
+  Created?: any;
+  Modified?: any;
 }
 
 export interface IWikiArticle extends IWikiNavItem {
   Content: string;
+
+
 }
 
 export interface IPrimaryTopic {

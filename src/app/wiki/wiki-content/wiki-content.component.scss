@@ -2,16 +2,19 @@
 @import "../../../styles/layout";
 
 :host {
+  display: block;
+
 }
 
-.wiki-content {
-  &_header {
+.Wiki__Content {
+
+  &Header {
     display: flex;
     vertical-align: middle;
-    &-title {
+    &Title {
       flex: 4;
     }
-    &-controls {
+    &Controls {
       flex: 1;
       text-align: right;
     }
@@ -28,5 +31,13 @@
       padding-left: 15px; padding-right: 15px;
     }
   }
+  &Article {
+    &Wrapper {
+      padding: 2rem;
+    }
+    line-height: 1.4;
+  }
+
 }
+
 

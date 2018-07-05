@@ -23,11 +23,20 @@ html {
   background: #FAFCFD;
 }
 
+
+.card {
+  background: white;
+  border-radius: 6px;
+  -webkit-box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
+  -moz-box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
+  box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
+}
+
 body {
 
   margin:0;
   padding:0;
-  margin-left: 90px;
+  margin-left: 270px;
 }
 
 .grid {

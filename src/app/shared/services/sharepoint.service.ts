@@ -50,24 +50,23 @@ export class SharepointService {
     .set('Content-Type', 'application/json;odata=verbose')
     .set('If-Match', '*');
 
-  public GETAUTHORINFO = 'Author/ID,Author/Title';
+  public pickAuthor = 'Author/ID,Author/Title';
+  public pickCreated = 'Created';
+  public pickModified = 'Modified';
 
   constructor(private http: HttpClient,
               private _http: Http) {}
 
   // LIST OPERATIONS
   getListItems(listName: string, selectBy?: string, expandBy?: string): Observable<any> {
-    let viewFields = (selectBy) ? '?$select=' + selectBy : '';
-
-    const urlOperator = (viewFields.length) ? '&' : '?';
-        viewFields += (expandBy) ? urlOperator + '$expand=' + expandBy : '';
+    let viewFields =  `?$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`
+    viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
 
   getListItem(listName: string, listItemId: number, selectBy?: string, expandBy?: string): any {
-    let viewFields = (selectBy) ? '?$select=' + selectBy : '';
-    const urlOperator = (viewFields.length) ? '&' : '?';
-    viewFields += (expandBy) ? urlOperator + '$expand=' + expandBy : '';
+    let viewFields =  `?$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`
+    viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})${viewFields}`, { 'headers': this.headers});
   }
 

@@ -1,36 +1,38 @@
 /*    Colours   */
 /*    Sizing   */
-.wiki-nav-contents {
-  padding: 10px 20px;
-  overflow: auto;
-  height: calc(100vh);
-  position: sticky;
-  top: 0px; }
+:host {
+  display: block;
+  width: 290px; }
 
-.wiki-nav {
+.Wiki__Nav {
   position: fixed;
   position: sticky;
   top: 55px;
   overflow: auto;
   padding-top: 20px;
   padding-bottom: 20px; }
-  .wiki-nav-head div.row {
+  .Wiki__NavContents {
+    padding: 10px 20px;
+    overflow: auto;
+    position: sticky;
+    top: 0px; }
+  .Wiki__NavHead div.row {
     display: flex;
     align-items: center; }
-  .wiki-nav-head-title {
+  .Wiki__NavHeadTitle {
     width: 60%;
     float: left; }
-  .wiki-nav-head-btn-wrap {
+  .Wiki__NavHead-btn-wrap {
     width: 40%;
     text-align: right;
     float: left; }
-  .wiki-nav-filter {
+  .Wiki__NavFilter {
     display: block;
     width: 100%;
     position: relative;
     margin: 15px 0;
     text-align: right; }
-    .wiki-nav-filter:after {
+    .Wiki__NavFilter:after {
       font-family: "Font Awesome 5 Free";
       font-weight: 900;
       position: absolute;
@@ -42,7 +44,7 @@
       font-size: 0.8rem;
       transform: translateY(-50%);
       content: '\f002'; }
-    .wiki-nav-filter input {
+    .Wiki__NavFilter input {
       display: block;
       width: 100%;
       font-size: 0.8rem;
@@ -52,85 +54,75 @@
       border: none;
       font-family: 'RN House Sans', sans-serif;
       font-weight: 100; }
-      .wiki-nav-filter input::placeholder {
+      .Wiki__NavFilter input::placeholder {
         color: #f7f7f7; }
-  .wiki-nav-list ul {
+  .Wiki__NavList ul {
     margin: 0;
     padding-left: 0;
     list-style-type: none; }
-  .wiki-nav-list > ul > li {
+  .Wiki__NavList > ul > li {
     margin-top: 20px;
     margin-bottom: 20px; }
-  .wiki-nav-list__primary {
+  .Wiki__NavList--primary {
     display: none;
-    font-size: 1.1rem;
-    color: white; }
-    .wiki-nav-list__primary.active {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2C3E50; }
+    .Wiki__NavList--primary.active {
       display: block; }
-  .wiki-nav-list__secondary {
+  .Wiki__NavList--secondary {
     font-size: 0.9rem;
     display: none;
-    margin: 5px 0 5px 10px;
-    color: white; }
-    .wiki-nav-list__secondary.active {
+    margin: 1rem 0;
+    color: #666; }
+    .Wiki__NavList--secondary.active {
       display: block; }
-    .wiki-nav-list__secondary > ul {
+    .Wiki__NavList--secondary > ul {
       margin: 10px 0; }
-    .wiki-nav-list__secondary > li {
+    .Wiki__NavList--secondary > li {
       margin-top: 5px; }
-    .wiki-nav-list__secondary li {
+    .Wiki__NavList--secondary li {
       display: block;
       margin: 0 0 0 3px;
-      border-left: 2px solid #1F9BAA; }
-      .wiki-nav-list__secondary li a {
+      border-left: 1px solid #1F9BAA; }
+      .Wiki__NavList--secondary li a {
         display: block;
         font-size: 0.7rem;
         font-weight: 100;
         padding: 2px 0 2px 15px;
-        color: #fafafa;
+        color: #666;
         font-size: 0.9rem; }
-        .wiki-nav-list__secondary li a.active {
+        .Wiki__NavList--secondary li a.active {
           color: #3acadb; }
-  .wiki-nav-list-parent {
-    display: none;
-    font-size: 1.1rem; }
-    .wiki-nav-list-parent.active {
-      display: block; }
-    .wiki-nav-list-parent li {
-      padding: 5px 0; }
-      .wiki-nav-list-parent li h4 {
-        margin: 10px;
-        color: #fafafa;
-        display: block; }
-  .wiki-nav-actions {
+  .Wiki__NavActions {
     margin: 0;
     display: flex; }
-    .wiki-nav-actions button {
+    .Wiki__NavActions button {
       outline: none !important;
       text-align: center;
       flex: 1;
       padding: 15px 0;
       color: white;
       background: #130e1e; }
-      .wiki-nav-actions button:disabled {
+      .Wiki__NavActions button:disabled {
         color: #999999 !important; }
-      .wiki-nav-actions button i {
+      .Wiki__NavActions button i {
         font-size: 1.5rem;
         transition: all 0.1s ease-in; }
-      .wiki-nav-actions button div {
+      .Wiki__NavActions button div {
         margin-top: 10px;
         transition: all 0.1s ease-in;
         font-size: 0.6rem;
         color: #cccccc; }
-      .wiki-nav-actions button.active i, .wiki-nav-actions button:hover:not(:disabled) i {
+      .Wiki__NavActions button.active i, .Wiki__NavActions button:hover:not(:disabled) i {
         font-size: 1.5rem; }
-        .wiki-nav-actions button.active i.fa-plus-square, .wiki-nav-actions button:hover:not(:disabled) i.fa-plus-square {
+        .Wiki__NavActions button.active i.fa-plus-square, .Wiki__NavActions button:hover:not(:disabled) i.fa-plus-square {
           color: #9dc749; }
-        .wiki-nav-actions button.active i.fa-edit, .wiki-nav-actions button:hover:not(:disabled) i.fa-edit {
+        .Wiki__NavActions button.active i.fa-edit, .Wiki__NavActions button:hover:not(:disabled) i.fa-edit {
           color: #ef5060; }
-        .wiki-nav-actions button.active i.fa-list, .wiki-nav-actions button:hover:not(:disabled) i.fa-list {
+        .Wiki__NavActions button.active i.fa-list, .Wiki__NavActions button:hover:not(:disabled) i.fa-list {
           color: #27c2d5; }
-      .wiki-nav-actions button.active div, .wiki-nav-actions button:hover:not(:disabled) div {
+      .Wiki__NavActions button.active div, .Wiki__NavActions button:hover:not(:disabled) div {
         margin-top: 10px;
         font-size: 0.6rem;
         color: white; }

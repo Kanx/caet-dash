@@ -1,16 +1,16 @@
 /*    Colours   */
 /*    Sizing   */
-.wiki {
+.Wiki {
   position: relative;
   display: flex;
   flex-direction: row;
-  flex: 1; }
+  flex: 1;
+  margin: 1.5rem 1rem; }
 
-.wiki-nav-wrapper {
+.Wiki__NavWrapper {
   position: sticky;
   top: 0;
-  width: 400px;
   display: block;
-  background: #231937; }
+  margin-right: 2rem; }
 
 /*# sourceMappingURL=wiki.component.css.map */

@@ -20,7 +20,12 @@ export class WikiContentComponent implements OnInit {
       Content: '',
       Title: '',
       TopicID: '',
-      ID: null
+      ID: null,
+      Author: {
+        Title: ''
+      },
+      Created: '',
+      Modified: ''
     };
 
     this.route.params.subscribe((val) => {

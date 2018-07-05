@@ -11,7 +11,7 @@
   bottom: 0;
   height: 100%;
   overflow: auto;
-  max-width: 300px;
+  max-width: 270px;
   background-image: linear-gradient(to top left, #231937, #1d1528); }
   :host nav > div {
     font-size: 0.9rem;
@@ -40,7 +40,7 @@
     height: 120px;
     width: 120px; }
     .Nav__ProfilePicture img {
-      max-width: 120px; }
+      max-width: 100%; }
 .Nav__Search {
   padding: 2rem; }
   .Nav__SearchIcon {

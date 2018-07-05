@@ -1,8 +1,9 @@
-<div class="wiki-content_header">
-  <div class="wiki-content_header-title">
+<div class="Wiki__ContentHeader">
+  <div class="Wiki__ContentHeaderTitlee">
     <h1 [innerHTML]="article.Title"></h1>
+    <div class="Wiki__ContentHeaderMeta">written by {{(article.Author.Title)}} on </div>
   </div>
 </div>
-<div class="wiki-content_article">
-  <div [innerHTML]="article.Content"></div>
+<div class="Wiki__ContentArticleWrapper card">
+  <div class="Wiki__ContentArticle" [innerHTML]="article.Content"></div>
 </div>

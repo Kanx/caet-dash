@@ -12,7 +12,7 @@
   bottom:0;
   height:100%;
   overflow:auto;
-  max-width: 300px;
+  max-width: 270px;
   background-image:
     linear-gradient(
         to top left,
@@ -54,7 +54,7 @@
       height: 120px;
       width: 120px;
       img {
-        max-width: 120px;
+        max-width: 100%;
       }
     }
   }

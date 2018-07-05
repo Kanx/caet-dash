@@ -1,35 +1,33 @@
 @import "../../../styles/variables";
 
 :host {
-
+  display:block;
+  width: 290px;
 }
 
-.wiki-nav-contents {
-  padding: 10px 20px;
-  overflow: auto;
-  height: calc(100vh);
-  position: sticky;
-  top: 0px;
-}
 
-.wiki-nav {
+.Wiki__Nav {
   position: fixed;
   position: sticky;
+
   top: 55px;
   overflow: auto;
   padding-top: 20px;
   padding-bottom: 20px;
-
-  &-head {
+  &Contents {
+    padding: 10px 20px;
+    overflow: auto;
+    position: sticky;
+    top: 0px;
+  }
+  &Head {
     div.row {
       display: flex;
       align-items: center;
-
     }
-    &-title {
+    &Title {
       width: 60%;
       float: left;
-
     }
     &-btn-wrap {
       width:40%;
@@ -38,7 +36,7 @@
     }
   }
 
-  &-filter {
+  &Filter {
     display: block;
     width: 100%;
     position: relative;
@@ -76,7 +74,7 @@
     }
   }
 
-  &-list {
+  &List {
 
     ul {
       margin: 0;
@@ -89,20 +87,22 @@
       margin-top: 20px;
       margin-bottom: 20px;
     }
-    &__primary {
+    &--primary {
       display: none;
-      font-size: 1.1rem;
-      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+
+      color: #2C3E50;
       &.active {
         display: block;
       }
 
     }
-    &__secondary {
+    &--secondary {
       font-size:0.9rem;
       display: none;
-      margin: 5px 0 5px 10px;
-      color: white;
+      margin: 1rem 0;
+      color: #666;
       &.active {
         display: block;
       }
@@ -115,7 +115,7 @@
       li {
         display: block;
         margin: 0 0 0 3px;
-        border-left: 2px solid $aqua;
+        border-left: 1px solid $aqua;
 
         a {
           display: block;
@@ -125,7 +125,7 @@
           &.active {
             color: lighten($aqua, 15%);
           }
-          color: darken(white, 2%);
+          color: #666;
 
           font-size: 0.9rem;
         }
@@ -133,23 +133,23 @@
 
     }
 
-    &-parent {
-      display: none;
-      &.active { display: block }
-      font-size: 1.1rem;
-      li {
-        padding: 5px 0;
-        h4 {
-          margin: 10px;
-          color: darken(white, 2%);
-          display: block;
-        }
-      }
-    }
+    //&Parent {
+    //  display: none;
+    //  &.active { display: block }
+    //  font-size: 1.1rem;
+    //  li {
+    //    padding: 5px 0;
+    //    h4 {
+    //      margin: 10px;
+    //      color: darken(white, 2%);
+    //      display: block;
+    //    }
+    //  }
+    //}
 
   }
 
-  &-actions {
+  &Actions {
 
     margin: 0;
     display: flex;

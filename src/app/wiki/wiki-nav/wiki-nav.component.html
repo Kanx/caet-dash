@@ -1,23 +1,23 @@
-<div class="row wiki-nav-actions">
+<div class="row Wiki__NavActions">
   <button routerLinkActive="active" routerLink="create"><i class="far fa-plus-square"></i><div>create</div></button>
   <button routerLinkActive="active" routerLink="topics"><i class="fas fa-list"></i><div>topics</div></button>
   <button routerLinkActive="active" [routerLink]="'post/' + currentArticle + '/edit'" [disabled]="!currentArticle"><i class="far fa-edit"></i><div>edit</div></button>
 </div>
-<div class="wiki-nav-contents">
-  <div class="wiki-nav-head">
-    <div class="row">
-      <div class="wiki-nav-filter input-wrapper">
-        <input type="text" placeholder="Filter by Wiki Article titles" [(ngModel)]="keywordFilter">
-      </div>
-    </div>
-  </div>
-  <div class="wiki-nav-list">
+<div class="Wiki__NavContents card">
+  <!--<div class="Wiki__NavContents">-->
+    <!--<div class="row">-->
+      <!--<div class="Wiki__NavFilter input-wrapper">-->
+        <!--<input type="text" placeholder="Filter by Wiki Article titles" [(ngModel)]="keywordFilter">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class="Wiki__NavList">
     <ul>
-      <li class="wiki-nav-list__primary" *ngFor="let primaryNavItem of navItems" [ngClass]="{active: (primaryNavItem.SecondaryTopics | wikiNavDeepFilter: keywordFilter).length}">{{primaryNavItem.Title}}
+      <li class="Wiki__NavList--primary" *ngFor="let primaryNavItem of navItems" [ngClass]="{active: (primaryNavItem.SecondaryTopics | wikiNavDeepFilter: keywordFilter).length}">{{primaryNavItem.Title}}
         <ul>
-          <li class="wiki-nav-list__secondary" *ngFor="let secondaryTopic of primaryNavItem.SecondaryTopics" [ngClass]="{active: (secondaryTopic.Articles | wikiNavFilter: keywordFilter).length}">
+          <li class="Wiki__NavList--secondary" *ngFor="let secondaryTopic of primaryNavItem.SecondaryTopics" [ngClass]="{active: (secondaryTopic.Articles | wikiNavFilter: keywordFilter).length}">
             {{secondaryTopic.Title}}
-            <ul class="wiki-nav-list__articles">
+            <ul class="Wiki__NavListArticles">
               <li *ngFor="let article of secondaryTopic.Articles | wikiNavFilter: keywordFilter"><a routerLinkActive="active" routerLink="post/{{article.ID}}">{{article.Title}}</a></li>
             </ul>
           </li>
