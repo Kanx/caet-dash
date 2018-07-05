@@ -56,11 +56,11 @@ export class WikiService {
   }
 
   getArticles(): Observable<any> {
-    return this.sp.getListItems(this.listName, `Title,TopicID,ID,Content,${this.sp.pickAuthor},${this.sp.pickCreated},${this.sp.pickModified}`, this.sp.pickAuthor).map(data => data.d.results);
+    return this.sp.getListItems(this.listName, `Title,TopicID,ID`).map(data => data.d.results);
   }
 
   getArticle(id): Observable<any> {
-    return this.sp.getListItem(this.listName, id, `${this.sp.pickAuthor},${this.sp.pickCreated}`, `${this.sp.pickAuthor}`).map(data => data.d);
+    return this.sp.getListItem(this.listName, id, `Title,TopicID,ID,Content,${this.sp.pickAuthor},${this.sp.pickCreated}`, `${this.sp.pickAuthor}`).map(data => data.d);
   }
 
   createArticle(article: object) {

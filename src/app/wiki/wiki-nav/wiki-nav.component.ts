@@ -60,6 +60,7 @@ export class WikiNavComponent implements OnInit, OnChanges {
             }
           }
           this.navItems = navConstruct;
+          console.log('nav items', this.navItems);
         });
   }
 }

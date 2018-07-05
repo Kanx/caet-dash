@@ -7,7 +7,6 @@
 @import 'mat-theme';
 
 @import '../../node_modules/@fortawesome/fontawesome-pro/css/all.css';
-// Plus imports for other components in your app.
 
 * {
   -webkit-margin-before: 0;
@@ -33,9 +32,8 @@ html {
 }
 
 body {
-
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   margin-left: 270px;
 }
 
