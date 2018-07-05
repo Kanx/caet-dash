@@ -34,8 +34,11 @@ html {
 body {
   margin: 0;
   padding: 0;
-  margin-left: 270px;
+  margin-left: 250px;
 }
+
+
+
 
 .grid {
   width : 100%;
@@ -47,8 +50,6 @@ body {
 .full-width {
   width: 100%;
 }
-
-
 
 
 .row {
@@ -73,6 +74,8 @@ a {
 
 p {
   font-weight: 100;
+  margin-bottom: 1rem;
+  line-height: 1.5rem;
 }
 
 div.heading-with-action {

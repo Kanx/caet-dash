@@ -1,16 +1,8 @@
-<div class="row Wiki__NavActions">
-  <button routerLinkActive="active" routerLink="create"><i class="far fa-plus-square"></i><div>create</div></button>
-  <button routerLinkActive="active" routerLink="topics"><i class="fas fa-list"></i><div>topics</div></button>
-  <button routerLinkActive="active" [routerLink]="'post/' + currentArticle + '/edit'" [disabled]="!currentArticle"><i class="far fa-edit"></i><div>edit</div></button>
+<div class="row Wiki__NavActions card ButtonGroup">
+  <button routerLinkActive="active" routerLink="create" class="Button Button--white"><i class="far fa-plus-square"></i> Create</button>
+  <button routerLinkActive="active" routerLink="topics" class="Button Button--white"><i class="fal fa-cogs"></i> Manage</button>
 </div>
 <div class="Wiki__NavContents card">
-  <!--<div class="Wiki__NavContents">-->
-    <!--<div class="row">-->
-      <!--<div class="Wiki__NavFilter input-wrapper">-->
-        <!--<input type="text" placeholder="Filter by Wiki Article titles" [(ngModel)]="keywordFilter">-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
   <div class="Wiki__NavList">
     <ul>
       <li class="Wiki__NavList--primary" *ngFor="let primaryNavItem of navItems" [ngClass]="{active: (primaryNavItem.SecondaryTopics | wikiNavDeepFilter: keywordFilter).length}">{{primaryNavItem.Title}}

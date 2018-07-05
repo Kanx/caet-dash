@@ -67,14 +67,15 @@
     display: none;
     font-size: 1.2rem;
     font-weight: 600;
-    color: #2C3E50; }
+    color: #231937; }
     .Wiki__NavList--primary.active {
       display: block; }
   .Wiki__NavList--secondary {
     font-size: 0.9rem;
+    font-weight: 400;
     display: none;
     margin: 1rem 0;
-    color: #666; }
+    color: #231937; }
     .Wiki__NavList--secondary.active {
       display: block; }
     .Wiki__NavList--secondary > ul {
@@ -83,49 +84,19 @@
       margin-top: 5px; }
     .Wiki__NavList--secondary li {
       display: block;
-      margin: 0 0 0 3px;
-      border-left: 1px solid #1F9BAA; }
+      margin: 0 0 0 3px; }
       .Wiki__NavList--secondary li a {
         display: block;
         font-size: 0.7rem;
         font-weight: 100;
-        padding: 2px 0 2px 15px;
+        padding: 2px 0 2px 8px;
         color: #666;
         font-size: 0.9rem; }
         .Wiki__NavList--secondary li a.active {
           color: #3acadb; }
   .Wiki__NavActions {
     margin: 0;
-    display: flex; }
-    .Wiki__NavActions button {
-      outline: none !important;
-      text-align: center;
-      flex: 1;
-      padding: 15px 0;
-      color: white;
-      background: #130e1e; }
-      .Wiki__NavActions button:disabled {
-        color: #999999 !important; }
-      .Wiki__NavActions button i {
-        font-size: 1.5rem;
-        transition: all 0.1s ease-in; }
-      .Wiki__NavActions button div {
-        margin-top: 10px;
-        transition: all 0.1s ease-in;
-        font-size: 0.6rem;
-        color: #cccccc; }
-      .Wiki__NavActions button.active i, .Wiki__NavActions button:hover:not(:disabled) i {
-        font-size: 1.5rem; }
-        .Wiki__NavActions button.active i.fa-plus-square, .Wiki__NavActions button:hover:not(:disabled) i.fa-plus-square {
-          color: #9dc749; }
-        .Wiki__NavActions button.active i.fa-edit, .Wiki__NavActions button:hover:not(:disabled) i.fa-edit {
-          color: #ef5060; }
-        .Wiki__NavActions button.active i.fa-list, .Wiki__NavActions button:hover:not(:disabled) i.fa-list {
-          color: #27c2d5; }
-      .Wiki__NavActions button.active div, .Wiki__NavActions button:hover:not(:disabled) div {
-        margin-top: 10px;
-        font-size: 0.6rem;
-        color: white; }
+    margin-bottom: 1.5rem; }
 
 #wiki-search {
   width: 100%; }

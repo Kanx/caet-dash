@@ -92,7 +92,7 @@
       font-size: 1.2rem;
       font-weight: 600;
 
-      color: #2C3E50;
+      color: $dark-purple;
       &.active {
         display: block;
       }
@@ -100,9 +100,10 @@
     }
     &--secondary {
       font-size:0.9rem;
+      font-weight:400;
       display: none;
       margin: 1rem 0;
-      color: #666;
+      color: $dark-purple;
       &.active {
         display: block;
       }
@@ -115,13 +116,13 @@
       li {
         display: block;
         margin: 0 0 0 3px;
-        border-left: 1px solid $aqua;
+        // border-left: 1px solid $aqua;
 
         a {
           display: block;
           font-size:0.7rem;
           font-weight:100;
-          padding: 2px 0 2px 15px;
+          padding: 2px 0 2px 8px;
           &.active {
             color: lighten($aqua, 15%);
           }
@@ -132,69 +133,13 @@
       }
 
     }
-
-    //&Parent {
-    //  display: none;
-    //  &.active { display: block }
-    //  font-size: 1.1rem;
-    //  li {
-    //    padding: 5px 0;
-    //    h4 {
-    //      margin: 10px;
-    //      color: darken(white, 2%);
-    //      display: block;
-    //    }
-    //  }
-    //}
-
   }
-
   &Actions {
-
     margin: 0;
-    display: flex;
+    margin-bottom: 1.5rem;
+
     button {
-      outline: none!important;
-      text-align:center;
-      flex: 1;
-      padding: 15px 0;
-      color: white;
-      background: darken($dark-purple, 7%);
-      &:disabled {
-        color: darken(white, 40%) !important;
-      }
-      i {
-        font-size: 1.5rem;
-        transition: all 0.1s ease-in;
-      }
-      div {
-        margin-top: 10px;
-        transition: all 0.1s ease-in;
-        font-size: 0.6rem;
-        color: darken(white, 20%);
-      }
-      &.active, &:hover:not(:disabled) {
-        i {
-          &.fa-plus-square {
-            color: lighten($green, 10%);
-          }
-          &.fa-edit {
-            color: lighten($crimson, 10%);
 
-          }
-          &.fa-list {
-            color: lighten($aqua, 10%);
-
-
-          }
-          font-size: 1.5rem;
-        }
-        div {
-          margin-top: 10px;
-          font-size: 0.6rem;
-          color: white
-        }
-      }
     }
   }
 }

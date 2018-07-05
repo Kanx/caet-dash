@@ -3,26 +3,53 @@
 /*    Buttons   */
 @import url(../../node_modules/@fortawesome/fontawesome-pro/css/all.css);
 button {
+  cursor: pointer;
   border: 0;
   background: #dcd8d6;
-  color: #696969; }
+  color: #696969;
+  outline: none !important;
+  text-align: center; }
+  button i {
+    margin-right: 0.3rem;
+    display: inline-block; }
 
-button.btn, a.btn {
+.Button {
   border-radius: 4px;
-  padding: 5px 12px;
-  line-height: 20px; }
-  button.btn-aqua, a.btn-aqua {
+  padding: 0.7rem;
+  line-height: 1.2rem;
+  flex: 1;
+  font-size: 0.8rem;
+  transition: all 0.1s ease-in;
+  font-weight: 100; }
+  .Button--aqua {
     background: #1F9BAA;
     color: white; }
-  button.btn-secondary, a.btn-secondary {
+  .Button--secondary {
     background: #5668b0;
     color: white; }
-  button.btn-crimson, a.btn-crimson {
+  .Button--crimson {
     background: #EB2136;
     color: white; }
-  button.btn-green, a.btn-green {
+  .Button--green {
     background: #82A934;
     color: white; }
+  .Button--white {
+    background: white;
+    color: #231937; }
+    .Button--white.active, .Button--white:hover:not(:disabled) {
+      background: #271c3e;
+      color: white !important; }
+  .ButtonGroup {
+    display: flex; }
+    .ButtonGroup .Button {
+      display: inline-block;
+      border-radius: 0; }
+      .ButtonGroup .Button:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px; }
+      .ButtonGroup .Button:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px; }
 
 /*   Inputs   */
 form:not(.no-ui-validation) input.ng-invalid.ng-touched:not(.ng-pristine), form:not(.no-ui-validation) select.ng-invalid.ng-touched:not(.ng-pristine) {
@@ -1475,7 +1502,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  margin-left: 270px; }
+  margin-left: 250px; }
 
 .grid {
   width: 100%; }
@@ -1500,7 +1527,9 @@ a {
   color: #1F9BAA; }
 
 p {
-  font-weight: 100; }
+  font-weight: 100;
+  margin-bottom: 1rem;
+  line-height: 1.5rem; }
 
 div.heading-with-action {
   vertical-align: middle;

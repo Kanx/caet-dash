@@ -8,11 +8,6 @@
     </div>
     <div class="Nav__ProfileName">{{ (user | async)?.DisplayName }}</div>
   </div>
-  <div class="Nav__Search">
-    <label for="" class="Nav__SearchIcon">
-      <input type="text" class="Nav__SearchInput" placeholder="Search files and articles">
-    </label>
-  </div>
   <ul class="Nav__List">
     <li *ngFor="let navItem of navItems">
       <a routerLinkActive="active" [routerLink]="navItem.route" class="Nav__ListItem">
