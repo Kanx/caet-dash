@@ -26,6 +26,19 @@ export interface ISource {
 }
 
 export interface IUser {
-  Name: string;
-  ID: number;
+  AccountName: string;
+  DirectReports: Object;
+  DisplayName: string;
+  Email: string;
+  ExtendedManagers: Object;
+  ExtendedReports: Object;
+  IsFollowed: boolean;
+  Peers: Object;
+  PersonalUrl: string;
+  PictureUrl: string;
+  UserProfileProperties?: any;
+  UserUrl: string;
+  Title?: any;
+  LatestPost?: any;
+  __metadata?: any;
 }

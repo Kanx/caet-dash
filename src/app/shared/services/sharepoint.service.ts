@@ -93,21 +93,17 @@ export class SharepointService {
   }
 
   // USER OPERATIONS
-  getCurrentUser(): any {
+  getCurrentUser(): Observable<any>  {
     return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetMyProperties`,
       { 'headers': this.headers });
   }
 
-  getUserByRacf(racf: string): any {
+  getUserByRacf(racf: string): Observable<any> {
     return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='europa\\${racf}'`,
       { 'headers': this.headers });
   }
 
-  getUserById(userId) {
-    return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='${userId}'`,
-      { 'headers': this.headers });
-  }
-  __getUserById(userId) {
+  getUserById(userId): Observable<any>  {
     return this.http.get(`${this.api}/web/GetUserById(${userId})`,
       { 'headers': this.headers });
   }

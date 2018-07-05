@@ -1,9 +1,10 @@
 @import "../../../styles/variables";
 
 :host {
+  font-family: "RN House Sans";
+
   display: block;
   padding: 20px 0;
-  background: $brand-ink;
   z-index: 100;
   position: fixed;
   left: 0;
@@ -11,8 +12,12 @@
   bottom:0;
   height:100%;
   overflow:auto;
-  max-width: 90px;
-
+  max-width: 300px;
+  background-image:
+    linear-gradient(
+        to top left,
+      #231937, darken(#40305A, 15%)
+    );
   nav {
     > div {
       font-size: 0.9rem;
@@ -23,44 +28,97 @@
   }
 }
 
-#logo {
-  width: 15%;
-  i.fa {
-    color: white !important;
-    font-size: 1.4rem;
+.Nav {
+  &__Logo {
+    text-align:center;
+    color: white;
+    font-weight: 100;
+    font-size: 1.5rem;
+    margin: 2rem;
+    span {
+      color: $crimson;
+    }
   }
-}
+  &__Profile {
+    text-align:center;
 
-.primary-nav {
-  &__icon {
-    font-size:1.4rem;
-    display:block;
+    &Name {
+      color: transparentize(white, 0.2);
+      font-weight:100;
+      margin: 1rem;
+    }
+    &Picture {
+      margin: auto;
+      overflow:hidden;
+      border-radius:100%;
+      height: 120px;
+      width: 120px;
+      img {
+        max-width: 120px;
+      }
+    }
   }
-  &__label {
-    margin: 6px 0;
-    display:block;
-    font-size: 0.9rem;
+  &__Search {
+    padding: 2rem;
+    &Icon {
+      position: relative;
+      &:before {
+        font-family: "Font Awesome 5 Pro";
+        content: "\f002";
+        font-weight:100;
+        color: white;
+        position: absolute;
+        left: 1.4rem;
+        top: 3px;
+        transform:translate(-50%);
+      }
+    }
+    &Input {
+      background: none;
+      border: none;
+      background: transparentize(#392A58, 0.6);
+      padding: 1.1rem 1.5rem 1.1rem 2.6rem;
+      color: white;
+      font-size: 0.9rem;
+      font-weight:100;
 
+      &:focus {
+        outline: none;
+      }
+    }
   }
-  text-align:center;
-  ul {
+
+  &__List {
     padding: 0;
     margin: 0;
     list-style-type: none;
-    li {
-      a {
-        border-left: 5px solid transparent;
-        display: block;
-        max-width: 90px;
-        transition: all 0.2s ease-in-out;
-        font-weight:200;
-        padding: 6px 5px 6px 0;
-        color: lighten($nav-ui-color, 27%);
-        &.active {
-          border-color: $aqua;
-          color: #ffffff;
+    &Item {
+      display: block;
+      margin: auto;
+      padding: 1.1rem 1rem 1.1rem 3rem;
+      transition: all 0.2s ease-in-out;
+
+      &.active {
+        background: #FAFCFD;
+        .Nav__ListIcon {
+          color: #ED2760;
+        }
+        .Nav__ListLabel {
+          color: #6F7A89;
         }
       }
+    }
+    &Icon {
+      font-size: 1.2rem;
+      display: inline-block;
+      color: #ED2760;
+      width: 40px;
+    }
+    &Label {
+      margin: 6px 0;
+      color: #BBBCBE;
+      display:inline-block;
+      font-size: 1rem;
     }
   }
 }

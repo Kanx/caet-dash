@@ -55,11 +55,11 @@ export class WikiService {
     this.shouldBeUpdated.next(true);
   }
 
-  getArticles() {
+  getArticles(): Observable<any> {
     return this.sp.getListItems(this.listName, `Title,TopicID,ID,Content,${this.sp.GETAUTHORINFO}`, this.sp.GETAUTHORINFO).map(data => data.d.results);
   }
 
-  getArticle(id) {
+  getArticle(id): Observable<any> {
     return this.sp.getListItem(this.listName, id, this.sp.GETAUTHORINFO, this.sp.GETAUTHORINFO).map(data => data.d);
   }
 

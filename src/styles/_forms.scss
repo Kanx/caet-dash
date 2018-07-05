@@ -45,6 +45,7 @@ form:not(.no-ui-validation) input, form:not(.no-ui-validation) select {
 input[type=text], input[type=number], input[type=url], select {
   padding: 10px 15px;
   border: 0;
+  font-family: "RN House Sans";
   background: #fafafa;
   border: 1px solid darken(#fafafa, 19%);
   width:100%;

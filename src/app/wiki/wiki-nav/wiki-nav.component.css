@@ -47,7 +47,7 @@
       width: 100%;
       font-size: 0.8rem;
       padding: 15px 15px 15px 15px;
-      background: #08244d;
+      background: #181125;
       color: white !important;
       border: none;
       font-family: 'RN House Sans', sans-serif;
@@ -111,7 +111,7 @@
       flex: 1;
       padding: 15px 0;
       color: white;
-      background: #072044; }
+      background: #130e1e; }
       .wiki-nav-actions button:disabled {
         color: #999999 !important; }
       .wiki-nav-actions button i {
@@ -127,7 +127,7 @@
         .wiki-nav-actions button.active i.fa-plus-square, .wiki-nav-actions button:hover:not(:disabled) i.fa-plus-square {
           color: #9dc749; }
         .wiki-nav-actions button.active i.fa-edit, .wiki-nav-actions button:hover:not(:disabled) i.fa-edit {
-          color: #eb7788; }
+          color: #ef5060; }
         .wiki-nav-actions button.active i.fa-list, .wiki-nav-actions button:hover:not(:disabled) i.fa-list {
           color: #27c2d5; }
       .wiki-nav-actions button.active div, .wiki-nav-actions button:hover:not(:disabled) div {

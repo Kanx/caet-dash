@@ -62,7 +62,7 @@
       width: 100%;
       font-size: 0.8rem;
       padding: 15px 15px 15px 15px;
-      background: darken($brand-blue, 5%);
+      background: darken($dark-purple, 5%);
       color: white !important;
       border: none;
       font-family: 'RN House Sans', sans-serif;
@@ -159,7 +159,7 @@
       flex: 1;
       padding: 15px 0;
       color: white;
-      background: darken($brand-blue, 7%);
+      background: darken($dark-purple, 7%);
       &:disabled {
         color: darken(white, 40%) !important;
       }

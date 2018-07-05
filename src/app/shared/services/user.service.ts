@@ -12,27 +12,13 @@ export class UserService {
     this.users = new Map();
   }
 
-  getUser() {
-    return this.sp.getCurrentUser();
+  getUser(): Observable<IUser> {
+    return this.sp.getCurrentUser().map(data => data.d);
   }
 
   getUserByRacf(racf) {
-    return this.sp.getUserByRacf(racf);
+    return this.sp.getUserByRacf(racf).map(data => data.d);
   }
 
-  getUserById(id: number) {
-    if (this.users.get(id)) {
-      return Observable.create(observer => {
-        observer.next(this.users.get(id));
-        observer.complete();
-      });
-    } else {
-      return this.sp.getUserById(id);
-    }
-  }
-
-    private cacheUser(user: IUser) {
-      this.users.set(user.ID, user);
-    }
 
 }
