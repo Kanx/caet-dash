@@ -20,7 +20,7 @@ export class WikiService {
   constructor(private sp: SharepointService) { }
 
   getPrimaryTopics() {
-    return this.sp.getListItems('WikiPrimaryTopics').map(data => data.d.results);
+    return this.sp.getListItems('WikiPrimaryTopics', `Title,PrimaryTopicID,ID`).map(data => data.d.results);
   }
 
   createPrimaryTopic(title, id) {
@@ -34,7 +34,7 @@ export class WikiService {
   }
 
   getSecondaryTopics() {
-    return this.sp.getListItems('WikiSecondaryTopics').map(data => data.d.results);
+    return this.sp.getListItems('WikiSecondaryTopics', `Title,PrimaryTopicID,ID,SecondaryTopicID`).map(data => data.d.results);
   }
 
   createSecondaryTopic(title, sid, pid) {
