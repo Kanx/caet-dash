@@ -78,10 +78,10 @@ p {
   line-height: 1.5rem;
 }
 
-div.heading-with-action {
+.ActionHeader {
   vertical-align: middle ;
   display: flex;
-  span.header {
+  &__Title {
     color: $dark-grey;
     font-size: 2rem;
     margin: 5px 0 !important;
@@ -91,11 +91,11 @@ div.heading-with-action {
     flex: 1;
     vertical-align: middle ;
     display: inline-block;
-    &-sm {
-      font-size:1rem;
+    &--sm {
+      font-size:1.3rem;
     }
   }
-  span.action {
+  &__Action {
     text-align: right;
     vertical-align: middle ;
     margin: 5px 0 !important;

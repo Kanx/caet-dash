@@ -14,6 +14,8 @@ export interface IWikiArticle extends IWikiNavItem {
 
 }
 
+
+
 export interface IPrimaryTopic {
   ID: number;
   Title: string;
@@ -46,4 +48,10 @@ export interface IUser {
   Title?: any;
   LatestPost?: any;
   __metadata?: any;
+}
+
+
+export interface IHSubNavConfig {
+  label: string;
+  target: string;
 }

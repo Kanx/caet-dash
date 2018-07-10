@@ -1,3 +1,4 @@
+@import './variables';
 /*    Buttons   */
 button {
   cursor: pointer;
@@ -59,38 +60,37 @@ button {
       }
 
     }
+    &--justified {
+      display: block;
+      .Button {
+        border-radius: 4px;
+        margin-right: 0.5rem;
+      }
+    }
   }
 }
 
 
 /*   Inputs   */
 
-form:not(.no-ui-validation) input, form:not(.no-ui-validation) select {
-
-  &.ng-invalid.ng-touched:not(.ng-pristine) {
-    border: 1px solid $crimson;
-    background: lighten($crimson, 55%) !important;
-  }
-  &.ng-valid.ng-touched:not(.ng-pristine) {
-    border: 1px solid $green;
-    background: lighten($green, 55%) !important;
-  }
+form:not(.no-ui-validation) .mat-form-field {
+  //
+  //&.ng-invalid.ng-touched:not(.ng-pristine) {
+  //  .mat-input-infix {
+  //    border: 1px solid $crimson;
+  //    background: lighten($crimson, 55%) !important;
+  //  }
+  //
+  //}
+  //&.ng-valid.ng-touched:not(.ng-pristine) {
+  //  .mat-input-infix {
+  //    background: lighten($green, 50%) !important;
+  //    border: none;
+  //  }
+  //}
 }
 
 input[type=text], input[type=number], input[type=url], select {
-  padding: 10px 15px;
-  border: 0;
-  font-family: "RN House Sans";
-  background: #fafafa;
-  border: 1px solid darken(#fafafa, 19%);
-  width:100%;
-
-  &::placeholder {
-    color: darken($light-grey, 20%);
-  }
-  &.light {
-    background: #FFFFFF;
-  }
 
 }
 
@@ -126,52 +126,6 @@ select::-ms-expand {
 }
 /*    Form layout    */
 
-.form-control {
-  margin-bottom: 20px;
-  label {
-    small {
-      font-size: 0.6rem;
-      color: $crimson;
-    }
-    position: relative;
-    display: block;
-    input, select {
-      margin: 5px 0;
-      display: block;
-    }
-    &.select-style {
-      &:after {
-        color: black;
-        font-family: 'Font Awesome 5 Free';
-        content: '\f0d7';
-        font-weight: 900;
-        position: absolute;
-        right: 15px;
-        top: 34px;
-      }
-    }
-  }
-}
-
-.help-text {
-  margin: 5px 0;
-  color: lighten($dark-grey, 5%);
-  font-size: 0.7rem;
-}
-
-
-.input-button-addon {
-  margin: 5px 0;
-  display: flex;
-  button {
-    flex: 1;
-  }
-  input {
-
-    flex: 4;
-  }
-}
-
 a:disabled, button:disabled {
   cursor: not-allowed;
   background: $light-grey;
@@ -184,96 +138,54 @@ a:disabled, button:disabled {
   display:block;
 }
 
-
-
-
-
-.toggle-create {
-  display: flex;
-  mat-form-field {
-    flex: 1;
-    justify-content: space-between;
+.Input {
+  &--block {
+    width: 100%;
+    display: block;
   }
-}
-
-.quick-edit {
-  &_item {
+  &Group {
     display: flex;
-    mat-form-field {
-      flex:8;
+    margin-bottom: 0.8rem;
+    input {
+      flex: 10;
     }
-    .btn-wrapper {
-      flex: 1;
-
+    button {
+      width: 60px;
+      padding: 0.6rem 0.8rem;
+    }
+  }
+  &__Button {
+    text-align:center;
+    padding: 0.7rem;
+    background: none;
+    border-radius: 100%;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 0.3rem;
+    &:not(:last-child) {
+      margin-right: 0.3rem;
+    }
+    i {
+      display: inline-block;
+      width: 100%;
+    }
+    &--success {
+      background: $green;
+    }
+    &--info {
+      background: $blue;
+    }
+    &--danger {
+      background: $crimson;
+    }
+    &--hollow {
+      &--success {
+        color: $green;
+      }
+      &--danger {
+        color: $crimson;
+      }
     }
   }
 }
-.btn-icon {
-  i {
-    margin-left:5px !important;
-    margin-bottom:3px !important;
-  }
-}
 
-
-
-
-
-
-//.quick-edit {
-//
-//  display:block;
-//  &_item {
-//    display: flex;
-//    vertical-align: middle;
-//    background: lighten($light-grey, 5%);
-//    margin: 5px 0;
-//
-//
-//    &-input {
-//      display:flex;
-//      small {
-//        flex: 1;
-//        color: $dark-grey;
-//      }
-//      flex: 4;
-//      margin: 0;
-//      padding: 0;
-//      input {
-//        flex:2;
-//        color: #333;
-//      }
-//    }
-//    &-controls {
-//      flex: 1;
-//      display:flex;
-//      margin: 0;
-//      padding: 0;
-//      button {
-//        font-weight:500;
-//        font-size:0.9rem;
-//        &.trash {
-//          color: crimson;
-//        }
-//        &.update {
-//          color: lighten($brand-blue, 20%);
-//        }
-//
-//      }
-//    }
-//  }
-//}
-
-.block-input {
-  width: 100%;
-  display: block;
-}
-
-//.mat-mini-fab .mat-button-wrapper{
-//  font-size: 0.8rem;
-//}
-//
-//.mat-fab .mat-button-wrapper {
-//  font-size: 1.3rem;
-//  padding: 0;
-//}

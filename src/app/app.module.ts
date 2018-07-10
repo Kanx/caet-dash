@@ -31,6 +31,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatInputModule, MatSelectModule} from '@angular/material';
 import { SortPipe } from './sort.pipe';
 import { WhatsOnComponent } from './whats-on/whats-on.component';
+import { HorizontalSubNavComponent } from './shared/horizontal-sub-nav/horizontal-sub-nav.component';
+import { UtmGeneratorComponent } from './utm/utm-generator/utm-generator.component';
 
 const appRoutes: Routes = [
   { path: 'whats-on', component: WhatsOnComponent },
@@ -44,6 +46,7 @@ const appRoutes: Routes = [
   },
   { path: 'utm', component: UtmComponent,
     children: [
+      { path: '', component: UtmGeneratorComponent },
       { path: 'campaigns', component: UtmControlFormComponent },
       { path: 'content', component: UtmControlFormComponent },
       { path: 'mediums', component: UtmControlFormComponent },
@@ -78,7 +81,9 @@ const MatModules = [
     WikiTopicsComponent,
     TopicIdPipe,
     SortPipe,
-    WhatsOnComponent
+    WhatsOnComponent,
+    HorizontalSubNavComponent,
+    UtmGeneratorComponent
   ],
   imports: [
     RouterModule.forRoot(

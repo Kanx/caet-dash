@@ -34,5 +34,7 @@
       background: #82A934; }
     #doomsayer .message.danger {
       background: #EB2136; }
+  #doomsayer p {
+    margin-bottom: 0; }
 
 /*# sourceMappingURL=doomsayer.component.css.map */

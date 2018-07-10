@@ -12,14 +12,5 @@ export class AppComponent implements OnInit {
 
   constructor(private sp: SharepointService, public us: UserService) {}
 
-  ngOnInit() {
-    this.us.getUser().subscribe(user => {
-      console.log('Current User', user);
-    });
-
-    this.us.getUserByRacf('hornean').subscribe(user => {
-      console.log('RACF', user);
-    });
-
-  }
+  ngOnInit() {}
 }

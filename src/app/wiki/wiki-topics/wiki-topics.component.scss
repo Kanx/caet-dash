@@ -8,6 +8,10 @@
 }
 
 .toggle-create {
+
+  .mat-form-field:first-child {
+    min-width: 60%;
+  }
 }
 
 .topic-list {

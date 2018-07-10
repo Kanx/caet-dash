@@ -25,12 +25,17 @@ export class WikiNavComponent implements OnInit, OnChanges {
         this.currentArticle = this.routeInfo.url.split('/')[3];
       });
     this.currentArticle = this.router.url.split('/')[3];
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.articles.currentValue.length) {
       this.buildNavigation(changes.articles.currentValue);
     }
+  }
+
+  toggleNav(ins) {
+    ins.isActive = !ins.isActive;
   }
 
   buildNavigation(articles: IWikiNavItem[]) {
@@ -40,6 +45,7 @@ export class WikiNavComponent implements OnInit, OnChanges {
           return this.wikiService.getSecondaryTopics()
             .map(secondaryTopicList => {
               for (const primaryTopic of primaryTopicList) {
+                primaryTopic.isActive = false;
                 primaryTopic.SecondaryTopics = secondaryTopicList.filter(secondaryTopic => {
                   return secondaryTopic.PrimaryTopicID === primaryTopic.PrimaryTopicID;
                 });
@@ -63,4 +69,5 @@ export class WikiNavComponent implements OnInit, OnChanges {
           console.log('nav items', this.navItems);
         });
   }
+
 }

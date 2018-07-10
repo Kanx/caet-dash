@@ -1,5 +1,7 @@
 /*    Colours   */
 /*    Sizing   */
+/*    Colours   */
+/*    Sizing   */
 /*    Buttons   */
 @import url(../../node_modules/@fortawesome/fontawesome-pro/css/all.css);
 button {
@@ -50,27 +52,13 @@ button {
       .ButtonGroup .Button:first-child {
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px; }
+    .ButtonGroup--justified {
+      display: block; }
+      .ButtonGroup--justified .Button {
+        border-radius: 4px;
+        margin-right: 0.5rem; }
 
 /*   Inputs   */
-form:not(.no-ui-validation) input.ng-invalid.ng-touched:not(.ng-pristine), form:not(.no-ui-validation) select.ng-invalid.ng-touched:not(.ng-pristine) {
-  border: 1px solid #EB2136;
-  background: white !important; }
-form:not(.no-ui-validation) input.ng-valid.ng-touched:not(.ng-pristine), form:not(.no-ui-validation) select.ng-valid.ng-touched:not(.ng-pristine) {
-  border: 1px solid #82A934;
-  background: #fcfdf9 !important; }
-
-input[type=text], input[type=number], input[type=url], select {
-  padding: 10px 15px;
-  border: 0;
-  font-family: "RN House Sans";
-  background: #fafafa;
-  border: 1px solid #cacaca;
-  width: 100%; }
-  input[type=text]::placeholder, input[type=number]::placeholder, input[type=url]::placeholder, select::placeholder {
-    color: #b8b8b8; }
-  input[type=text].light, input[type=number].light, input[type=url].light, select.light {
-    background: #FFFFFF; }
-
 .input-wrapper {
   position: relative; }
   .input-wrapper:after {
@@ -94,39 +82,6 @@ select::-ms-expand {
   display: none; }
 
 /*    Form layout    */
-.form-control {
-  margin-bottom: 20px; }
-  .form-control label {
-    position: relative;
-    display: block; }
-    .form-control label small {
-      font-size: 0.6rem;
-      color: #EB2136; }
-    .form-control label input, .form-control label select {
-      margin: 5px 0;
-      display: block; }
-    .form-control label.select-style:after {
-      color: black;
-      font-family: 'Font Awesome 5 Free';
-      content: '\f0d7';
-      font-weight: 900;
-      position: absolute;
-      right: 15px;
-      top: 34px; }
-
-.help-text {
-  margin: 5px 0;
-  color: #909093;
-  font-size: 0.7rem; }
-
-.input-button-addon {
-  margin: 5px 0;
-  display: flex; }
-  .input-button-addon button {
-    flex: 1; }
-  .input-button-addon input {
-    flex: 4; }
-
 a:disabled, button:disabled {
   cursor: not-allowed;
   background: #ebebeb;
@@ -136,26 +91,40 @@ a:disabled, button:disabled {
   margin: 10px 0;
   display: block; }
 
-.toggle-create {
-  display: flex; }
-  .toggle-create mat-form-field {
-    flex: 1;
-    justify-content: space-between; }
-
-.quick-edit_item {
-  display: flex; }
-  .quick-edit_item mat-form-field {
-    flex: 8; }
-  .quick-edit_item .btn-wrapper {
-    flex: 1; }
-
-.btn-icon i {
-  margin-left: 5px !important;
-  margin-bottom: 3px !important; }
-
-.block-input {
+.Input--block {
   width: 100%;
   display: block; }
+.InputGroup {
+  display: flex;
+  margin-bottom: 0.8rem; }
+  .InputGroup input {
+    flex: 10; }
+  .InputGroup button {
+    width: 60px;
+    padding: 0.6rem 0.8rem; }
+.Input__Button {
+  text-align: center;
+  padding: 0.7rem;
+  background: none;
+  border-radius: 100%;
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 0.3rem; }
+  .Input__Button:not(:last-child) {
+    margin-right: 0.3rem; }
+  .Input__Button i {
+    display: inline-block;
+    width: 100%; }
+  .Input__Button--success {
+    background: #82A934; }
+  .Input__Button--info {
+    background: #5668b0; }
+  .Input__Button--danger {
+    background: #EB2136; }
+  .Input__Button--hollow--success {
+    color: #82A934; }
+  .Input__Button--hollow--danger {
+    color: #EB2136; }
 
 .side-bar {
   flex: 2;
@@ -1531,10 +1500,10 @@ p {
   margin-bottom: 1rem;
   line-height: 1.5rem; }
 
-div.heading-with-action {
+.ActionHeader {
   vertical-align: middle;
   display: flex; }
-  div.heading-with-action span.header {
+  .ActionHeader__Title {
     color: #838386;
     font-size: 2rem;
     margin: 5px 0 !important;
@@ -1544,9 +1513,9 @@ div.heading-with-action {
     flex: 1;
     vertical-align: middle;
     display: inline-block; }
-    div.heading-with-action span.header-sm {
-      font-size: 1rem; }
-  div.heading-with-action span.action {
+    .ActionHeader__Title--sm {
+      font-size: 1.3rem; }
+  .ActionHeader__Action {
     text-align: right;
     vertical-align: middle;
     margin: 5px 0 !important;
@@ -1555,7 +1524,7 @@ div.heading-with-action {
     display: inline-block;
     flex: 1;
     position: relative; }
-    div.heading-with-action span.action button {
+    .ActionHeader__Action button {
       height: 100%;
       display: inline-block; }
 
