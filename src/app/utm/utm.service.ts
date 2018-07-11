@@ -16,7 +16,7 @@ export class UtmService {
   }
 
   getMediums() {
-    return this.sp.getListItems('UTMMediums', `Title,ID`).map(data => data.d.results);
+    return this.sp.getListItems('UTMMediums', 'Title,ID').map(data => data.d.results);
   }
 
   createMedium(medium: string) {
