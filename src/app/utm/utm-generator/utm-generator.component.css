@@ -7,7 +7,7 @@
   padding: 2rem; }
   .UtmGenerator input {
     width: 100%; }
-  .UtmGenerator__Form > * {
+  .UtmGenerator .mat-form-field {
     width: 100%; }
   .UtmGenerator__Output {
     padding: 15px 25px;

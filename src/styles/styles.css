@@ -94,14 +94,6 @@ a:disabled, button:disabled {
 .Input--block {
   width: 100%;
   display: block; }
-.InputGroup {
-  display: flex;
-  margin-bottom: 0.8rem; }
-  .InputGroup input {
-    flex: 10; }
-  .InputGroup button {
-    width: 60px;
-    padding: 0.6rem 0.8rem; }
 .Input__Button {
   text-align: center;
   padding: 0.7rem;

@@ -63,9 +63,16 @@
         <button class="Button" (click)="clearRecentStrings()">Clear</button>
       </div>
     </div>
-    <div class="InputGroup" *ngFor="let utmUrl of utmHistory">
-      <button class="Button--aqua" ngxClipboard [cbContent]="utmUrl" (click)="notify()"><i class="fa fa-copy"></i></button>
-      <input type="text" readonly  class="light" value="{{utmUrl}}">
-    </div>
+
+    <mat-form-field *ngFor="let utmUrl of utmHistory">
+      <input matInput type="text" readonly  class="light" [value]="utmUrl">
+      <button matSuffix class="Input__Button Input__Button--info" ngxClipboard [cbContent]="utmUrl" (click)="notify()"><i class="fa fa-copy"></i></button>
+    </mat-form-field>
+
+    <!--<mat-form-field *ngFor="let utmUrl of utmHistory">-->
+      <!--<input matInput type="text" class="light" [value]="component.Title" [(ngModel)]="existingComponents[i].Title" [ngModelOptions]="{standalone: true}">-->
+      <!--<button matSuffix type="button" class="Input__Button Input__Button&#45;&#45;info" (click)="updateComponent(component)" aria-label="Save"><i class="fas fa-save"></i></button>-->
+    <!--</mat-form-field>-->
+
   </div>
 </main>

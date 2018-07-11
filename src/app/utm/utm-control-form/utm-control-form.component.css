@@ -12,7 +12,8 @@
   margin: 0 20px;
   margin-bottom: 15px; }
   .UtmControlForm h4 {
-    color: #44155d; }
+    color: #44155d;
+    margin-bottom: 1rem; }
 
 .mat-form-field {
   width: 100%; }

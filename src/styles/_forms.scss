@@ -143,17 +143,7 @@ a:disabled, button:disabled {
     width: 100%;
     display: block;
   }
-  &Group {
-    display: flex;
-    margin-bottom: 0.8rem;
-    input {
-      flex: 10;
-    }
-    button {
-      width: 60px;
-      padding: 0.6rem 0.8rem;
-    }
-  }
+
   &__Button {
     text-align:center;
     padding: 0.7rem;

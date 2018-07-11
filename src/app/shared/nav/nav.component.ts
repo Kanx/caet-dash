@@ -16,21 +16,21 @@ export class NavComponent implements OnInit {
   constructor(private router: Router, private us: UserService) {
     this.user = this.us.getUser();
     this.navItems = [
-      {
-        label: 'What\'s On',
-        route: 'whats-on',
-        icon: 'fal fa-chalkboard'
-      },
+      // {
+      //   label: 'What\'s On',
+      //   route: 'whats-on',
+      //   icon: 'fal fa-chalkboard'
+      // },
       {
         label: 'Team Wiki',
         route: 'wiki',
         icon: 'fal fa-book-open'
       },
-      {
-        label: 'Files',
-        route: 'files',
-        icon: 'fal fa-file'
-      },
+      // {
+      //   label: 'Files',
+      //   route: 'files',
+      //   icon: 'fal fa-file'
+      // },
       {
         label: 'UTM Library',
         route: 'utm',
