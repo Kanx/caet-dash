@@ -4,7 +4,8 @@
 
 .UtmGenerator {
   background: white;
-  padding: 2rem; }
+  padding: 2rem;
+  display: block; }
   .UtmGenerator input {
     width: 100%; }
   .UtmGenerator .mat-form-field {
