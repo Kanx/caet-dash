@@ -16,7 +16,7 @@ export class UtmService {
   }
 
   getMediums() {
-    return this.sp.getListItems('UTMMediums').map(data => data.d.results);
+    return this.sp.getListItems('UTMMediums', `Title,ID`).map(data => data.d.results);
   }
 
   createMedium(medium: string) {
@@ -32,7 +32,7 @@ export class UtmService {
   }
 
   getSources() {
-    return this.sp.getListItems('UTMSources').map(data => data.d.results);
+    return this.sp.getListItems('UTMSources', `Title,ID,Medium`).map(data => data.d.results);
   }
 
   createSource(source: string, medium: string) {
@@ -48,7 +48,7 @@ export class UtmService {
   }
 
   getCampaigns() {
-    return this.sp.getListItems('UTMCampaigns').map(data => data.d.results);
+    return this.sp.getListItems('UTMCampaigns', `Title,ID`).map(data => data.d.results);
   }
 
   createCampaign(campaign: string) {
@@ -64,7 +64,7 @@ export class UtmService {
   }
 
   getContent() {
-    return this.sp.getListItems('UTMContent').map(data => data.d.results);
+    return this.sp.getListItems('UTMContent', `Title,ID`).map(data => data.d.results);
   }
 
   createContent(content: string) {
