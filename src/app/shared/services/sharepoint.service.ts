@@ -43,26 +43,31 @@ function FetchRequestDigest(): any {
 
 @Injectable()
 export class SharepointService {
+  private siteUsers = {};
   private api = environment.api;
   private headers = new HttpHeaders()
     .set('Accept', 'application/json;odata=verbose')
     .set('Content-Type', 'application/json;odata=verbose')
     .set('If-Match', '*');
 
+  public pickAuthor = 'Author/ID,Author/Title';
+  public pickCreated = 'Created';
+  public pickModified = 'Modified';
+
   constructor(private http: HttpClient,
               private _http: Http) {}
 
   // LIST OPERATIONS
   getListItems(listName: string, selectBy?: string, expandBy?: string): Observable<any> {
-    let viewFields = (selectBy) ? '?$select=' + selectBy : '';
-
-    const urlOperator = (viewFields.length) ? '&' : '?';
-        viewFields += (expandBy) ? urlOperator + 'expand=' + selectBy : '';
+    let viewFields =  `?$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`
+    viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
 
-  getListItem(listName: string, listItemId: number): any {
-    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})`, { 'headers': this.headers});
+  getListItem(listName: string, listItemId: number, selectBy?: string, expandBy?: string): any {
+    let viewFields =  `?$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`
+    viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
+    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})${viewFields}`, { 'headers': this.headers});
   }
 
   @FetchRequestDigest()
@@ -87,17 +92,21 @@ export class SharepointService {
   }
 
   // USER OPERATIONS
-  getCurrentUser(): any {
+  getCurrentUser(): Observable<any>  {
     return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetMyProperties`,
-      { 'headers': this.headers});
+      { 'headers': this.headers });
   }
 
-  getUser(userId: string): any {
-    return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='europa\\${userId}'`,
-      { 'headers': this.headers});
+  getUserByRacf(racf: string): Observable<any> {
+    return this.http.get(`${this.api}/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='europa\\${racf}'`,
+      { 'headers': this.headers });
   }
 
-  // DOCUMENT OPERATIONS
+  getUserById(userId): Observable<any>  {
+    return this.http.get(`${this.api}/web/GetUserById(${userId})`,
+      { 'headers': this.headers });
+  }
+
   getAllFilesAndFolders(folderName: string): any {
     return this.http
       .get(`${this.api}/web/GetFolderByServerRelativeUrl('${folderName}')?$expand=Folders,Files,Folders/Folders/Files,Folders/Folders/Folders/Files,Folders/Folders/Folders/Folders/Files`,

@@ -3,11 +3,15 @@
 .wiki-topics {
   h3 {
     margin: 25px 0 15px;
-    color: $brand-blue;
+    color: $dark-purple;
   }
 }
 
 .toggle-create {
+
+  .mat-form-field:first-child {
+    min-width: 60%;
+  }
 }
 
 .topic-list {

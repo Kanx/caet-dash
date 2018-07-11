@@ -5,6 +5,7 @@ import { ISecondaryTopic } from '../shared/interfaces';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
+
 @Injectable()
 export class WikiService {
   private _secondaryTopicList: BehaviorSubject<ISecondaryTopic[]>;
@@ -19,7 +20,7 @@ export class WikiService {
   constructor(private sp: SharepointService) { }
 
   getPrimaryTopics() {
-    return this.sp.getListItems('WikiPrimaryTopics').map(data => data.d.results);
+    return this.sp.getListItems('WikiPrimaryTopics', `Title,PrimaryTopicID,ID`).map(data => data.d.results);
   }
 
   createPrimaryTopic(title, id) {
@@ -33,7 +34,7 @@ export class WikiService {
   }
 
   getSecondaryTopics() {
-    return this.sp.getListItems('WikiSecondaryTopics').map(data => data.d.results);
+    return this.sp.getListItems('WikiSecondaryTopics', `Title,PrimaryTopicID,ID,SecondaryTopicID`).map(data => data.d.results);
   }
 
   createSecondaryTopic(title, sid, pid) {
@@ -54,12 +55,12 @@ export class WikiService {
     this.shouldBeUpdated.next(true);
   }
 
-  getArticles() {
-    return this.sp.getListItems(this.listName, 'Title,TopicID,ID,Content', 'Author/Name').map(data => data.d.results);
+  getArticles(): Observable<any> {
+    return this.sp.getListItems(this.listName, `Title,TopicID,ID`).map(data => data.d.results);
   }
 
-  getArticle(id) {
-    return this.sp.getListItem(this.listName, id).map(data => data.d);
+  getArticle(id): Observable<any> {
+    return this.sp.getListItem(this.listName, id, `Title,TopicID,ID,Content,${this.sp.pickAuthor},${this.sp.pickCreated}`, `${this.sp.pickAuthor}`).map(data => data.d);
   }
 
   createArticle(article: object) {

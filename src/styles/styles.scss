@@ -5,7 +5,8 @@
 
 @import 'variables';
 @import 'mat-theme';
-// Plus imports for other components in your app.
+
+@import '../../node_modules/@fortawesome/fontawesome-pro/css/all.css';
 
 * {
   -webkit-margin-before: 0;
@@ -18,14 +19,26 @@ html {
   margin: 0 auto;
   padding: 0;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  background: #FAFCFD;
+}
+
+
+.card {
+  background: white;
+  border-radius: 6px;
+  -webkit-box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
+  -moz-box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
+  box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
 }
 
 body {
-
-  margin:0;
-  padding:0;
-  margin-left: 90px;
+  margin: 0;
+  padding: 0;
+  margin-left: 250px;
 }
+
+
+
 
 .grid {
   width : 100%;
@@ -37,8 +50,6 @@ body {
 .full-width {
   width: 100%;
 }
-
-
 
 
 .row {
@@ -63,12 +74,14 @@ a {
 
 p {
   font-weight: 100;
+  margin-bottom: 1rem;
+  line-height: 1.5rem;
 }
 
-div.heading-with-action {
+.ActionHeader {
   vertical-align: middle ;
   display: flex;
-  span.header {
+  &__Title {
     color: $dark-grey;
     font-size: 2rem;
     margin: 5px 0 !important;
@@ -78,11 +91,11 @@ div.heading-with-action {
     flex: 1;
     vertical-align: middle ;
     display: inline-block;
-    &-sm {
-      font-size:1rem;
+    &--sm {
+      font-size:1.3rem;
     }
   }
-  span.action {
+  &__Action {
     text-align: right;
     vertical-align: middle ;
     margin: 5px 0 !important;

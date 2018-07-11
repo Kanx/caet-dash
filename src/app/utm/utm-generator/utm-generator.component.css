@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  margin: 2rem; }
+
+.UtmGenerator {
+  background: white;
+  padding: 2rem; }
+  .UtmGenerator input {
+    width: 100%; }
+  .UtmGenerator .mat-form-field {
+    width: 100%; }
+  .UtmGenerator__Output {
+    padding: 15px 25px;
+    background: #fafafa;
+    border-radius: 3px;
+    margin: 20px 0;
+    border: 1px solid #fdfdfd; }
+    .UtmGenerator__Output h3 {
+      color: #bdbdbd;
+      margin-bottom: 25px; }
+    .UtmGenerator__Output textarea, .UtmGenerator__Output p {
+      background: white;
+      color: #333333;
+      padding: 20px;
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid #fdfdfd;
+      margin: 0; }
+    .UtmGenerator__Output button {
+      margin: 15px 0; }
+
+mat-form-field {
+  margin-bottom: 1.5rem; }
+
+/*# sourceMappingURL=utm-generator.component.css.map */

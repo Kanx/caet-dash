@@ -26,14 +26,14 @@
     border-radius: 3px;
     box-shadow: 0 0 20px rgba(51, 51, 51, 0.3);
     padding: 20px 25px;
-    background: lighten($brand-blue, 60%);
+    background: lighten($dark-purple, 60%);
     margin: 15px 0;
     margin-left: 180px;
     &.active {
       margin-left: -800px;
     }
     &.info {
-      background: lighten($brand-blue, 60%);
+      background: lighten($dark-purple, 60%);
     }
     &.success {
       background: $green;
@@ -42,5 +42,7 @@
       background: $crimson;
     }
   }
-
+  p {
+    margin-bottom: 0;
+  }
 }

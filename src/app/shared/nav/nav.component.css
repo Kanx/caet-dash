@@ -1,9 +1,9 @@
 /*    Colours   */
 /*    Sizing   */
 :host {
+  font-family: "RN House Sans";
   display: block;
   padding: 20px 0;
-  background: #071630;
   z-index: 100;
   position: fixed;
   left: 0;
@@ -11,42 +11,60 @@
   bottom: 0;
   height: 100%;
   overflow: auto;
-  max-width: 90px; }
+  max-width: 250px;
+  background-image: linear-gradient(to top left, #231937, #1d1528); }
   :host nav > div {
     font-size: 0.9rem;
     float: left;
     min-height: 1px;
     position: relative; }
 
-#logo {
-  width: 15%; }
-  #logo i.fa {
-    color: white !important;
-    font-size: 1.4rem; }
-
-.primary-nav {
+.Nav__Logo {
+  text-align: center;
+  color: white;
+  font-weight: 100;
+  font-size: 1.5rem;
+  margin: 2rem; }
+  .Nav__Logo span {
+    color: #EB2136; }
+.Nav__Profile {
   text-align: center; }
-  .primary-nav__icon {
-    font-size: 1.4rem;
-    display: block; }
-  .primary-nav__label {
-    margin: 6px 0;
+  .Nav__ProfileName {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 100;
+    margin: 1rem; }
+  .Nav__ProfilePicture {
+    margin: auto;
+    overflow: hidden;
+    border-radius: 100%;
+    height: 100px;
+    width: 100px; }
+    .Nav__ProfilePicture img {
+      width: 100%; }
+.Nav__List {
+  padding: 0;
+  margin: 0;
+  list-style-type: none; }
+  .Nav__ListItem {
     display: block;
-    font-size: 0.9rem; }
-  .primary-nav ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none; }
-    .primary-nav ul li a {
-      border-left: 5px solid transparent;
-      display: block;
-      max-width: 90px;
-      transition: all 0.2s ease-in-out;
-      font-weight: 200;
-      padding: 6px 5px 6px 0;
-      color: #898989; }
-      .primary-nav ul li a.active {
-        border-color: #1F9BAA;
-        color: #ffffff; }
+    margin: auto;
+    padding: 1.1rem 1rem 1.1rem 1.8rem;
+    transition: all 0.2s ease-in-out; }
+    .Nav__ListItem.active {
+      background: #FAFCFD; }
+      .Nav__ListItem.active .Nav__ListIcon {
+        color: #ED2760; }
+      .Nav__ListItem.active .Nav__ListLabel {
+        color: #6F7A89; }
+  .Nav__ListIcon {
+    font-size: 1.2rem;
+    display: inline-block;
+    color: #ED2760;
+    width: 40px; }
+  .Nav__ListLabel {
+    margin: 6px 0;
+    color: #BBBCBE;
+    display: inline-block;
+    font-size: 1rem; }
 
 /*# sourceMappingURL=nav.component.css.map */

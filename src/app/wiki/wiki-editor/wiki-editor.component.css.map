@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,eAAgB;EACd,KAAK,EAAE,IAAI",
+"sources": ["wiki-editor.component.scss"],
 "names": [],
 "file": "wiki-editor.component.css"
 }

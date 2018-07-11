@@ -1,11 +1,20 @@
-<div class="primary-nav">
-  <ul>
+<div class="Nav">
+  <div class="Nav__Logo">
+    <span>caet</span>board
+  </div>
+  <div class="Nav__Profile">
+    <div class="Nav__ProfilePicture">
+      <img [src]="(user | async)?.PictureUrl" alt="">
+    </div>
+    <div class="Nav__ProfileName">{{ (user | async)?.DisplayName }}</div>
+  </div>
+  <ul class="Nav__List">
     <li *ngFor="let navItem of navItems">
-      <a routerLinkActive="active" [routerLink]="navItem.route">
-        <div class="primary-nav__icon">
-          <i class="fab {{navItem.icon}}"></i>
+      <a routerLinkActive="active" [routerLink]="navItem.route" class="Nav__ListItem">
+        <div class="Nav__ListIcon">
+          <i class="{{navItem.icon}}"></i>
         </div>
-        <div class="primary-nav__label">{{navItem.label}}</div>
+        <div class="Nav__ListLabel">{{navItem.label}}</div>
       </a>
     </li>
   </ul>

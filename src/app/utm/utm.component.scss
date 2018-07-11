@@ -1,7 +1,6 @@
 @import '../../styles/variables';
 
-:host{
-  display: flex;
+:host {
 }
 
 .utm-controls_content-primary {
@@ -14,98 +13,4 @@
     font-size:2rem;
     margin-bottom: 15px;
   }
-}
-.utm-controls_content-secondary {
-  flex-grow: 0;
-  display:block;
-}
-
-.utm-controls {
-  transition: all 0.7s;
-  font-size: 0.9rem;
-  background: #FBFBFC;
-
-  &-active {
-    flex: 6;
-
-    .utm-controls_content-primary {
-
-    }
-    .utm-controls_content-secondary {
-      flex-grow: 10;
-
-
-    }
-  }
-  &_content {
-    display: flex;
-    &-nav {
-      li > a.active {
-        position: relative;
-        color: $crimson;
-        &:before {
-          font-family: 'Font Awesome 5 Free';
-          content: '\f061';
-          font-weight: 900;
-          position: absolute;
-          right: -20px;
-        }
-      }
-    }
-  }
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 5px 0;
-    font-size:0.8rem;
-    li {
-      margin:0;
-      padding:3px 0;
-    }
-  }
-  &_list {
-    position:fixed;
-    position: sticky;
-    top: 72px;
-    overflow: auto;
-    max-height: calc(100vh - 72px);
-    padding: 20px 10px;
-  }
-}
-
-.utm-generator {
-  form {
-    max-width:600px;
-  }
-  input {
-    width:100%;
-  }
-}
-
-
-#utm-output {
-  max-width: 600px;
-  padding: 15px 25px;
-  background: #fafafa;
-  border-radius: 3px;
-  margin: 20px 0;
-  border: 1px solid $light-grey;
-  h3 {
-    color: $dark-grey;
-    margin-bottom:25px;
-  }
-  textarea, p {
-    background: white;
-    color: #333333;
-    padding: 20px;
-    width: 100%;
-    border-radius: 2px;
-    border: 1px solid $light-grey;
-    margin:0;
-  }
-  button {
-    margin: 15px 0;
-  }
-
 }

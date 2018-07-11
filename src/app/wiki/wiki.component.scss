@@ -1,21 +1,27 @@
 @import "../../styles/variables";
 :host {}
 
-.wiki {
+.Wiki {
   position: relative;
   display: flex;
   flex-direction: row;
   flex: 1;
-  //min-height: 555px;
+  margin: 1.5rem 1rem;
+  padding: 1rem 0;
 }
 
-.wiki-nav-wrapper {
+.Wiki__NavWrapper {
   position: sticky;
-  top:0;
-  width: 400px;
+  top: 0;
   display: block;
-  // overflow: hidden;
-  background: $brand-blue;
-  //min-height: 100vh;
+  margin-right: 1.5rem;
 }
+
+.Wiki__Content {
+  width: 100%;
+  flex:3; // TODO Fix width
+  flex-wrap: wrap;
+}
+
+
 

@@ -1,8 +1,15 @@
-<div class="wiki-content_header">
-  <div class="wiki-content_header-title">
+<div class="Wiki__ContentHeader">
+  <div class="Wiki__ContentHeaderTitle">
     <h1 [innerHTML]="article.Title"></h1>
+    <div class="Wiki__ContentHeaderMeta">written by <span class="Wiki__ContentHeaderMetaAuthorName">{{(article.Author.Title)}}</span> on <span class="Wiki__ContentHeaderMetaCreated">{{article.Created | date }}</span></div>
+  </div>
+  <div class="Wiki__ContentHeaderControls">
+    <button routerLinkActive="active" [routerLink]="'edit'" class="Button Button--white card"><i class="fal fa-pen-alt"></i>&nbsp;Edit</button>
+
   </div>
 </div>
-<div class="wiki-content_article">
-  <div [innerHTML]="article.Content"></div>
+<div class="Wiki__ContentArticleWrapper card">
+  <div class="Wiki__ContentArticle" [innerHTML]="article.Content"></div>
 </div>
+
+

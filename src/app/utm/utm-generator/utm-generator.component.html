@@ -1,0 +1,78 @@
+<main class="UtmGenerator card">
+  <form [formGroup]="utmForm" class="UtmGenerator__Form">
+    <mat-form-field>
+      <input matInput type="url" id="url" placeholder="Enter the URL" formControlName="url" required>
+      <mat-hint align="start">Specify the full URL including the protocol; e.g. https://jobs.rbs.com</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select id="medium" formControlName="medium" placeholder="Medium" required>
+        <mat-option *ngFor="let medium of mediums | sort:'Title'" [value]="medium.Title">
+          {{medium.Title}}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="start">This is the top-level 'platform' which the source can be classified as. This option will change available Sources.</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select id="source" formControlName="source" placeholder="Source" required>
+        <mat-option *ngFor="let source of filteredSources | sort:'Title'" [value]="source.Title">
+          {{source.Title}}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="start">Select the specific Source under the chosen Medium.</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select id="campaign" formControlName="campaign" placeholder="Campaign" required>
+        <mat-option *ngFor="let campaign of campaigns | sort:'Title'" [value]="campaign.Title">
+          {{campaign.Title}}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="start">Required parameter to tie URL to a specific campaign</mat-hint>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-select id="content" formControlName="content" placeholder="Content">
+        <mat-option *ngFor="let content of contentList | sort:'Title'" [value]="content.Title">
+          {{content.Title}}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="start">Optional parameter that is used to specify the sort of content being promoted, e.g. IWFAB, Blog</mat-hint>
+    </mat-form-field>
+
+    <div class="ButtonGroup ButtonGroup--justified">
+      <button class="Button Button--aqua" (click)="generateUrl()" [disabled]="!utmForm.valid">Generate</button>
+      <button class="Button Button--crimson" (click)="clearForm()">Clear form</button>
+    </div>
+  </form>
+
+  <div class="UtmGenerator__Output">
+    <h3>UTM Link</h3>
+    <p [hidden]="generatedUrl">This is where the completed URL will be generated.</p>
+    <textarea id="generatedUrl" readonly [hidden]="!generatedUrl">{{generatedUrl}}</textarea>
+    <button class="Button Button--crimson" type="submit" ngxClipboard [cbContent]="generatedUrl" (click)="doomSayer.success('Copied to clipboard')" [disabled]="!generatedUrl">Copy to clipboard</button>
+  </div>
+  <div class="UtmGenerator__RecentStrings">
+    <div class="ActionHeader" *ngIf="utmHistory.length > 0">
+      <div class="ActionHeader__Title ActionHeader__Title--sm">
+        <span>Recent strings</span>
+      </div>
+      <div class="ActionHeader__Action">
+        <button class="Button" (click)="clearRecentStrings()">Clear</button>
+      </div>
+    </div>
+
+    <mat-form-field *ngFor="let utmUrl of utmHistory">
+      <input matInput type="text" readonly  class="light" [value]="utmUrl">
+      <button matSuffix class="Input__Button Input__Button--info" ngxClipboard [cbContent]="utmUrl" (click)="notify()"><i class="fa fa-copy"></i></button>
+    </mat-form-field>
+
+    <!--<mat-form-field *ngFor="let utmUrl of utmHistory">-->
+      <!--<input matInput type="text" class="light" [value]="component.Title" [(ngModel)]="existingComponents[i].Title" [ngModelOptions]="{standalone: true}">-->
+      <!--<button matSuffix type="button" class="Input__Button Input__Button&#45;&#45;info" (click)="updateComponent(component)" aria-label="Save"><i class="fas fa-save"></i></button>-->
+    <!--</mat-form-field>-->
+
+  </div>
+</main>

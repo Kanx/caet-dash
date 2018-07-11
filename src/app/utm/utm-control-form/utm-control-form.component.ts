@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import { Router } from '@angular/router';
-import { UtmService } from '../utm.service';
+import {Router} from '@angular/router';
+import {UtmService} from '../utm.service';
 import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DialogService} from 'ng2-bootstrap-modal';
@@ -101,8 +101,6 @@ export class UtmControlFormComponent implements OnInit {
           });
         }
       });
-
-
   }
 
   submitNewComponent() {

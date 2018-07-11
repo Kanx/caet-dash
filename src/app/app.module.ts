@@ -30,8 +30,12 @@ import { TopicIdPipe } from './wiki/topic-id.pipe';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatInputModule, MatSelectModule} from '@angular/material';
 import { SortPipe } from './sort.pipe';
+import { WhatsOnComponent } from './whats-on/whats-on.component';
+import { HorizontalSubNavComponent } from './shared/horizontal-sub-nav/horizontal-sub-nav.component';
+import { UtmGeneratorComponent } from './utm/utm-generator/utm-generator.component';
 
 const appRoutes: Routes = [
+  { path: 'whats-on', component: WhatsOnComponent },
   { path: 'wiki', component: WikiComponent,
     children: [
       { path: 'post/:id/edit', component: WikiEditorComponent },
@@ -42,6 +46,7 @@ const appRoutes: Routes = [
   },
   { path: 'utm', component: UtmComponent,
     children: [
+      { path: '', component: UtmGeneratorComponent },
       { path: 'campaigns', component: UtmControlFormComponent },
       { path: 'content', component: UtmControlFormComponent },
       { path: 'mediums', component: UtmControlFormComponent },
@@ -75,7 +80,10 @@ const MatModules = [
     DialogModalComponent,
     WikiTopicsComponent,
     TopicIdPipe,
-    SortPipe
+    SortPipe,
+    WhatsOnComponent,
+    HorizontalSubNavComponent,
+    UtmGeneratorComponent
   ],
   imports: [
     RouterModule.forRoot(
