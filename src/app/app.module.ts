@@ -33,9 +33,9 @@ import { SortPipe } from './sort.pipe';
 import { WhatsOnComponent } from './whats-on/whats-on.component';
 import { HorizontalSubNavComponent } from './shared/horizontal-sub-nav/horizontal-sub-nav.component';
 import { UtmGeneratorComponent } from './utm/utm-generator/utm-generator.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 const appRoutes: Routes = [
-  { path: 'whats-on', component: WhatsOnComponent },
   { path: 'wiki', component: WikiComponent,
     children: [
       { path: 'post/:id/edit', component: WikiEditorComponent },
@@ -53,6 +53,7 @@ const appRoutes: Routes = [
       { path: 'sources', component: UtmControlFormComponent }
     ]
   },
+  { path: 'analytics', component: AnalyticsComponent },
   { path: '**', redirectTo: '/' }
 ];
 
@@ -83,7 +84,8 @@ const MatModules = [
     SortPipe,
     WhatsOnComponent,
     HorizontalSubNavComponent,
-    UtmGeneratorComponent
+    UtmGeneratorComponent,
+    AnalyticsComponent
   ],
   imports: [
     RouterModule.forRoot(

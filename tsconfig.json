@@ -17,5 +17,11 @@
       "es2017",
       "dom"
     ]
-  }
+  },
+  "include": [
+    "src/**/*",
+    "node_modules/ngx-clipboard/src/index.ts",
+    "node_modules/ngx-clipboard/src/clipboard.directive.ts",
+    "node_modules/ngx-clipboard/src/clipboard.service.ts"
+  ]
 }
