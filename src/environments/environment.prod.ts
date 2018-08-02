@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  api: 'https://collab.rbsres01.net/teams/candidate-attraction-and-engagement-qe9j99bj/_api'
 };

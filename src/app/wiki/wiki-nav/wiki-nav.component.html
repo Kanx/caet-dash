@@ -1,0 +1,20 @@
+<div class="row Wiki__NavActions card ButtonGroup">
+  <button routerLinkActive="active" routerLink="create" class="Button Button--white"><i class="far fa-plus-square"></i> Create</button>
+  <button routerLinkActive="active" routerLink="topics" class="Button Button--white"><i class="fal fa-cogs"></i> Manage</button>
+</div>
+<div class="Wiki__NavContents card">
+  <div class="Wiki__NavList">
+    <ul>
+      <li class="Wiki__NavList--primary" *ngFor="let primaryNavItem of navItems" [ngClass]="{active: primaryNavItem.isActive }"><span class="Wiki__NavList--primary-label" (click)="toggleNav(primaryNavItem)" >{{primaryNavItem.Title}}</span>
+        <ul>
+          <li class="Wiki__NavList--secondary" *ngFor="let secondaryTopic of primaryNavItem.SecondaryTopics" [ngClass]="{active: (secondaryTopic.Articles | wikiNavFilter: keywordFilter).length}">
+            {{secondaryTopic.Title}}
+            <ul class="Wiki__NavListArticles">
+              <li *ngFor="let article of secondaryTopic.Articles | wikiNavFilter: keywordFilter"><a routerLinkActive="active" routerLink="post/{{article.ID}}">{{article.Title}}</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

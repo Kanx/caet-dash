@@ -1,0 +1,21 @@
+/*    Colours   */
+/*    Sizing   */
+:host {
+  margin: 2rem;
+  display: block; }
+
+.UtmControlForm {
+  padding: 2rem;
+  display: block;
+  background: white;
+  border-radius: 3px;
+  margin: 0 20px;
+  margin-bottom: 15px; }
+  .UtmControlForm h4 {
+    color: #44155d;
+    margin-bottom: 1rem; }
+
+.mat-form-field {
+  width: 100%; }
+
+/*# sourceMappingURL=utm-control-form.component.css.map */

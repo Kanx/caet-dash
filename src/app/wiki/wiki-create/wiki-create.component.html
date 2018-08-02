@@ -1,0 +1,38 @@
+<mat-form-field class="block-input">
+  <input matInput placeholder="Create Article Title" [(ngModel)]="title" placeholder="Enter a title">
+</mat-form-field>
+
+<mat-form-field class="block-input">
+  <mat-select placeholder="Attach to topic" name="topics" [(ngModel)]="category">
+    <mat-option *ngFor="let topic of secondaryTopics | sort:'Title'" [value]="topic.SecondaryTopicID">
+      {{topic.Title}} ({{topic.PrimaryTopicID}})
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<label>
+  Article Content
+  <ckeditor
+    [(ngModel)]="content"
+    class="editor"
+    [config]="{
+    extraPlugins: 'divarea',
+    uiColor: '#bdbdbd',
+      toolbarGroups: [
+      { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+      { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+      { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+      { name: 'forms', groups: [ 'forms' ] },
+      { name: 'insert', groups: [ 'image', 'table'] },
+      { name: 'editing', groups: [ 'find', 'selection', 'editing' ] },
+      { name: 'styles', groups: [ 'styles' ] },
+      { name: 'links', groups: [ 'links' ] },
+      { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] }
+    ]
+   }"
+    debounce="20">
+
+  </ckeditor>
+
+</label>
+<button class="Button Button--success" (click)="createArticle()">Create</button>

@@ -1,0 +1,22 @@
+/*    Colours   */
+/*    Sizing   */
+.Wiki {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin: 1.5rem 1rem;
+  padding: 1rem 0; }
+
+.Wiki__NavWrapper {
+  position: sticky;
+  top: 0;
+  display: block;
+  margin-right: 1.5rem; }
+
+.Wiki__Content {
+  width: 100%;
+  flex: 3;
+  flex-wrap: wrap; }
+
+/*# sourceMappingURL=wiki.component.css.map */

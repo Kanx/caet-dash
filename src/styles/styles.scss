@@ -1,0 +1,240 @@
+@import "variables";
+@import "forms";
+@import "layout";
+@import "panel";
+
+@import 'variables';
+@import 'mat-theme';
+
+@import '../../node_modules/@fortawesome/fontawesome-pro/css/all.css';
+
+* {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'RN House Sans', sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  background: #FAFCFD;
+}
+
+
+.card {
+  background: white;
+  border-radius: 6px;
+  -webkit-box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
+  -moz-box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
+  box-shadow: 2px 3px 20px -5px rgba(217,217,217,1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  margin-left: 250px;
+}
+
+
+
+
+.grid {
+  width : 100%;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+.row {
+  &:after,&:before {
+    content:"";
+    display: table ;
+    clear: both;
+  }
+}
+
+/*    Body styles   */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'RN House Sans', sans-serif;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: $aqua;
+}
+
+p {
+  font-weight: 100;
+  margin-bottom: 1rem;
+  line-height: 1.5rem;
+}
+
+.ActionHeader {
+  vertical-align: middle ;
+  display: flex;
+  &__Title {
+    color: $dark-grey;
+    font-size: 2rem;
+    margin: 5px 0 !important;
+    padding: 10px 0;
+    line-height:1.2;
+    display: inline-block;
+    flex: 1;
+    vertical-align: middle ;
+    display: inline-block;
+    &--sm {
+      font-size:1.3rem;
+    }
+  }
+  &__Action {
+    text-align: right;
+    vertical-align: middle ;
+    margin: 5px 0 !important;
+    padding: 10px 15px;
+    line-height:1.2;
+    display: inline-block;
+    flex: 1;
+    position: relative;
+    button {
+      height:100%;
+      display: inline-block;
+    }
+
+  }
+
+}
+
+.modal {
+  display: flex;
+  /* establish flex container */
+  flex-direction: column;
+  /* make main-axis vertical */
+  justify-content: center;
+  /* align items vertically, in this case */
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  background: transparentize(black, 0.4);
+  &-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    margin: 10px;
+    padding: 0;
+  }
+  button.close {
+    background:none;
+    color: white;
+    font-size: 1.1rem;
+    display:inline-block;
+  }
+  &-header {
+    padding: 10px  20px;
+    span {
+      padding:0;
+      margin:0;
+      vertical-align: middle;
+    }
+    .action {
+      float:right;
+    }
+  }
+  &-body {
+    padding: 0 20px;
+    p {
+      padding:25px 0;
+    }
+  }
+  &-footer {
+    padding: 15px 20px;
+  }
+}
+
+
+.danger {
+  .modal {
+    &-header, button.action-btn {
+      background: $crimson;
+      color:white;
+
+    }
+  }
+
+}
+
+
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity .15s linear;
+  -o-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0,0);
+  -ms-transform: translate(0,0);
+  -o-transform: translate(0,0);
+  transform: translate(0,0);
+}
+
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+  -o-transition: -o-transform .3s ease-out;
+  transition: transform .3s ease-out;
+  -webkit-transform: translate(-50%,-75%);
+  -ms-transform: translate(-50%,-75%);
+  -o-transform: translate(-50%,-75%);
+  transform: translate(-50%,-75%);
+}
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+}
+
+.main {
+  color: #555;
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.35rem;
+  }
+}
+
+
+.wiki-content {
+  padding: 20px 30px;
+  width:100%;
+
+  p, ul {
+    margin-bottom: 15px;
+    font-weight: 100;
+  }
+
+  h2, h3 {
+    margin: 0.2rem 0 0.5rem;
+  }
+}

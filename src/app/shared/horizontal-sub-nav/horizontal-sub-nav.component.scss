@@ -1,0 +1,30 @@
+@import "../../../styles/variables";
+
+:host {
+  display: block;
+  width: 100%;
+  background: white;
+}
+
+.HorizontalSubNav {
+  padding: 0 2rem;
+  text-align: center;
+  border-bottom: 1px solid #D6D6D6;
+  &__List {
+    margin: auto;
+    list-style-type: none;
+    li {
+      display: inline-block;
+    }
+    &Item {
+      display: block;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #231937;
+      font-weight:100;
+      &.active {
+        color: $crimson;
+      }
+    }
+  }
+}

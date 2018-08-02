@@ -1,0 +1,47 @@
+@import '../../../styles/variables';
+
+.wiki-topics {
+  h3 {
+    margin: 25px 0 15px;
+    color: $dark-purple;
+  }
+}
+
+.toggle-create {
+
+  .mat-form-field:first-child {
+    min-width: 60%;
+  }
+}
+
+.topic-list {
+  font-size: 1rem;
+  display: block;
+  padding: 5px 0;
+  &__topic {
+    display: flex;
+    vertical-align: middle;
+    mat-form-field {
+      flex:10;
+      line-height:1;
+
+    }
+    &--action {
+      line-height:1;
+      button {
+
+      }
+      padding: 10px 15px;
+      flex:1;
+    }
+  }
+  mat-list-item {
+
+
+  }
+
+}
+
+mat-form-field {
+  margin: 5px;
+}

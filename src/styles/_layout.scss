@@ -1,0 +1,21 @@
+.side-bar {
+  h1 {
+    margin: 0;
+    color: $dark-grey;
+    font-size: 1.9rem;
+  }
+  flex: 2;
+  min-height: 100vh;
+  padding: 10px 20px;
+  &_left {}
+  &_right {}
+}
+.container {
+  display: flex;
+}
+
+.main {
+  flex:7;
+  display:block;
+  padding: 20px;
+}

@@ -1,0 +1,26 @@
+/*    Colours   */
+/*    Sizing   */
+:host {
+  display: block;
+  width: 100%;
+  background: white; }
+
+.HorizontalSubNav {
+  padding: 0 2rem;
+  text-align: center;
+  border-bottom: 1px solid #D6D6D6; }
+  .HorizontalSubNav__List {
+    margin: auto;
+    list-style-type: none; }
+    .HorizontalSubNav__List li {
+      display: inline-block; }
+    .HorizontalSubNav__ListItem {
+      display: block;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #231937;
+      font-weight: 100; }
+      .HorizontalSubNav__ListItem.active {
+        color: #EB2136; }
+
+/*# sourceMappingURL=horizontal-sub-nav.component.css.map */

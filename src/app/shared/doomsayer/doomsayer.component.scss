@@ -1,0 +1,48 @@
+@import "../../../styles/variables";
+
+#doomsayer {
+  z-index: 10;
+  position: fixed;
+  display:block;
+  // overflow: hidden;
+  width: 300px;
+  right: -780px;
+  top: 20px;
+  color: white;
+  font-weight: 100;
+  font-size: 0.8rem;
+
+  .message {
+    transition: all 0.3s ease, margin-left 0.7s cubic-bezier(0.175, 0.885, 0.1, 1.1);
+    &.archived {
+      height: 1px;
+      overflow:hidden;
+      padding: 0;
+      margin: -1px;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    width: 300px;
+    border-radius: 3px;
+    box-shadow: 0 0 20px rgba(51, 51, 51, 0.3);
+    padding: 20px 25px;
+    background: lighten($dark-purple, 60%);
+    margin: 15px 0;
+    margin-left: 180px;
+    &.active {
+      margin-left: -800px;
+    }
+    &.info {
+      background: lighten($dark-purple, 60%);
+    }
+    &.success {
+      background: $green;
+    }
+    &.danger {
+      background: $crimson;
+    }
+  }
+  p {
+    margin-bottom: 0;
+  }
+}

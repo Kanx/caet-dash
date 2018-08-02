@@ -1,0 +1,26 @@
+<form class="UtmControlForm card" id="UtmControlForm" [formGroup]="utmControlForm">
+  <h4>Add {{selectedComponentName}}</h4>
+  <mat-form-field>
+    <input matInput type="text" id="create" class="light" formControlName="newComponentName" placeholder="Enter new {{singularComponentName | lowercase}} value">
+    <button matSuffix type="button" class="Input__Button Input__Button--success"  (click)="submitNewComponent()" [disabled]="!utmControlForm.valid"><i class="fas fa-plus"></i></button>
+  </mat-form-field>
+
+  <mat-form-field  *ngIf="selectedComponentName === 'Sources'">
+    <mat-select name="bind-to-medium" id="bind-to-medium" formControlName="medium" placeholder="Select Medium">
+      <mat-option *ngFor="let medium of mediums | sort"  [value]="medium.Title">
+        {{medium.Title}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</form>
+<form class="UtmControlForm no-ui-validation">
+  <h4>Update/Delete {{selectedComponentName}}</h4>
+  <mat-form-field *ngFor="let component of existingComponents | sort; let i = index">
+    <input matInput type="text" class="light" [value]="component.Title" [(ngModel)]="existingComponents[i].Title" [ngModelOptions]="{standalone: true}">
+    <button matSuffix type="button" class="Input__Button Input__Button--info" (click)="updateComponent(component)" aria-label="Save"><i class="fas fa-save"></i></button>
+    <button matSuffix type="button" class="Input__Button Input__Button--danger" (click)="deleteComponent(component)" aria-label="Delete"><i class="fas fa-trash"></i></button>
+  </mat-form-field>
+
+
+</form>

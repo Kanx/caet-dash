@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+
+:host {
+  margin: 2rem;
+  display: block;
+}
+
+.UtmControlForm {
+  padding: 2rem;
+  display: block;
+  background: white;
+  border-radius: 3px;
+  margin: 0 20px;
+  margin-bottom: 15px;
+  h4 {
+    color: $purple;
+    margin-bottom: 1rem;
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}

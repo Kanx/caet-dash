@@ -1,0 +1,7 @@
+<div class="HorizontalSubNav">
+  <ul class="HorizontalSubNav__List">
+    <li *ngFor="let navItem of config">
+      <a routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="navItem.target" class="HorizontalSubNav__ListItem">{{navItem.label}}</a>
+    </li>
+  </ul>
+</div>

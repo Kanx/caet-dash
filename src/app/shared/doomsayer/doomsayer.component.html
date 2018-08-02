@@ -1,0 +1,7 @@
+<div id="doomsayer">
+  <div *ngFor="let message of messageQueue" class="message {{message.theme}}" [ngClass]="{ 'active': message.isActive, 'archived': message.archived }">
+    <div class="text">
+      <p>{{message.message}}</p>
+    </div>
+  </div>
+</div>
