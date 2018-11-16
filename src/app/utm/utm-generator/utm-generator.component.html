@@ -42,6 +42,18 @@
       <mat-hint align="start">Optional parameter that is used to specify the sort of content being promoted, e.g. IWFAB, Blog</mat-hint>
     </mat-form-field>
 
+
+    <mat-form-field>
+      <mat-select  formControlName="bid" placeholder="Talemetry BID" #singleSelect>
+        <ngx-mat-select-search formControlName="bidFilterCtrl" placeholderLabel="Search BIDs" noEntriesFoundLabel="No BIDs found"></ngx-mat-select-search>
+        <mat-option *ngFor="let bid of bidList | sort:'Boardid'" [value]="bid.Boardid">
+          {{bid.Boardid}} - {{bid.Title}}
+        </mat-option>
+      </mat-select>
+      <mat-hint align="start">Please select the BID</mat-hint>
+
+    </mat-form-field>
+
     <div class="ButtonGroup ButtonGroup--justified">
       <button class="Button Button--aqua" (click)="generateUrl()" [disabled]="!utmForm.valid">Generate</button>
       <button class="Button Button--crimson" (click)="clearForm()">Clear form</button>
@@ -68,11 +80,6 @@
       <input matInput type="text" readonly  class="light" [value]="utmUrl">
       <button matSuffix class="Input__Button Input__Button--info" ngxClipboard [cbContent]="utmUrl" (click)="notify()"><i class="fa fa-copy"></i></button>
     </mat-form-field>
-
-    <!--<mat-form-field *ngFor="let utmUrl of utmHistory">-->
-      <!--<input matInput type="text" class="light" [value]="component.Title" [(ngModel)]="existingComponents[i].Title" [ngModelOptions]="{standalone: true}">-->
-      <!--<button matSuffix type="button" class="Input__Button Input__Button&#45;&#45;info" (click)="updateComponent(component)" aria-label="Save"><i class="fas fa-save"></i></button>-->
-    <!--</mat-form-field>-->
 
   </div>
 </main>

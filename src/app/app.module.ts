@@ -34,6 +34,8 @@ import { WhatsOnComponent } from './whats-on/whats-on.component';
 import { HorizontalSubNavComponent } from './shared/horizontal-sub-nav/horizontal-sub-nav.component';
 import { UtmGeneratorComponent } from './utm/utm-generator/utm-generator.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
 
 const appRoutes: Routes = [
   { path: 'wiki', component: WikiComponent,
@@ -102,7 +104,8 @@ const MatModules = [
     ReactiveFormsModule,
     ClipboardModule,
     Ng2Webstorage,
-    BootstrapModalModule
+    BootstrapModalModule,
+    NgxMatSelectSearchModule
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [SharepointService, UserService, UtmService, DoomsayerService, SortPipe, TopicIdPipe, WikiNavFilterPipe, WikiNavDeepFilterPipe ],

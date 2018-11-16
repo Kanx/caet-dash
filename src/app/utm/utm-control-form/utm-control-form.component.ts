@@ -5,6 +5,7 @@ import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DialogService} from 'ng2-bootstrap-modal';
 import {DialogModalComponent} from '../../shared/dialog-modal/dialog-modal.component';
+import {noAmpersandValidator} from './utm-control-form-validators.directive';
 
 @Component({
   selector: 'app-utm-control-form',
@@ -71,7 +72,7 @@ export class UtmControlFormComponent implements OnInit {
 
   ngOnInit() {
     this.utmControlForm = this.fb.group({
-      newComponentName: ['', Validators.required],
+      newComponentName: ['', [Validators.required, noAmpersandValidator]],
       medium: this.mediumFormSetup
     });
 

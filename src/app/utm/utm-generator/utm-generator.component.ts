@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {LocalStorageService} from 'ngx-webstorage';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UtmService} from '../utm.service';
 import {Router} from '@angular/router';
 import {ISource} from '../../shared/interfaces';
 import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
+import {takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-utm-generator',
@@ -13,14 +16,17 @@ import {DoomsayerService} from '../../shared/doomsayer/doomsayer.service';
 })
 export class UtmGeneratorComponent implements OnInit {
   utmForm: FormGroup;
-  sources: any[];
-  mediums: string[];
+  sources: Array<any>;
+  mediums: Array<string>;
   campaigns: any[];
   contentList: any[];
   filteredSources: Array<ISource>;
   previousMedium = '';
   generatedUrl: string;
   utmHistory: string[];
+  bidList: Array<any>;
+  private _onDestroy = new Subject<void>();
+
   constructor(
     private storage: LocalStorageService,
     private router: Router,
@@ -31,20 +37,24 @@ export class UtmGeneratorComponent implements OnInit {
 
   ngOnInit() {
     this.getDataFromService();
-
-
     this.utmForm = this.fb.group({
-      url: ['',  Validators.compose([Validators.required, Validators.pattern('(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})')])],
+      url: ['',  Validators.compose([
+        Validators.required,
+        Validators.pattern('(https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\\.[^\\s]{2,}|https?:\\/\\/(?:www\\.|(?!www))[a-zA-Z0-9]\\.[^\\s]{2,}|www\\.[a-zA-Z0-9]\\.[^\\s]{2,})')
+      ])],
       medium: ['', Validators.required],
       source: [{ value: '', disabled: true }, Validators.required],
       campaign: ['', Validators.required],
+      bidFilterCtrl: '',
+      bid: '',
       content: ''
     });
+
     this.utmService.updateService$.subscribe(data => {
       this.getDataFromService();
       this.utmForm.patchValue({'medium': ''});
     });
-
+    this.bidList = [{Title: 'foo'}];
     this.utmForm.valueChanges.subscribe(val => {
       if (val.medium !== this.previousMedium) {
         this.filteredSources = this.sources.filter((source) => source.Medium === val.medium);
@@ -57,10 +67,24 @@ export class UtmGeneratorComponent implements OnInit {
       .subscribe((value) => {
         if (value) { this.utmHistory = value.split(','); }
       });
+
+    this.utmForm.get('bidFilterCtrl').valueChanges
+      .debounceTime(500)
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterBids();
+      });
   }
   clearForm() {
     this.utmForm.reset();
   }
+
+  filterBids() {
+    const search = this.utmForm.get('bidFilterCtrl').value;
+    return this.utmService.getBidByTitle(search)
+      .subscribe(data => this.bidList = data);
+  }
+
   getDataFromService() {
     this.utmService.getMediums()
       .subscribe(data => this.mediums = data);
@@ -73,6 +97,7 @@ export class UtmGeneratorComponent implements OnInit {
 
     this.utmService.getContent()
       .subscribe(data => this.contentList = data);
+
   }
 
   generateUrl(): void {

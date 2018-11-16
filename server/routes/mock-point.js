@@ -12,6 +12,7 @@ var MockData = require('../data');
 router.get('/web/lists/:config/:items', function (req, res, next) {
   const listSettings = req.params.config;
   const returnSingleItem = req.params.items.indexOf('items(') !== -1;
+  const hasSearchQuery = req.query.hasOwnProperty('$filter')
   const listName = listSettings.substring(listSettings.lastIndexOf("('") + 2, listSettings.lastIndexOf("')"));
 
   if(listSettings.indexOf('Documents') !== -1) {
@@ -74,6 +75,17 @@ router.get('/web/lists/:config/:items', function (req, res, next) {
         res.sendStatus(502);
       }
 
+    } else if(hasSearchQuery) {
+      const regex = /\(([^}]+)\)/gi;
+      const searchQuery = req.query['$filter'];
+      const match = regex.exec(searchQuery)[1];
+      const key = match.split(',')[1];
+      let val = match.split(',')[0].replace("'", '').replace("'",'');
+      res.json({ 'd': { 'results': MockData[listName]
+            .filter(function(item) {
+              return item[key].indexOf(val) !== -1;
+            })}
+      });
     } else {
       // Return all data
       res.json({ 'd': { 'results': MockData[listName] } });

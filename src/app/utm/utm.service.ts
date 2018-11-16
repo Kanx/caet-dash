@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {SharepointService} from '../shared/services/sharepoint.service';
-import { Observable } from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class UtmService {
@@ -78,4 +78,14 @@ export class UtmService {
   deleteContent(id: any) {
     return this.sp.deleteListItem('UTMContent', id);
   }
+
+  getBidByTitle(title: string) {
+   return this.sp.getListItem('UTMBidList', `substringof('${title}',Title)`).map(data => data.d.results);
+  }
+
+  populateBids() {
+    return this.sp.getListItems('UTMBidList', `Title,ID`).map(data => data.d.results);
+
+  }
+
 }

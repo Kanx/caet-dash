@@ -58,13 +58,21 @@ export class SharepointService {
               private _http: Http) {}
 
   // LIST OPERATIONS
-  getListItems(listName: string, selectBy?: string, expandBy?: string): Observable<any> {
+  getListItems(listName: string, selectBy?: string, expandBy?: string, limitTo?: number): Observable<any> {
     let viewFields =  `?$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`
     viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
+    if (limitTo) { viewFields += `&top=${limitTo}`; }
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
   }
 
-  getListItem(listName: string, listItemId: number, selectBy?: string, expandBy?: string): any {
+  getListItem(listName: string, query: string, selectBy?: string, expandBy?: string): any {
+    let viewFields =  `?$filter=${query}`;
+    viewFields +=  `&$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`;
+    viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
+    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers});
+  }
+
+  getListItemById(listName: string, listItemId: number, selectBy?: string, expandBy?: string): any {
     let viewFields =  `?$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`
     viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})${viewFields}`, { 'headers': this.headers});

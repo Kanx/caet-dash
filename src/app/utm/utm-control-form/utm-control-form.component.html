@@ -1,9 +1,18 @@
 <form class="UtmControlForm card" id="UtmControlForm" [formGroup]="utmControlForm">
   <h4>Add {{selectedComponentName}}</h4>
   <mat-form-field>
-    <input matInput type="text" id="create" class="light" formControlName="newComponentName" placeholder="Enter new {{singularComponentName | lowercase}} value">
+    <input matInput
+           type="text"
+           id="create"
+           class="light"
+           formControlName="newComponentName"
+           placeholder="Enter new {{singularComponentName | lowercase}} value">
     <button matSuffix type="button" class="Input__Button Input__Button--success"  (click)="submitNewComponent()" [disabled]="!utmControlForm.valid"><i class="fas fa-plus"></i></button>
   </mat-form-field>
+  <mat-error *ngIf="utmControlForm.get('newComponentName').hasError('hasAmpersand')">
+    <p>{{selectedComponentName}} cannot contain ampersands (&)</p>
+  </mat-error>
+
 
   <mat-form-field  *ngIf="selectedComponentName === 'Sources'">
     <mat-select name="bind-to-medium" id="bind-to-medium" formControlName="medium" placeholder="Select Medium">
