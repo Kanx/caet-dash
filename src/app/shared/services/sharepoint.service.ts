@@ -69,6 +69,8 @@ export class SharepointService {
     let viewFields =  `?$filter=${query}`;
     viewFields +=  `&$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`;
     viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
+    console.log(selectBy);
+    console.log(viewFields);
     return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers});
   }
 
