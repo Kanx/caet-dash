@@ -54,7 +54,8 @@ export class UtmGeneratorComponent implements OnInit {
       this.getDataFromService();
       this.utmForm.patchValue({'medium': ''});
     });
-    this.bidList = [{Title: 'foo'}];
+
+    this.bidList = [{Title: 'Test', ID: 1}];
     this.utmForm.valueChanges.subscribe(val => {
       if (val.medium !== this.previousMedium) {
         this.filteredSources = this.sources.filter((source) => source.Medium === val.medium);
