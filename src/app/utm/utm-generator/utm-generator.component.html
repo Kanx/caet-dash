@@ -46,8 +46,8 @@
     <mat-form-field>
       <mat-select  formControlName="bid" placeholder="Talemetry BID" #singleSelect>
         <ngx-mat-select-search formControlName="bidFilterCtrl" placeholderLabel="Search BIDs" noEntriesFoundLabel="No BIDs found"></ngx-mat-select-search>
-        <mat-option *ngFor="let bid of bidList | sort:'Boardid'" [value]="bid.Boardid">
-          {{bid.Boardid}} - {{bid.Title}}
+        <mat-option *ngFor="let bid of bidList | sort:'BIDID'" [value]="bid.BIDID">
+          {{bid.BIDID}} - {{bid.Title}}
         </mat-option>
       </mat-select>
       <mat-hint align="start">Please select the BID</mat-hint>
