@@ -80,7 +80,7 @@ export class UtmService {
   }
 
   getBidByTitle(title: string) {
-   return this.sp.getListItem('UTMBidList', `substringof('${title}',Title)`).map(data => data.d.results);
+   return this.sp.getListItem('UTMBidList', `substringof('${title}',Title)`, 'Title,BIDID,ID').map(data => data.d.results);
   }
 
   populateBids() {
