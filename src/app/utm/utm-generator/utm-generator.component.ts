@@ -73,7 +73,9 @@ export class UtmGeneratorComponent implements OnInit {
       .debounceTime(500)
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
-        this.filterBids();
+        if(this.utmForm.get('bidFilterCtrl').value !== '') {
+          this.filterBids();
+        }
       });
   }
   clearForm() {
