@@ -56,18 +56,18 @@ export class SharepointService {
 
   constructor(private http: HttpClient,
               private _http: Http) {}
-
+e
   // LIST OPERATIONS
   getListItems(listName: string, selectBy?: string, expandBy?: string): Observable<any> {
     let viewFields =  `?$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`
     viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
-    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}`, { 'headers': this.headers });
+    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items${viewFields}&$top=500`, { 'headers': this.headers });
   }
 
   getListItem(listName: string, listItemId: number, selectBy?: string, expandBy?: string): any {
     let viewFields =  `?$select=${this.pickAuthor},${this.pickCreated},${this.pickModified}${(selectBy) ? ',' + selectBy : '' }`
     viewFields += `&$expand=${this.pickAuthor}${(expandBy) ? ',' + expandBy : '' }`;
-    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})${viewFields}`, { 'headers': this.headers});
+    return this.http.get(`${this.api}/web/lists/getByTitle('${listName}')/items(${listItemId})${viewFields}&$top=500`, { 'headers': this.headers});
   }
 
   @FetchRequestDigest()
