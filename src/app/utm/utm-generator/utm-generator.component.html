@@ -16,11 +16,16 @@
 
     <mat-form-field>
       <mat-select id="source" formControlName="source" placeholder="Source" required>
-        <mat-option *ngFor="let source of filteredSources | sort:'Title'" [value]="source.Title">
+        <mat-option *ngFor="let source of filteredSources | sort:'Title'" [value]="source">
           {{source.Title}}
         </mat-option>
       </mat-select>
       <mat-hint align="start">Select the specific Source under the chosen Medium.</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="text" id="bid" placeholder="BID" formControlName="bid" readonly>
+      <mat-hint align="start">BID will be automatically generated.</mat-hint>
     </mat-form-field>
 
     <mat-form-field>
