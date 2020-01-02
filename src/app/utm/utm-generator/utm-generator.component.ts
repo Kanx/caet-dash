@@ -19,6 +19,7 @@ export class UtmGeneratorComponent implements OnInit {
   contentList: any[];
   filteredSources: Array<ISource>;
   previousMedium = '';
+  previousSource = '';
   generatedUrl: string;
   utmHistory: string[];
   constructor(
@@ -38,8 +39,10 @@ export class UtmGeneratorComponent implements OnInit {
       medium: ['', Validators.required],
       source: [{ value: '', disabled: true }, Validators.required],
       campaign: ['', Validators.required],
-      content: ''
+      content: '',
+      bid: ['']
     });
+
     this.utmService.updateService$.subscribe(data => {
       this.getDataFromService();
       this.utmForm.patchValue({'medium': ''});
@@ -51,6 +54,15 @@ export class UtmGeneratorComponent implements OnInit {
         this.previousMedium = val.medium;
         this.filteredSources.length ? this.utmForm.get('source').enable() : this.utmForm.get('source').disable();
       }
+
+      if (val.source !== this.previousSource && val.source) {
+        this.previousSource = val.source;
+        this.utmForm.patchValue({
+          bid: val.source.BID
+          // formControlName2: myValue2 (can be omitted)
+        });
+      };
+
     });
     this.utmHistory = this.parseUtmHistory(this.storage.retrieve('utmHistory'));
     this.storage.observe('utmHistory')
@@ -80,11 +92,14 @@ export class UtmGeneratorComponent implements OnInit {
     let utmString = this.utmForm.get('url').value +
       baseUrlDelimiter +
       `utm_medium=${this.utmForm.get('medium').value}&` +
-      `utm_source=${this.utmForm.get('source').value}&` +
+      `utm_source=${this.utmForm.get('source').value.Title}&` +
       `utm_campaign=${this.utmForm.get('campaign').value}`;
 
-    if (this.utmForm.get('content')) {
+    if (this.utmForm.get('content').value) {
       utmString += `&utm_content=${this.utmForm.get('content').value}`;
+    }
+    if (this.utmForm.get('bid').value) {
+      utmString += `&bid=${this.utmForm.get('bid').value}`;
     }
 
     this.generatedUrl = utmString.replace(/\s/, '+');
@@ -108,7 +123,6 @@ export class UtmGeneratorComponent implements OnInit {
     if (!s) { return []; }
     return (s.indexOf(',') !== -1) ? s.split(',') : [s];
   }
-
 
   notify() {
     this.doomSayer.info('Copied to clipboard');

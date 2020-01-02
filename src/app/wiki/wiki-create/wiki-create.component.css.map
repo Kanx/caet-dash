@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,eAAgB;EACd,KAAK,EAAE,IAAI",
-"sources": ["wiki-create.component.scss"],
-"names": [],
-"file": "wiki-create.component.css"
-}
